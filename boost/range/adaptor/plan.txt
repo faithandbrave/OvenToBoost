@@ -4,7 +4,7 @@ taken : OK
 dropped_white : OK
 dropped : OK
 
-outdirected
+outdirected : OK
 outplaced
 
 cycled
