@@ -108,7 +108,7 @@ private:
             this->base_reference() = m_last;
     }
 
-	friend class ::boost::iterator_core_access;
+    friend class ::boost::iterator_core_access;
 
     ref_t dereference() const
     {

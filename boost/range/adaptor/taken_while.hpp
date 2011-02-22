@@ -28,35 +28,35 @@ namespace boost {
 
 namespace range_detail {
 
-	namespace taken_while_detail {
-		template< class Predicate >
-	    struct read_then
-		{
-			template< class Iterator >
-			bool operator()(Iterator it)
-			{
-				return m_pred(*it);
-			}
+    namespace taken_while_detail {
+        template< class Predicate >
+        struct read_then
+        {
+            template< class Iterator >
+            bool operator()(Iterator it)
+            {
+                return m_pred(*it);
+            }
 
-			explicit read_then()
-			{ }
+            explicit read_then()
+            { }
 
-			explicit read_then(Predicate pred) :
-				m_pred(pred)
-			{ }
+            explicit read_then(Predicate pred) :
+                m_pred(pred)
+            { }
 
-		private:
-			Predicate m_pred;
-		};
+        private:
+            Predicate m_pred;
+        };
 
-	} // namespace taken_while_detail
+    } // namespace taken_while_detail
 
-	template< class Range, class Predicate >
+    template< class Range, class Predicate >
     struct taken_while_range {
         typedef
             taken_while_detail::read_then<
-				typename ::boost::adaptors::detail::pass_by_value<Predicate>::type
-			>
+                typename ::boost::adaptors::detail::pass_by_value<Predicate>::type
+            >
         read_then_pred_t;
 
         typedef
@@ -81,31 +81,31 @@ namespace range_detail {
         }
     };
 
-	template< class T >
+    template< class T >
     struct taken_while_holder : holder<T>
     {
         taken_while_holder( T r ) : holder<T>(r)
         { }
     };
 
-	template< class SinglePassRng, class BinPredicate >
+    template< class SinglePassRng, class BinPredicate >
     inline typename taken_while_range<SinglePassRng, BinPredicate>::result_type
-	operator|( SinglePassRng& r,
-			   const taken_while_holder<BinPredicate>& f )
-	{
-		return taken_while_range<SinglePassRng, BinPredicate>()( r, f.val );
-	}
+    operator|( SinglePassRng& r,
+               const taken_while_holder<BinPredicate>& f )
+    {
+        return taken_while_range<SinglePassRng, BinPredicate>()( r, f.val );
+    }
 
-	template< class SinglePassRng, class BinPredicate >
-	inline typename taken_while_range<const SinglePassRng, BinPredicate>::result_type
-	operator|( const SinglePassRng& r,
-			   const taken_while_holder<BinPredicate>& f )
-	{
-		return taken_while_range<const SinglePassRng, BinPredicate>()( r, f.val );
-	}
+    template< class SinglePassRng, class BinPredicate >
+    inline typename taken_while_range<const SinglePassRng, BinPredicate>::result_type
+    operator|( const SinglePassRng& r,
+               const taken_while_holder<BinPredicate>& f )
+    {
+        return taken_while_range<const SinglePassRng, BinPredicate>()( r, f.val );
+    }
 } // namespace range_detail
 
-	using range_detail::taken_while_range;
+    using range_detail::taken_while_range;
 
     namespace adaptors
     {
