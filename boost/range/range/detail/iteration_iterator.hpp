@@ -79,11 +79,14 @@ private:
         m_state = m_next(m_state.get());
     }
 
+    bool is_end() const
+    {
+        return !m_state.is_initialized();
+    }
+
     bool equal(self_t const& other) const
     {
-        return m_state.is_initialized() != other.m_state.is_initialized() ? false :
-               !m_state.is_initialized() && !other.m_state.is_initialized() ? true :
-               *m_state == *other.m_state;
+        return is_end() == other.is_end();
     }
 };
 
