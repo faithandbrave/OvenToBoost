@@ -12,7 +12,6 @@
 
 #include <boost/config.hpp>
 
-#include <utility> // std::forward
 #include <boost/utility/result_of.hpp>
 
 #if defined(BOOST_HAS_VARIADIC_TMPL) && defined(BOOST_HAS_RVALUE_REFS)
