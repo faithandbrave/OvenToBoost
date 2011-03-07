@@ -11,7 +11,6 @@
 #define BOOST_RANGE_DETAIL_INDIRECT_FUNCTOR_INCLUDE
 
 #include <boost/config.hpp>
-
 #include <boost/utility/result_of.hpp>
 
 #if defined(BOOST_HAS_VARIADIC_TMPL) && defined(BOOST_HAS_RVALUE_REFS)

@@ -10,7 +10,7 @@
 #define BOOST_RANGE_DETAIL_CREATE_INDIRECT_FUNCTOR_RESULT(z, n, _) \
     template <class F2 BOOST_PP_ENUM_TRAILING_PARAMS(n, class A)> \
     struct result<F2(BOOST_PP_ENUM_PARAMS(n, A))> : \
-        boost::result_of<indirected_functor_type((BOOST_PP_ENUM_PARAMS(n, A)))> {};
+        boost::result_of<indirected_functor_type(BOOST_PP_ENUM_PARAMS(n, A))> {};
 /* */
 
 BOOST_PP_REPEAT(BOOST_PP_INC(BOOST_RANGE_DETAIL_INDIRECT_FUNCTOR_MAX_ARITY),
