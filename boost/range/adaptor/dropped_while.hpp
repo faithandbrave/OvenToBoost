@@ -21,6 +21,8 @@
 #include <boost/range/begin.hpp>
 #include <boost/range/end.hpp>
 #include <boost/range/iterator.hpp>
+#include <boost/range/regular.hpp>
+#include <boost/range/adaptor/regular_operator.hpp>
 #include <boost/iterator/iterator_adaptor.hpp>
 #include "./detail/not_.hpp"
 
@@ -54,6 +56,8 @@ namespace range_detail {
         dropped_while_holder( T r ) : holder<T>(r)
         { }
     };
+
+	BOOST_RANGE_ADAPTOR_MAKE_REGULAR_OPERATOR(dropped_while_holder);
 
     template< class SinglePassRng, class UnaryPredicate >
     inline typename dropped_while_range<SinglePassRng>::result_type

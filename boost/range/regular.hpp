@@ -12,13 +12,21 @@
 
 #include "./detail/indirect_functor.hpp"
 #include <boost/shared_ptr.hpp>
+#include <boost/mpl/identity.hpp>
 
 namespace boost { namespace range {
 
+namespace result_of {
+
 template <class F>
-inline detail::indirect_functor<boost::shared_ptr<F> > regular(F f)
+struct regular : boost::mpl::identity<detail::indirect_functor<boost::shared_ptr<F> > > {};
+
+} // namespace result_of
+
+template <class F>
+inline typename result_of::regular<F>::type regular(F f)
 {
-    return detail::indirect_functor<boost::shared_ptr<F> >(boost::shared_ptr<F>(new F(f)));
+    return typename result_of::regular<F>::type(boost::shared_ptr<F>(new F(f)));
 }
 
 } // namespace range

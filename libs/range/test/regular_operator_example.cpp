@@ -8,10 +8,18 @@
 // http://www.boost.org/LICENSE_1_0.txt)
 
 #include <iostream>
-#include <boost/range/regular.hpp>
+#include <vector>
 #include <boost/range/iteration.hpp>
-#include <boost/range/adaptor/taken.hpp>
+#include <boost/range/adaptor/taken_while.hpp>
+#include <boost/range/adaptor/dropped_while.hpp>
 #include <boost/lambda/lambda.hpp>
+
+// description:
+// regular operator|+() is syntax suggar of regular function.
+// ex:)
+//   r | taken_while(regular(_1 < 3));
+// to
+//   r |+ taken_while(_1 < 3);
 
 void disp(int x)
 {
@@ -37,7 +45,13 @@ void for_each_(const SinglePassRange& rng, F f)
 int main()
 {
     using boost::lambda::_1;
+    using namespace boost::adaptors;
 
-    for_each_(boost::iteration(1, boost::regular(_1 * 2)) | boost::adaptors::taken(5), disp);
+    const std::vector<int> v = {1, 2, 3, 4, 5, 6};
+    for_each_(v |+ taken_while(_1 < 3) |+ dropped_while(_1 == 1), disp);
 }
 
+/*
+2
+
+*/

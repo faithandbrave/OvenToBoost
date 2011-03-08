@@ -20,32 +20,32 @@
 namespace boost {
 namespace range_detail {
 
-    namespace taken_detail {
-        template< class Difference >
-        struct countdown
-        {
-            template< class Iterator >
-            bool operator()(Iterator)
-            {
-                return m_n--
-                    != 0; // suppress a VC++ warning.
-            }
+	namespace taken_detail {
+		template< class Difference >
+		struct countdown
+		{
+			template< class Iterator >
+			bool operator()(Iterator)
+			{
+				return m_n--
+					!= 0; // suppress a VC++ warning.
+			}
 
-            explicit countdown()
-            { }
+			explicit countdown()
+			{ }
 
-            explicit countdown(Difference n) :
-                m_n(n)
-            { }
+			explicit countdown(Difference n) :
+				m_n(n)
+			{ }
 
-        private:
-            Difference m_n;
-        };
-    } // namespace taken_detail
+		private:
+			Difference m_n;
+		};
+	} // namespace taken_detail
 
-    template <class SinglePassRng>
-    struct taken_range {
-        typedef typename
+	template <class SinglePassRng>
+	struct taken_range {
+		typedef typename
             range_difference<SinglePassRng>::type
         diff_t;
 
@@ -73,34 +73,34 @@ namespace range_detail {
             return result_type(iter_t(first, last, cd), iter_t(last, last, cd));
         }
 
-    };
+	};
 
-    template< class T >
+	template< class T >
     struct taken_holder : holder<T>
     {
         taken_holder( T r ) : holder<T>(r)
         { }
     };
 
-    template< class SinglePassRng >
+	template< class SinglePassRng >
     inline typename taken_range<const SinglePassRng>::result_type
-    operator|( SinglePassRng& r,
-               const taken_holder<typename range_difference<SinglePassRng>::type>& f )
-    {
-        return taken_range<SinglePassRng>()( r, f.val );
-    }
+	operator|( SinglePassRng& r,
+			   const taken_holder<typename range_difference<SinglePassRng>::type>& f )
+	{
+		return taken_range<SinglePassRng>()( r, f.val );
+	}
 
-    template< class SinglePassRng >
-    inline typename taken_range<const SinglePassRng>::result_type
-    operator|( const SinglePassRng& r,
-               const taken_holder<typename range_difference<SinglePassRng>::type>& f )
-    {
-        return taken_range<const SinglePassRng>()( r, f.val );
-    }
+	template< class SinglePassRng >
+	inline typename taken_range<const SinglePassRng>::result_type
+	operator|( const SinglePassRng& r,
+			   const taken_holder<typename range_difference<SinglePassRng>::type>& f )
+	{
+		return taken_range<const SinglePassRng>()( r, f.val );
+	}
 
 } // namespace range_detail
 
-    using range_detail::taken_range;
+	using range_detail::taken_range;
 
     namespace adaptors
     {
