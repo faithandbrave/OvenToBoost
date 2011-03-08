@@ -1,7 +1,8 @@
 // Boost.Range 2.0 Extension library
 // via PStade Oven Library
 //
-// Copyright Akira Takahashi 2011.
+// Copyright Akira Takahashi, Kohei Takahashi, Koichi Oyama,
+// Norihisa Fujita, Yusuke Ichinohe, Takatoshi Kondo, 2011.
 // Copyright Shunsuke Sogame 2005-2007.
 // Use, modification and distribution is subject to the Boost Software License,
 // Version 1.0. (See accompanying file LICENSE_1_0.txt or copy at
