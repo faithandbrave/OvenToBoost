@@ -10,9 +10,10 @@
 
 #include <iostream>
 #include <vector>
-#include <boost/range/iteration.hpp>
 #include <boost/range/adaptor/taken_while.hpp>
 #include <boost/range/adaptor/dropped_while.hpp>
+#include <boost/range/adaptor/regular_extension/filtered.hpp>
+#include <boost/range/adaptor/regular_extension/transformed.hpp>
 #include <boost/lambda/lambda.hpp>
 
 // description:
@@ -24,7 +25,7 @@
 
 void disp(int x)
 {
-    std::cout << x << std::endl;
+    std::cout << x << ' ';
 }
 
 template <class InputIterator, class F>
@@ -50,9 +51,13 @@ int main()
 
     const std::vector<int> v = {1, 2, 3, 4, 5, 6};
     for_each_(v |+ taken_while(_1 < 3) |+ dropped_while(_1 == 1), disp);
+
+    std::cout << std::endl;
+
+    for_each_(v |+ filtered(_1 % 2 == 0) |+ transformed(_1 * 2), disp);
 }
 
 /*
 2
-
+4 8 12
 */
