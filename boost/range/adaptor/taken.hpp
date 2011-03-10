@@ -83,7 +83,7 @@ namespace range_detail {
     };
 
 	template< class SinglePassRng >
-    inline typename taken_range<const SinglePassRng>::result_type
+    inline typename taken_range<SinglePassRng>::result_type
 	operator|( SinglePassRng& r,
 			   const taken_holder<typename range_difference<SinglePassRng>::type>& f )
 	{

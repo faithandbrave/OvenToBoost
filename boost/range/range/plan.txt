@@ -1,3 +1,0 @@
-directory_range : OK
-iteration : OK
-single : OK

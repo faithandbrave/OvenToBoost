@@ -37,7 +37,7 @@ namespace range_detail {
 	struct outdirect_forwarder {};
 
 	template< class SinglePassRng >
-    inline typename outdirected_range<const SinglePassRng>::result_type
+    inline typename outdirected_range<SinglePassRng>::result_type
 	operator|( SinglePassRng& r, outdirect_forwarder )
 	{
 		return outdirected_range<SinglePassRng>()( r );

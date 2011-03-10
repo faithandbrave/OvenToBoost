@@ -10,13 +10,9 @@
 // Version 1.0. (See accompanying file LICENSE_1_0.txt or copy at
 // http://www.boost.org/LICENSE_1_0.txt)
 
-#include <boost/config.hpp>
-#ifdef BOOST_MSVC
-#pragma warning( push )
-#pragma warning( disable : 4355 )
-#endif
-
 #include <algorithm> // min
+#include <boost/concept_check.hpp>
+#include <boost/range/concepts.hpp>
 #include <boost/range/adaptor/argument_fwd.hpp>
 #include <boost/range/iterator_range.hpp>
 #include <boost/range/begin.hpp>
@@ -38,14 +34,13 @@ namespace range_detail {
 
         result_type operator()(Range& rng, diff_t n) const
         {
-//            BOOST_CONCEPT_ASSERT((SinglePass<Range>));
+            BOOST_CONCEPT_ASSERT((SinglePassRangeConcept<Range>));
             return aux(::boost::begin(rng), ::boost::end(rng), n, typename boost::range_traversal<Range>::type());
         }
 
         template< class Iterator >
         result_type aux(Iterator first, Iterator last, diff_t n, boost::random_access_traversal_tag) const
         {
-//            BOOST_CONCEPT_ASSERT((RandomAccess<Range>));
             return result_type(first + (std::min)(last - first, n), last);
         }
 
