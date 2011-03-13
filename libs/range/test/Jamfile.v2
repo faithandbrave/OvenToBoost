@@ -1,0 +1,49 @@
+# Boost.Range 2.0 Extension library
+# via PStade Oven Library
+#
+# Copyright Akira Takahashi 2011.
+# Copyright Shunsuke Sogame 2005-2007.
+# Use, modification and distribution is subject to the Boost Software License,
+# Version 1.0. (See accompanying file LICENSE_1_0.txt or copy at
+# http://www.boost.org/LICENSE_1_0.txt)
+
+# bring in rules for testing
+import testing ;
+
+project
+	: requirements
+		<link>static
+		<threading>multi
+	;
+
+rule range-test ( name : includes * )
+{
+    return [
+        run $(name).cpp
+        :
+        :
+        : <toolset>gcc:<cxxflags>"-Wall -Wunused"
+        ] ;
+}
+
+test-suite range_extension :
+	[ range-test adaptor_test/dropped ]
+	[ range-test adaptor_test/dropped_while ]
+	[ range-test adaptor_test/elements ]
+	[ range-test adaptor_test/elements_key ]
+	[ range-test adaptor_test/outdirected ]
+	[ range-test adaptor_test/taken ]
+	[ range-test adaptor_test/taken_while ]
+	[ range-test access_test/at ]
+	[ range-test access_test/back ]
+	[ range-test access_test/front ]
+#    [ range-test directory_range ]
+	[ range-test iteration ]
+	[ range-test member_select_example ]
+	[ range-test regular ]
+	[ range-test regular_example ]
+	[ range-test regular_operator_example ]
+	[ range-test single ]
+	[ range-test split_at ]
+    ;
+

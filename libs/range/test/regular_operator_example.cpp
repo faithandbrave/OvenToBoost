@@ -10,6 +10,7 @@
 
 #include <iostream>
 #include <vector>
+#include <boost/assign/list_of.hpp>
 #include <boost/range/adaptor/taken_while.hpp>
 #include <boost/range/adaptor/dropped_while.hpp>
 #include <boost/range/adaptor/regular_extension/filtered.hpp>
@@ -49,7 +50,7 @@ int main()
     using boost::lambda::_1;
     using namespace boost::adaptors;
 
-    const std::vector<int> v = {1, 2, 3, 4, 5, 6};
+    const std::vector<int> v = boost::assign::list_of(1)(2)(3)(4)(5)(6);
     for_each_(v |+ taken_while(_1 < 3) |+ dropped_while(_1 == 1), disp);
 
     std::cout << std::endl;

@@ -1,0 +1,29 @@
+#  Copyright Shunsuke Sogame 2005-2007.
+#  Use, modification, and distribution are subject to the
+#  Boost Software License, Version 1.0. (See accompanying file
+#  LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
+
+# Thanks to:
+#
+# Hamigaki Library root settings
+#
+#  Copyright Takeshi Mouri 2006, 2007.
+#  Use, modification, and distribution are subject to the
+#  Boost Software License, Version 1.0. (See accompanying file
+#  LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
+
+import modules ;
+
+path-constant OVEN_TO_BOOST_ROOT : . ;
+path-constant BOOST_ROOT : [ modules.peek : BOOST_ROOT ] ;
+
+use-project /boost : $(BOOST_ROOT) ;
+
+project oven_to_boost
+    : build-dir
+        ../oven_to_boost_bin
+    : requirements
+        <include>$(OVEN_TO_BOOST_ROOT)
+        <include>$(BOOST_ROOT)
+    ;
+
