@@ -1,0 +1,31 @@
+[/==============================================================================
+    Copyright (C) 2011 Akira Takahashi
+    Copyright (C) Shunsuke Sogame 2005-2007.
+    Use, modification and distribution is subject to the Boost Software
+    License, Version 1.0. (See accompanying file LICENSE_1_0.txt or copy at
+    http://www.boost.org/LICENSE_1_0.txt
+==============================================================================/]
+[library Range Extension
+    [quickbook 1.5]
+    [version 0.1]
+    [authors [Takahashi, Akira]]
+    [copyright 2005-2007 Shunsuke Sogame, 2011 Akira Takahashi]
+    [purpose Half-open range library]
+    [license
+        Distributed under the Boost Software License, Version 1.0.
+        (See accompanying file LICENSE_1_0.txt or copy at
+        [@http://www.boost.org/LICENSE_1_0.txt])
+    ]
+]
+
+[/ Converted to Quickbook format by Darren Garvey, 2007]
+
+[def __note__                   [$images/note.png]]
+[def __alert__                  [$images/alert.png]]
+[def __tip__                    [$images/tip.png]]
+[def __caution__                [$images/caution.png]]
+
+The library is Extension to Boost Range Library.
+
+[/= [include introduction.qbk] =/]
+
