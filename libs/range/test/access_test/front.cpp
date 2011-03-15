@@ -11,6 +11,7 @@
 #include <vector>
 #include <boost/range/access/front.hpp>
 #include <boost/range/adaptor/dropped.hpp>
+#include <boost/range/adaptor/transformed.hpp>
 #include <boost/range/algorithm/equal.hpp>
 #include <boost/detail/lightweight_test.hpp>
 #include <boost/assign/list_of.hpp>
@@ -19,15 +20,18 @@ int main()
 {
     using boost::adaptors::dropped;
     using boost::range::access::front;
+    using boost::range::access::value_front;
 
     // operator style
     {
         const std::vector<int> v = boost::assign::list_of(1)(2)(3)(4)(5)(6);
         BOOST_TEST((v | dropped(2) | front) == 3);
+        BOOST_TEST((v | dropped(2) | value_front) == 3);
     }
     {
         std::vector<int> v = boost::assign::list_of(1)(2)(3)(4)(5)(6);
         BOOST_TEST((v | dropped(2) | front) == 3);
+        BOOST_TEST((v | dropped(2) | value_front) == 3);
 
         v | dropped(2) | front = 0;
         const std::vector<int> expected = boost::assign::list_of(1)(2)(0)(4)(5)(6);
@@ -38,15 +42,38 @@ int main()
     {
         const std::vector<int> v = boost::assign::list_of(1)(2)(3)(4)(5)(6);
         BOOST_TEST(front(v | dropped(2)) == 3);
+        BOOST_TEST(value_front(v | dropped(2)) == 3);
     }
     {
         std::vector<int> v = boost::assign::list_of(1)(2)(3)(4)(5)(6);
         BOOST_TEST(front(v | dropped(2)) == 3);
+        BOOST_TEST(value_front(v | dropped(2)) == 3);
 
         front(v | dropped(2)) = 0;
         const std::vector<int> expected = boost::assign::list_of(1)(2)(0)(4)(5)(6);
         BOOST_TEST(boost::equal(v, expected));
+    }
 
+    // result_of
+    {
+        const std::vector<int> v1 = boost::assign::list_of(1)(2)(3);
+        const std::vector<int> v2 = boost::assign::list_of(4)(5)(6);
+        const std::vector<std::vector<int> > v = boost::assign::list_of(v1)(v2);
+
+        const std::vector<int> expected = boost::assign::list_of
+            (1)
+            (4)
+            ;
+
+        BOOST_TEST(boost::equal(
+            v | boost::adaptors::transformed(front),
+            expected
+        ));
+
+        BOOST_TEST(boost::equal(
+            v | boost::adaptors::transformed(value_front),
+            expected
+        ));
     }
 
     return boost::report_errors();
