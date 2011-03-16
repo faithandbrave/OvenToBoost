@@ -16,6 +16,8 @@
 #pragma warning( disable : 4355 )
 #endif
 
+#include <boost/concept_check.hpp>
+#include <boost/range/concepts.hpp>
 #include <boost/range/adaptor/argument_fwd.hpp>
 #include <boost/range/iterator_range.hpp>
 #include <boost/range/begin.hpp>
@@ -72,7 +74,7 @@ namespace range_detail {
 
         result_type operator()(Range& rng, Predicate pred) const
         {
-//            BOOST_CONCEPT_ASSERT((SinglePass<Range>));
+            BOOST_CONCEPT_ASSERT((SinglePassRangeConcept<Range>));
             return aux(::boost::begin(rng), ::boost::end(rng), read_then_pred_t(pred));
         }
 
@@ -93,7 +95,7 @@ namespace range_detail {
 	BOOST_RANGE_ADAPTOR_MAKE_REGULAR_OPERATOR(taken_while_holder);
 	
 	template< class SinglePassRng, class BinPredicate >
-    inline typename taken_while_range<SinglePassRng, BinPredicate>::result_type
+    inline BOOST_DEDUCED_TYPENAME taken_while_range<SinglePassRng, BinPredicate>::result_type
 	operator|( SinglePassRng& r,
 			   const taken_while_holder<BinPredicate>& f )
 	{
@@ -101,7 +103,7 @@ namespace range_detail {
 	}
 
 	template< class SinglePassRng, class BinPredicate >
-	inline typename taken_while_range<const SinglePassRng, BinPredicate>::result_type
+	inline BOOST_DEDUCED_TYPENAME taken_while_range<const SinglePassRng, BinPredicate>::result_type
 	operator|( const SinglePassRng& r,
 			   const taken_while_holder<BinPredicate>& f )
 	{
@@ -121,14 +123,14 @@ namespace range_detail {
         }
 
         template<class SinglePassRng, class BinPredicate>
-        inline typename taken_while_range<SinglePassRng, BinPredicate>::result_type
+        inline BOOST_DEDUCED_TYPENAME taken_while_range<SinglePassRng, BinPredicate>::result_type
         take_while(SinglePassRng& rng, BinPredicate pred)
         {
             return taken_while_range<SinglePassRng, BinPredicate>()(rng, pred);
         }
 
         template<class SinglePassRng, class BinPredicate>
-        inline typename taken_while_range<const SinglePassRng, BinPredicate>::result_type
+        inline BOOST_DEDUCED_TYPENAME taken_while_range<const SinglePassRng, BinPredicate>::result_type
         take_while(const SinglePassRng& rng, BinPredicate pred)
         {
             return taken_while_range<const SinglePassRng, BinPredicate>()(rng, pred);

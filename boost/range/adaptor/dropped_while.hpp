@@ -16,6 +16,8 @@
 #pragma warning( disable : 4355 )
 #endif
 
+#include <boost/concept_check.hpp>
+#include <boost/range/concepts.hpp>
 #include <boost/range/adaptor/argument_fwd.hpp>
 #include <boost/range/iterator_range.hpp>
 #include <boost/range/begin.hpp>
@@ -39,7 +41,7 @@ namespace range_detail {
         template <class UnaryPredicate>
         result_type operator()(Range& rng, UnaryPredicate pred) const
         {
-//            BOOST_CONCEPT_ASSERT((SinglePass<Range>));
+            BOOST_CONCEPT_ASSERT((SinglePassRangeConcept<Range>));
             return aux(::boost::begin(rng), ::boost::end(rng), pred);
         }
 
@@ -60,7 +62,7 @@ namespace range_detail {
 	BOOST_RANGE_ADAPTOR_MAKE_REGULAR_OPERATOR(dropped_while_holder);
 
     template< class SinglePassRng, class UnaryPredicate >
-    inline typename dropped_while_range<SinglePassRng>::result_type
+    inline BOOST_DEDUCED_TYPENAME dropped_while_range<SinglePassRng>::result_type
     operator|( SinglePassRng& r,
                const dropped_while_holder<UnaryPredicate>& f )
     {
@@ -68,7 +70,7 @@ namespace range_detail {
     }
 
     template< class SinglePassRng, class UnaryPredicate >
-    inline typename dropped_while_range<const SinglePassRng>::result_type
+    inline BOOST_DEDUCED_TYPENAME dropped_while_range<const SinglePassRng>::result_type
     operator|( const SinglePassRng& r,
                const dropped_while_holder<UnaryPredicate>& f )
     {
@@ -88,14 +90,14 @@ namespace range_detail {
         }
 
         template<class SinglePassRng, class UnaryPredicate>
-        inline typename dropped_while_range<SinglePassRng>::result_type
+        inline BOOST_DEDUCED_TYPENAME dropped_while_range<SinglePassRng>::result_type
         drop_while(SinglePassRng& rng, UnaryPredicate pred)
         {
             return dropped_while_range<SinglePassRng>()(rng, pred);
         }
 
         template<class SinglePassRng, class UnaryPredicate>
-        inline typename dropped_while_range<const SinglePassRng>::result_type
+        inline BOOST_DEDUCED_TYPENAME dropped_while_range<const SinglePassRng>::result_type
         drop_while(const SinglePassRng& rng, UnaryPredicate pred)
         {
             return dropped_while_range<const SinglePassRng>()(rng, pred);

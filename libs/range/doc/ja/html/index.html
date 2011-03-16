@@ -5,11 +5,12 @@
 <link rel="stylesheet" href="boostbook.css" type="text/css">
 <meta name="generator" content="DocBook XSL Stylesheets V1.76.1">
 <link rel="home" href="index.html" title="Chapter&#160;1.&#160;Range Extension 0.1">
+<link rel="next" href="range_extension/reference.html" title="Reference">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
-<table cellpadding="2" width="100%"><tr><td valign="top"></td></tr></table>
+<table cellpadding="2" width="100%"><tr><td valign="top"><img alt="rangeextension" width="" height="" src="../../boost-proposed-alpha-variants.png"></td></tr></table>
 <hr>
-<div class="spirit-nav"></div>
+<div class="spirit-nav"><a accesskey="n" href="range_extension/reference.html"><img src="images/next.png" alt="Next"></a></div>
 <div class="chapter">
 <div class="titlepage"><div>
 <div><h2 class="title">
@@ -19,21 +20,62 @@
 </h3></div></div>
 <div><p class="copyright">Copyright &#169; 2005 -2007 Shunsuke Sogame, 2011 Akira Takahashi</p></div>
 <div><div class="legalnotice">
-<a name="id798497"></a><p>
+<a name="id825054"></a><p>
         Distributed under the Boost Software License, Version 1.0. (See accompanying
         file LICENSE_1_0.txt or copy at <a href="http://www.boost.org/LICENSE_1_0.txt" target="_top">http://www.boost.org/LICENSE_1_0.txt</a>)
       </p>
 </div></div>
 </div></div>
+<div class="toc">
+<p><b>Table of Contents</b></p>
+<dl>
+<dt><span class="section"><a href="range_extension/reference.html">Reference</a></span></dt>
+<dd><dl>
+<dt><span class="section"><a href="range_extension/reference/range_adaptors.html">Range Adaptors</a></span></dt>
+<dd><dl><dt><span class="section"><a href="range_extension/reference/range_adaptors/dropped.html">dropped</a></span></dt></dl></dd>
+</dl></dd>
+</dl>
+</div>
 <p>
     &#12371;&#12398;&#12521;&#12452;&#12502;&#12521;&#12522;&#12399;&#12289;Boost Range Library&#12398;&#25313;&#24373;&#12521;&#12452;&#12502;&#12521;&#12522;&#12391;&#12354;&#12427;&#12290;
+    &#12371;&#12398;&#12521;&#12452;&#12502;&#12521;&#12522;&#12399;&#12289;&#12424;&#12426;&#24375;&#21147;&#12394;Range&#12503;&#12525;&#12464;&#12521;&#12511;&#12531;&#12464;&#12398;&#12383;&#12417;&#12398;Range&#12450;&#12480;&#12503;&#12479;&#12420;&#12518;&#12540;&#12486;&#12451;&#12522;&#12486;&#12451;&#12434;&#21547;&#12435;&#12391;&#12356;&#12427;&#12290;
+    &#12383;&#12392;&#12360;&#12400;&#12289;&#12371;&#12398;&#12521;&#12452;&#12502;&#12521;&#12522;&#12395;&#12424;&#12387;&#12390;&#24375;&#21270;&#12373;&#12428;&#12383;Boost.Range&#12434;&#20351;&#29992;&#12377;&#12427;&#12371;&#12392;&#12391;&#12289;&#12463;&#12452;&#12483;&#12463;&#12477;&#12540;&#12488;&#12364;&#20197;&#19979;&#12398;&#12424;&#12358;&#12395;&#35352;&#36848;&#12377;&#12427;&#12371;&#12392;&#12364;&#12391;&#12365;&#12427;&#65306;
+    
+</p>
+<pre class="programlisting"><span class="keyword">typedef</span>
+    <span class="identifier">any_range</span><span class="special">&lt;</span><span class="keyword">int</span><span class="special">,</span> <span class="identifier">forward_traversal_tag</span><span class="special">,</span> <span class="keyword">int</span><span class="special">&amp;,</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">ptrdiff_t</span><span class="special">&gt;</span>
+<span class="identifier">range</span><span class="special">;</span>
+
+<span class="identifier">range</span> <span class="identifier">quick_sort</span><span class="special">(</span><span class="identifier">range</span> <span class="identifier">rng</span><span class="special">)</span>
+<span class="special">{</span>
+    <span class="keyword">if</span> <span class="special">(!</span><span class="identifier">rng</span><span class="special">)</span>
+        <span class="keyword">return</span> <span class="identifier">rng</span><span class="special">;</span>
+    <span class="keyword">else</span> <span class="special">{</span>
+        <span class="keyword">int</span><span class="special">&amp;</span> <span class="identifier">x</span> <span class="special">=</span> <span class="identifier">rng</span> <span class="special">|</span> <span class="identifier">front</span><span class="special">;</span>
+        <span class="identifier">range</span> <span class="identifier">xs</span> <span class="special">=</span> <span class="identifier">rng</span> <span class="special">|</span> <span class="identifier">dropped</span><span class="special">(</span><span class="number">1</span><span class="special">);</span>
+
+        <span class="keyword">return</span>
+            <span class="identifier">join</span><span class="special">(</span>
+                <span class="identifier">join</span><span class="special">(</span>
+                    <span class="identifier">quick_sort</span><span class="special">(</span><span class="identifier">xs</span> <span class="special">|+</span> <span class="identifier">filtered</span><span class="special">(</span><span class="identifier">_1</span> <span class="special">&lt;</span> <span class="identifier">x</span><span class="special">)),</span>
+                    <span class="identifier">single</span><span class="special">(</span><span class="identifier">x</span><span class="special">)</span>
+                <span class="special">),</span>
+                <span class="identifier">quick_sort</span><span class="special">(</span><span class="identifier">xs</span> <span class="special">|+</span> <span class="identifier">filtered</span><span class="special">(</span><span class="identifier">_1</span> <span class="special">&gt;=</span> <span class="identifier">x</span><span class="special">))</span>
+            <span class="special">);</span>
+    <span class="special">}</span>
+<span class="special">}</span>
+
+<span class="identifier">std</span><span class="special">::</span><span class="identifier">vector</span><span class="special">&lt;</span><span class="keyword">int</span><span class="special">&gt;</span> <span class="identifier">v</span> <span class="special">=</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">assign</span><span class="special">::</span><span class="identifier">list_of</span><span class="special">(</span><span class="number">3</span><span class="special">)(</span><span class="number">2</span><span class="special">)(</span><span class="number">5</span><span class="special">)(</span><span class="number">4</span><span class="special">)(</span><span class="number">6</span><span class="special">)(</span><span class="number">1</span><span class="special">);</span>
+<span class="identifier">std</span><span class="special">::</span><span class="identifier">cout</span> <span class="special">&lt;&lt;</span> <span class="identifier">quick_sort</span><span class="special">(</span><span class="identifier">range</span><span class="special">(</span><span class="identifier">v</span><span class="special">))</span> <span class="special">&lt;&lt;</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">endl</span><span class="special">;</span>
+</pre>
+<p>
   </p>
 </div>
 <table xmlns:rev="http://www.cs.rpi.edu/~gregod/boost/tools/doc/revision" width="100%"><tr>
-<td align="left"><p><small>Last revised: March 14, 2011 at 09:20:01 GMT</small></p></td>
+<td align="left"><p><small>Last revised: March 16, 2011 at 08:37:19 GMT</small></p></td>
 <td align="right"><div class="copyright-footer"></div></td>
 </tr></table>
 <hr>
-<div class="spirit-nav"></div>
+<div class="spirit-nav"><a accesskey="n" href="range_extension/reference.html"><img src="images/next.png" alt="Next"></a></div>
 </body>
 </html>

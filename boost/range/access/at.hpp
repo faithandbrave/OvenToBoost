@@ -31,7 +31,7 @@ namespace boost {
             template <class F, class RandomAccessRange>
             struct result<F(RandomAccessRange)> :
                 range_reference<
-                    BOOST_DEDUCED_TYPENAME remove_reference<RandomAccessRange>::type
+                    typename remove_reference<RandomAccessRange>::type
                 > {};
 
             Difference n;
@@ -62,7 +62,7 @@ namespace boost {
             template <class F, class RandomAccessRange>
             struct result<F(RandomAccessRange)> :
                 range_value<
-                    BOOST_DEDUCED_TYPENAME remove_reference<RandomAccessRange>::type
+                    typename remove_reference<RandomAccessRange>::type
                 > {};
 
             Difference n;
@@ -84,7 +84,7 @@ namespace boost {
             template <class F, class RandomAccessRange>
             struct result<F(RandomAccessRange)> :
                 range_reference<
-                    BOOST_DEDUCED_TYPENAME remove_reference<RandomAccessRange>::type
+                    typename remove_reference<RandomAccessRange>::type
                 > {};
 
             template <class Difference>
@@ -119,7 +119,7 @@ namespace boost {
             template <class F, class RandomAccessRange>
             struct result<F(RandomAccessRange)> :
                 range_value<
-                    BOOST_DEDUCED_TYPENAME remove_reference<RandomAccessRange>::type
+                    typename remove_reference<RandomAccessRange>::type
                 > {};
 
             template <class Difference>

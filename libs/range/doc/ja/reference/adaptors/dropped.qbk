@@ -1,0 +1,47 @@
+[/
+    Copyright 2011 Akira Takahashi
+    Distributed under the Boost Software License, Version 1.0.
+    (See accompanying file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
+/]
+[section dropped]
+
+`dropped`は、ベースとなるRangeから先頭N個の要素を除いたRangeを返す。
+
+[table
+    [[構文] [コード]]
+    [[パイプスタイル] [`rng | boost::adaptors::dropped(n)`]]
+    [[関数スタイル] [`boost::adaptors::drop(rng, n)`]]
+]
+
+* [*事前条件:]  type of `n` is convertible to boost::range_difference<Range>::type. and 0 <= `n`.
+* [*例外:] no throw.
+* [*Rangeカテゴリ:] __single_pass_range__
+* [*戻り値型:] ...
+* [*返されるRangeカテゴリ:] `rng` と __bidirectional_range__ のRangeカテゴリの最小。
+
+``
+#include <boost/range/adaptor/dropped.hpp>
+#include <boost/range/algorithm/for_each.hpp>
+#include <boost/assign/list_of.hpp>
+#include <iterator>
+#include <iostream>
+#include <vector>
+
+void disp(int x) { std::cout << x << ' '; }
+
+using namespace boost::adaptors;
+
+int main()
+{
+    const std::vector<int> v = boost::assign::list_of(3)(1)(4)(2)(5);
+
+    boost::for_each(v | dropped(2), disp);
+}
+``
+
+これは以下の結果を出力する:
+``
+4 2 5 
+``
+[endsect]
+

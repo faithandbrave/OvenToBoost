@@ -18,14 +18,18 @@
     ]
 ]
 
-[/ Converted to Quickbook format by Darren Garvey, 2007]
-
 [def __note__                   [$images/note.png]]
 [def __alert__                  [$images/alert.png]]
 [def __tip__                    [$images/tip.png]]
 [def __caution__                [$images/caution.png]]
 
-The library is Extension to Boost Range Library.
+[/Links ]
+[def __forward_range__          [@http://www.boost.org/libs/range/doc/html/range/concepts/forward_range.html Forward Range]]
+[def __single_pass_range__      [@http://www.boost.org/libs/range/doc/html/range/concepts/single_pass_range.html Single Pass Range]]
+[def __bidirectional_range__    [@http://www.boost.org/libs/range/doc/html/range/concepts/bidirectional_range.html Bidirectional Range]]
+[def __random_access_range__    [@http://www.boost.org/libs/range/doc/html/range/concepts/random_access_range.html Random Access Range]]
 
-[/= [include introduction.qbk] =/]
+[include overview.qbk]
+[include reference.qbk]
+
 

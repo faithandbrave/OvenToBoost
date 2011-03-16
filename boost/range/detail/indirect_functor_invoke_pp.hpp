@@ -15,18 +15,18 @@
 
 #define BOOST_RANGE_DETAIL_INDIRECT_FUNCTOR_INVOKE_HELPER(n,arg_seq) \
     template <BOOST_PP_ENUM_PARAMS(BOOST_PP_EXPAND(BOOST_PP_SEQ_SIZE(arg_seq)), class A)> \
-    typename boost::result_of<indirected_functor_type(BOOST_PP_ENUM_PARAMS(BOOST_PP_EXPAND(BOOST_PP_SEQ_SIZE(arg_seq)), A))>::type \
+    BOOST_DEDUCED_TYPENAME boost::result_of<indirected_functor_type(BOOST_PP_ENUM_PARAMS(BOOST_PP_EXPAND(BOOST_PP_SEQ_SIZE(arg_seq)), A))>::type \
         operator()(BOOST_PP_SEQ_FOR_EACH_I(BOOST_RANGE_DETAIL_INDIRECT_FUNCTOR_ARG, 0, arg_seq)) \
         { \
             return (*f)(BOOST_PP_ENUM_PARAMS(BOOST_PP_EXPAND(BOOST_PP_SEQ_SIZE(arg_seq)), a)); \
         } \
 \
     template <BOOST_PP_ENUM_PARAMS(BOOST_PP_EXPAND(BOOST_PP_SEQ_SIZE(arg_seq)), class A)> \
-    typename boost::result_of<indirected_functor_type(BOOST_PP_ENUM_PARAMS(BOOST_PP_EXPAND(BOOST_PP_SEQ_SIZE(arg_seq)), A))>::type \
+    BOOST_DEDUCED_TYPENAME boost::result_of<indirected_functor_type(BOOST_PP_ENUM_PARAMS(BOOST_PP_EXPAND(BOOST_PP_SEQ_SIZE(arg_seq)), A))>::type \
         operator()(BOOST_PP_SEQ_FOR_EACH_I(BOOST_RANGE_DETAIL_INDIRECT_FUNCTOR_ARG, 0, arg_seq)) const \
         { \
             return (*f)(BOOST_PP_ENUM_PARAMS(BOOST_PP_EXPAND(BOOST_PP_SEQ_SIZE(arg_seq)), a)); \
-        } \
+        }
 /**/
 
 #define BOOST_RANGE_DETAIL_INDIRECT_FUNCTOR_MAKE_RC_SEQ(z,n,t) ((REF_ARG)(CONST_ARG))
@@ -36,13 +36,13 @@
                                   BOOST_RANGE_DETAIL_INDIRECT_FUNCTOR_MAKE_RC_SEQ, 0))
 /**/
 
-typename boost::result_of<indirected_functor_type()>::type
+BOOST_DEDUCED_TYPENAME boost::result_of<indirected_functor_type()>::type
     operator()()
 {
     return (*f)();
 }
 
-typename boost::result_of<indirected_functor_type()>::type
+BOOST_DEDUCED_TYPENAME boost::result_of<indirected_functor_type()>::type
     operator()() const
 {
     return (*f)();

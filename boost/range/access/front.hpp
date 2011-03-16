@@ -29,7 +29,7 @@ namespace boost {
 			template <class F, class SinglePassRange>
 			struct result<F(SinglePassRange&)> :
                 range_reference<
-				    BOOST_DEDUCED_TYPENAME remove_reference<SinglePassRange>::type
+				    typename remove_reference<SinglePassRange>::type
                 > {};
 
             template <class SinglePassRange>
@@ -56,7 +56,7 @@ namespace boost {
 			template <class F, class SinglePassRange>
 			struct result<F(SinglePassRange)> :
                 range_value<
-                    BOOST_DEDUCED_TYPENAME remove_reference<SinglePassRange>::type
+                    typename remove_reference<SinglePassRange>::type
                 > {};
 
 			template <class SinglePassRange>

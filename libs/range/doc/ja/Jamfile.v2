@@ -13,17 +13,23 @@ using quickbook ;
 
 path-constant images_location : html ;
 
-boostbook quickbook
+boostbook standalone
   :
     oven_to_boost.qbk
   :
     <xsl:param>boost.root=BOOST_ROOT
+    <xsl:param>boost.image.src=../../boost-proposed-alpha-variants.png
+    <xsl:param>boost.image.alt=rangeextension
     <xsl:param>chunk.section.depth=4
     <xsl:param>chunk.first.sections=1
     <xsl:param>toc.section.depth=3
     <xsl:param>toc.max.depth=3
     <xsl:param>generate.section.toc.level=4
-    <format>pdf:<xsl:param>boost.url.prefix=http://www.boost.org/doc/libs/release/doc/html
-    <format>pdf:<xsl:param>img.src.path=$(images_location)/
+#    <xsl:param>chunk.first.sections=1
+#    <xsl:param>toc.section.depth=3
+#    <xsl:param>toc.max.depth=3
+#    <xsl:param>generate.section.toc.level=4
+#    <format>pdf:<xsl:param>boost.url.prefix=http://www.boost.org/doc/libs/release/doc/html
+#    <format>pdf:<xsl:param>img.src.path=$(images_location)/
   ;
 

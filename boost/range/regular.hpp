@@ -10,8 +10,9 @@
 #ifndef BOOST_RANGE_REGULAR_INCLUDE
 #define BOOST_RANGE_REGULAR_INCLUDE
 
+#include <boost/config.hpp>
 #include "./detail/indirect_functor.hpp"
-#include <boost/shared_ptr.hpp>
+#include <boost/make_shared.hpp>
 #include <boost/mpl/identity.hpp>
 
 namespace boost { namespace range {
@@ -24,9 +25,9 @@ struct regular : boost::mpl::identity<detail::indirect_functor<boost::shared_ptr
 } // namespace result_of
 
 template <class F>
-inline typename result_of::regular<F>::type regular(F f)
+inline BOOST_DEDUCED_TYPENAME result_of::regular<F>::type regular(F f)
 {
-    return typename result_of::regular<F>::type(boost::shared_ptr<F>(new F(f)));
+    return BOOST_DEDUCED_TYPENAME result_of::regular<F>::type(boost::make_shared<F>(f));
 }
 
 } // namespace range

@@ -1,6 +1,7 @@
 #ifndef BOOST_RANGE_ADAPTOR_ELEMENTS_INCLUDE
 #define BOOST_RANGE_ADAPTOR_ELEMENTS_INCLUDE
 
+#include <boost/config.hpp>
 #include <boost/fusion/include/at_c.hpp>
 #include <boost/fusion/include/at_key.hpp>
 #include <boost/type_traits/remove_reference.hpp>
@@ -62,28 +63,28 @@ namespace boost {
         template <class Key> struct elements_key {};
 
         template <class SinglePassRange, int N>
-        inline typename ::boost::range::result_of::elements<SinglePassRange, N>::type
+        inline BOOST_DEDUCED_TYPENAME ::boost::range::result_of::elements<SinglePassRange, N>::type
             operator|(SinglePassRange& rng, elements<N>)
         {
             return rng | ::boost::adaptors::transformed(element_select<SinglePassRange, N>());
         }
 
         template <class SinglePassRange, int N>
-        inline typename ::boost::range::result_of::elements<const SinglePassRange, N>::type
+        inline BOOST_DEDUCED_TYPENAME ::boost::range::result_of::elements<const SinglePassRange, N>::type
             operator|(const SinglePassRange& rng, elements<N>)
         {
             return rng | ::boost::adaptors::transformed(element_select<const SinglePassRange, N>());
         }
 
         template <class SinglePassRange, class Key>
-        inline typename ::boost::range::result_of::elements_key<SinglePassRange, Key>::type
+        inline BOOST_DEDUCED_TYPENAME ::boost::range::result_of::elements_key<SinglePassRange, Key>::type
             operator|(SinglePassRange& rng, elements_key<Key>)
         {
             return rng | ::boost::adaptors::transformed(element_key_select<SinglePassRange, Key>());
         }
 
         template <class SinglePassRange, class Key>
-        inline typename ::boost::range::result_of::elements_key<const SinglePassRange, Key>::type
+        inline BOOST_DEDUCED_TYPENAME ::boost::range::result_of::elements_key<const SinglePassRange, Key>::type
             operator|(const SinglePassRange& rng, elements_key<Key>)
         {
             return rng | ::boost::adaptors::transformed(element_key_select<const SinglePassRange, Key>());
@@ -95,28 +96,28 @@ namespace boost {
         using range_detail::elements_key;
 
         template <int N, class SinglePassRange>
-        inline typename ::boost::range::result_of::elements<SinglePassRange, N>::type
+        inline BOOST_DEDUCED_TYPENAME ::boost::range::result_of::elements<SinglePassRange, N>::type
             extract_elements(SinglePassRange& rng)
         {
             return rng | elements<N>();
         }
 
         template <int N, class SinglePassRange>
-        inline typename ::boost::range::result_of::elements<const SinglePassRange, N>::type
+        inline BOOST_DEDUCED_TYPENAME ::boost::range::result_of::elements<const SinglePassRange, N>::type
             extract_elements(const SinglePassRange& rng)
         {
             return rng | elements<N>();
         }
 
         template <class Key, class SinglePassRange>
-        inline typename ::boost::range::result_of::elements_key<SinglePassRange, Key>::type
+        inline BOOST_DEDUCED_TYPENAME ::boost::range::result_of::elements_key<SinglePassRange, Key>::type
             extract_elements_key(SinglePassRange& rng)
         {
             return rng | elements_key<Key>();
         }
 
         template <class Key, class SinglePassRange>
-        inline typename ::boost::range::result_of::elements_key<const SinglePassRange, Key>::type
+        inline BOOST_DEDUCED_TYPENAME ::boost::range::result_of::elements_key<const SinglePassRange, Key>::type
             extract_elements_key(const SinglePassRange& rng)
         {
             return rng | elements_key<Key>();

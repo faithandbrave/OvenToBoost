@@ -1,0 +1,38 @@
+[/
+    Copyright 2011 Akira Takahashi
+    Distributed under the Boost Software License, Version 1.0.
+    (See accompanying file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
+/]
+
+The library is Extension to Boost Range Library.
+The library includes powerful extension, Range adaptor and utilities, for Range programming.
+For example, quick sort can be write using Boost.Range extended by the library:
+``
+    typedef
+        any_range<int, forward_traversal_tag, int&, std::ptrdiff_t>
+    range;
+
+    range quick_sort(range rng)
+    {
+        if (!rng)
+            return rng;
+        else {
+            int& x = rng | front;
+            range xs = rng | dropped(1);
+
+            return
+                join(
+                    join(
+                        quick_sort(xs |+ filtered(_1 < x)),
+                        single(x)
+                    ),
+                    quick_sort(xs |+ filtered(_1 >= x))
+                );
+        }
+    }
+
+    std::vector<int> v = boost::assign::list_of(3)(2)(5)(4)(6)(1);
+    std::cout << quick_sort(range(v)) << std::endl;
+
+``
+

@@ -65,14 +65,14 @@ struct indirect_functor {
 
 #if defined(BOOST_HAS_VARIADIC_TMPL) && defined(BOOST_HAS_RVALUE_REFS)
     template <class... Args>
-    typename boost::result_of<indirected_functor_type(Args...)>::type
+    BOOST_DEDUCED_TYPENAME boost::result_of<indirected_functor_type(Args...)>::type
         operator()(Args&&... args) const
     {
         return (*f)(std::forward<Args>(args)...);
     }
 
     template <class... Args>
-    typename boost::result_of<indirected_functor_type(Args...)>::type operator()(Args&&... args)
+    BOOST_DEDUCED_TYPENAME boost::result_of<indirected_functor_type(Args...)>::type operator()(Args&&... args)
     {
         return (*f)(std::forward<Args>(args)...);
     }

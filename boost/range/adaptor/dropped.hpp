@@ -11,6 +11,7 @@
 // http://www.boost.org/LICENSE_1_0.txt)
 
 #include <algorithm> // min
+#include <boost/config.hpp>
 #include <boost/concept_check.hpp>
 #include <boost/range/concepts.hpp>
 #include <boost/range/adaptor/argument_fwd.hpp>
@@ -35,7 +36,8 @@ namespace range_detail {
         result_type operator()(Range& rng, diff_t n) const
         {
             BOOST_CONCEPT_ASSERT((SinglePassRangeConcept<Range>));
-            return aux(::boost::begin(rng), ::boost::end(rng), n, typename boost::range_traversal<Range>::type());
+            return aux(::boost::begin(rng), ::boost::end(rng), n,
+					   typename boost::range_traversal<Range>::type());
         }
 
         template< class Iterator >
@@ -64,17 +66,17 @@ namespace range_detail {
     };
 
     template< class SinglePassRng >
-    inline typename dropped_range<SinglePassRng>::result_type
+    inline BOOST_DEDUCED_TYPENAME dropped_range<SinglePassRng>::result_type
     operator|( SinglePassRng& r,
-               const dropped_holder<typename boost::range_difference<SinglePassRng>::type>& f )
+               const dropped_holder<BOOST_DEDUCED_TYPENAME boost::range_difference<SinglePassRng>::type>& f )
     {
         return dropped_range<SinglePassRng>()( r, f.val );
     }
 
     template< class SinglePassRng >
-    inline typename dropped_range<const SinglePassRng>::result_type
+    inline BOOST_DEDUCED_TYPENAME dropped_range<const SinglePassRng>::result_type
     operator|( const SinglePassRng& r,
-               const dropped_holder<typename boost::range_difference<SinglePassRng>::type>& f )
+               const dropped_holder<BOOST_DEDUCED_TYPENAME boost::range_difference<SinglePassRng>::type>& f )
     {
         return dropped_range<const SinglePassRng>()( r, f.val );
     }
@@ -92,15 +94,15 @@ namespace range_detail {
         }
 
         template<class SinglePassRng>
-        inline typename dropped_range<SinglePassRng>::result_type
-        drop(SinglePassRng& rng, typename boost::range_difference<SinglePassRng>::type n)
+        inline BOOST_DEDUCED_TYPENAME dropped_range<SinglePassRng>::result_type
+        drop(SinglePassRng& rng, BOOST_DEDUCED_TYPENAME boost::range_difference<SinglePassRng>::type n)
         {
             return dropped_range<SinglePassRng>()(rng, n);
         }
 
         template<class SinglePassRng>
-        inline typename dropped_range<const SinglePassRng>::result_type
-        drop(const SinglePassRng& rng, typename boost::range_difference<SinglePassRng>::type n)
+        inline BOOST_DEDUCED_TYPENAME dropped_range<const SinglePassRng>::result_type
+        drop(const SinglePassRng& rng, BOOST_DEDUCED_TYPENAME boost::range_difference<SinglePassRng>::type n)
         {
             return dropped_range<const SinglePassRng>()(rng, n);
         }

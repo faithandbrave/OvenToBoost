@@ -30,7 +30,7 @@ namespace boost {
             template <class F, class BidirectionalRange>
             struct result<F(BidirectionalRange)> :
                 range_reference<
-                    BOOST_DEDUCED_TYPENAME remove_reference<BidirectionalRange>::type
+                    typename remove_reference<BidirectionalRange>::type
                 > {};
 
             template <class BidirectionalRange>
@@ -57,7 +57,7 @@ namespace boost {
             template <class F, class BidirectionalRange>
             struct result<F(BidirectionalRange)> :
                 range_value<
-                    BOOST_DEDUCED_TYPENAME remove_reference<BidirectionalRange>::type
+                    typename remove_reference<BidirectionalRange>::type
                 > {};
 
             template <class BidirectionalRange>

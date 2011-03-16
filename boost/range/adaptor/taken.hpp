@@ -10,6 +10,9 @@
 // Version 1.0. (See accompanying file LICENSE_1_0.txt or copy at
 // http://www.boost.org/LICENSE_1_0.txt)
 
+#include <boost/config.hpp>
+#include <boost/concept_check.hpp>
+#include <boost/range/concepts.hpp>
 #include <boost/range/adaptor/argument_fwd.hpp>
 #include <boost/range/iterator_range.hpp>
 #include <boost/range/begin.hpp>
@@ -62,7 +65,7 @@ namespace range_detail {
 
         result_type operator()(SinglePassRng& rng, diff_t n) const
         {
-//            PSTADE_CONCEPT_ASSERT((SinglePass<Range>));
+            BOOST_CONCEPT_ASSERT((SinglePassRangeConcept<SinglePassRng>));
             BOOST_ASSERT(0 <= n);
             return aux(boost::begin(rng), boost::end(rng), taken_detail::countdown<diff_t>(n));
         }
@@ -83,17 +86,17 @@ namespace range_detail {
     };
 
 	template< class SinglePassRng >
-    inline typename taken_range<SinglePassRng>::result_type
+    inline BOOST_DEDUCED_TYPENAME taken_range<SinglePassRng>::result_type
 	operator|( SinglePassRng& r,
-			   const taken_holder<typename range_difference<SinglePassRng>::type>& f )
+			   const taken_holder<BOOST_DEDUCED_TYPENAME range_difference<SinglePassRng>::type>& f )
 	{
 		return taken_range<SinglePassRng>()( r, f.val );
 	}
 
 	template< class SinglePassRng >
-	inline typename taken_range<const SinglePassRng>::result_type
+	inline BOOST_DEDUCED_TYPENAME taken_range<const SinglePassRng>::result_type
 	operator|( const SinglePassRng& r,
-			   const taken_holder<typename range_difference<SinglePassRng>::type>& f )
+			   const taken_holder<BOOST_DEDUCED_TYPENAME range_difference<SinglePassRng>::type>& f )
 	{
 		return taken_range<const SinglePassRng>()( r, f.val );
 	}
@@ -112,15 +115,15 @@ namespace range_detail {
         }
 
         template<class SinglePassRng>
-        inline typename taken_range<SinglePassRng>::result_type
-        take(SinglePassRng& rng, typename range_difference<SinglePassRng>::type n)
+        inline BOOST_DEDUCED_TYPENAME taken_range<SinglePassRng>::result_type
+        take(SinglePassRng& rng, BOOST_DEDUCED_TYPENAME range_difference<SinglePassRng>::type n)
         {
             return taken_range<SinglePassRng>()(rng, n);
         }
 
         template<class SinglePassRng>
-        inline typename taken_range<const SinglePassRng>::result_type
-        take(const SinglePassRng& rng, typename range_difference<SinglePassRng>::type n)
+        inline BOOST_DEDUCED_TYPENAME taken_range<const SinglePassRng>::result_type
+        take(const SinglePassRng& rng, BOOST_DEDUCED_TYPENAME range_difference<SinglePassRng>::type n)
         {
             return taken_range<const SinglePassRng>()(rng, n);
         }

@@ -1,0 +1,74 @@
+[/
+    Copyright 2011 Akira Takahashi
+    Distributed under the Boost Software License, Version 1.0.
+    (See accompanying file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
+/]
+[section Range Adaptors]
+
+The library includes Range Adaptor is inspired by PStade.Oven and Haskell Prelude Library.
+There are needs for powerful range programming(functional programming).
+The library is easy and powerful use lazy sequence.
+
+``
+#include <boost/range/adaptors/iteration.hpp>
+#include <boost/range/adaptors/taken.hpp>
+#include <boost/range/algorithm/for_each.hpp>
+#include <iostream>
+
+int next(int x) { return x * 2; }
+void disp(int x) { std::cout << x << ' '; }
+
+boost::for_each(boost::iteration(1, next) | boost::adaptors::taken(5), disp);
+  // 1 2 4 8 10
+``
+
+And, The library refer lambda expression(BLL and C++0x Lambda).
+``
+#include <boost/range/adaptors/iteration.hpp>
+#include <boost/range/adaptors/taken.hpp>
+#include <boost/range/algorithm/for_each.hpp>
+#include <boost/range/regular.hpp>
+#include <boost/lambda/lambda.hpp>
+#include <iostream>
+
+using boost::lambda::_1;
+
+void disp(int x) { std::cout << x << ' '; }
+
+boost::for_each(boost::iteration(1, boost::regular(_1 * 2)) | boost::adaptors::taken(5), disp);
+  // 1 2 4 8 10
+``
+
+regular is lambda expression adapt to Regular Concept.
+
+
+regular alway needs use lambda expression in iterator adaptor.
+But, regular write is boring.
+The library has syntax sugar for regular function.
+``
+#include <iostream>
+#include <vector>
+#include <boost/assign/list_of.hpp>
+#include <boost/range/adaptor/regular_extension/filtered.hpp>
+#include <boost/range/adaptor/regular_extension/transformed.hpp>
+#include <boost/range/algorithm/for_each.hpp>
+#include <boost/lambda/lambda.hpp>
+
+void disp(int x) { std::cout << x << ' '; }
+
+int main()
+{
+    using boost::lambda::_1;
+    using namespace boost::adaptors;
+
+    const std::vector<int> v = boost::assign::list_of(1)(2)(3)(4)(5)(6);
+    boost::for_each_(v |+ filtered(_1 % 2 == 0) |+ transformed(_1 * 2), disp);
+}
+``
+The library provides regular operator : operator|+().
+Regular operator is useful for lambda expression.
+
+[include adaptors/dropped.qbk]
+
+[endsect]
+

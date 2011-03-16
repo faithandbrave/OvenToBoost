@@ -1,0 +1,108 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
+<title>Range Adaptors</title>
+<link rel="stylesheet" href="../../boostbook.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.76.1">
+<link rel="home" href="../../index.html" title="Chapter&#160;1.&#160;Range Extension 0.1">
+<link rel="up" href="../reference.html" title="Reference">
+<link rel="prev" href="../reference.html" title="Reference">
+<link rel="next" href="range_adaptors/dropped.html" title="dropped">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table cellpadding="2" width="100%"><tr><td valign="top"><img alt="rangeextension" width="" height="" src="../../../../boost-proposed-alpha-variants.png"></td></tr></table>
+<hr>
+<div class="spirit-nav">
+<a accesskey="p" href="../reference.html"><img src="../../images/prev.png" alt="Prev"></a><a accesskey="u" href="../reference.html"><img src="../../images/up.png" alt="Up"></a><a accesskey="h" href="../../index.html"><img src="../../images/home.png" alt="Home"></a><a accesskey="n" href="range_adaptors/dropped.html"><img src="../../images/next.png" alt="Next"></a>
+</div>
+<div class="section">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="range_extension.reference.range_adaptors"></a><a class="link" href="range_adaptors.html" title="Range Adaptors">Range Adaptors</a>
+</h3></div></div></div>
+<div class="toc"><dl><dt><span class="section"><a href="range_adaptors/dropped.html">dropped</a></span></dt></dl></div>
+<p>
+        &#12371;&#12398;&#12521;&#12452;&#12502;&#12521;&#12522;&#12399;&#12289;PStade.Oven&#12420;Haskell Prelude&#12521;&#12452;&#12502;&#12521;&#12522;&#12363;&#12425;&#24433;&#38911;&#12434;&#21463;&#12369;&#12383;Range&#12450;&#12480;&#12503;&#12479;&#12434;&#21547;&#12435;&#12391;&#12356;&#12427;&#12290;
+        &#12371;&#12428;&#12425;&#12399;&#12424;&#12426;&#24375;&#21147;&#12394;Range&#12503;&#12525;&#12464;&#12521;&#12511;&#12531;&#12464;(&#38306;&#25968;&#12503;&#12525;&#12464;&#12521;&#12511;&#12531;&#12464;)&#12391;&#24517;&#35201;&#12392;&#12373;&#12428;&#12427;&#12290;
+        &#12371;&#12398;&#12521;&#12452;&#12502;&#12521;&#12522;&#12399;&#12289;lazy&#12394;&#12471;&#12540;&#12465;&#12531;&#12473;&#12434;&#23481;&#26131;&#12395;&#12289;&#12363;&#12388;&#24375;&#21147;&#12395;&#25201;&#12358;&#12371;&#12392;&#12364;&#12391;&#12365;&#12427;&#12290;
+      </p>
+<p>
+        
+</p>
+<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">range</span><span class="special">/</span><span class="identifier">adaptors</span><span class="special">/</span><span class="identifier">iteration</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
+<span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">range</span><span class="special">/</span><span class="identifier">adaptors</span><span class="special">/</span><span class="identifier">taken</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
+<span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">range</span><span class="special">/</span><span class="identifier">algorithm</span><span class="special">/</span><span class="identifier">for_each</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
+<span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">iostream</span><span class="special">&gt;</span>
+
+<span class="keyword">int</span> <span class="identifier">next</span><span class="special">(</span><span class="keyword">int</span> <span class="identifier">x</span><span class="special">)</span> <span class="special">{</span> <span class="keyword">return</span> <span class="identifier">x</span> <span class="special">*</span> <span class="number">2</span><span class="special">;</span> <span class="special">}</span>
+<span class="keyword">void</span> <span class="identifier">disp</span><span class="special">(</span><span class="keyword">int</span> <span class="identifier">x</span><span class="special">)</span> <span class="special">{</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">cout</span> <span class="special">&lt;&lt;</span> <span class="identifier">x</span> <span class="special">&lt;&lt;</span> <span class="char">' '</span><span class="special">;</span> <span class="special">}</span>
+
+<span class="identifier">boost</span><span class="special">::</span><span class="identifier">for_each</span><span class="special">(</span><span class="identifier">boost</span><span class="special">::</span><span class="identifier">iteration</span><span class="special">(</span><span class="number">1</span><span class="special">,</span> <span class="identifier">next</span><span class="special">)</span> <span class="special">|</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">adaptors</span><span class="special">::</span><span class="identifier">taken</span><span class="special">(</span><span class="number">5</span><span class="special">),</span> <span class="identifier">disp</span><span class="special">);</span>
+  <span class="comment">// 1 2 4 8 10
+</span></pre>
+<p>
+      </p>
+<p>
+        &#12414;&#12383;&#12289;&#12371;&#12398;&#12521;&#12452;&#12502;&#12521;&#12522;&#12399;&#12521;&#12512;&#12480;&#24335;(BLL&#12420;C++0x Lambda)&#12398;&#25201;&#12356;&#12395;&#38306;&#12375;&#12390;&#12418;&#35328;&#21450;&#12377;&#12427;&#12290;
+        
+</p>
+<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">range</span><span class="special">/</span><span class="identifier">adaptors</span><span class="special">/</span><span class="identifier">iteration</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
+<span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">range</span><span class="special">/</span><span class="identifier">adaptors</span><span class="special">/</span><span class="identifier">taken</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
+<span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">range</span><span class="special">/</span><span class="identifier">algorithm</span><span class="special">/</span><span class="identifier">for_each</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
+<span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">range</span><span class="special">/</span><span class="identifier">regular</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
+<span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">lambda</span><span class="special">/</span><span class="identifier">lambda</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
+<span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">iostream</span><span class="special">&gt;</span>
+
+<span class="keyword">using</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">lambda</span><span class="special">::</span><span class="identifier">_1</span><span class="special">;</span>
+
+<span class="keyword">void</span> <span class="identifier">disp</span><span class="special">(</span><span class="keyword">int</span> <span class="identifier">x</span><span class="special">)</span> <span class="special">{</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">cout</span> <span class="special">&lt;&lt;</span> <span class="identifier">x</span> <span class="special">&lt;&lt;</span> <span class="char">' '</span><span class="special">;</span> <span class="special">}</span>
+
+<span class="identifier">boost</span><span class="special">::</span><span class="identifier">for_each</span><span class="special">(</span><span class="identifier">boost</span><span class="special">::</span><span class="identifier">iteration</span><span class="special">(</span><span class="number">1</span><span class="special">,</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">regular</span><span class="special">(</span><span class="identifier">_1</span> <span class="special">*</span> <span class="number">2</span><span class="special">))</span> <span class="special">|</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">adaptors</span><span class="special">::</span><span class="identifier">taken</span><span class="special">(</span><span class="number">5</span><span class="special">),</span> <span class="identifier">disp</span><span class="special">);</span>
+  <span class="comment">// 1 2 4 8 10
+</span></pre>
+<p>
+      </p>
+<p>
+        regular&#12399;&#12289;&#12521;&#12512;&#12480;&#24335;&#12434;Regular Concept&#12395;&#12450;&#12480;&#12503;&#12488;&#12377;&#12427;&#12383;&#12417;&#12398;&#38306;&#25968;&#12391;&#12354;&#12427;&#12290;
+      </p>
+<p>
+        regular&#12399;&#12452;&#12486;&#12524;&#12540;&#12479;&#12450;&#12480;&#12503;&#12479;&#12391;&#12521;&#12512;&#12480;&#24335;&#12434;&#20351;&#29992;&#12377;&#12427;&#22580;&#21512;&#12395;&#24120;&#12395;&#24517;&#35201;&#12392;&#12373;&#12428;&#12427;&#12364;&#12289;regular&#12434;&#35352;&#36848;&#12377;&#12427;&#12371;&#12392;&#12399;&#38750;&#24120;&#12395;&#36864;&#23624;&#12391;&#12354;&#12427;&#12290;&#12371;&#12398;&#12521;&#12452;&#12502;&#12521;&#12522;&#12391;&#12399;&#12289;regular&#38306;&#25968;&#12398;&#12383;&#12417;&#12398;&#12471;&#12531;&#12479;&#12483;&#12463;&#12473;&#12471;&#12517;&#12460;&#12540;&#12434;&#25345;&#12387;&#12390;&#12356;&#12427;&#12290;
+        
+</p>
+<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">iostream</span><span class="special">&gt;</span>
+<span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">vector</span><span class="special">&gt;</span>
+<span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">assign</span><span class="special">/</span><span class="identifier">list_of</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
+<span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">range</span><span class="special">/</span><span class="identifier">adaptor</span><span class="special">/</span><span class="identifier">regular_extension</span><span class="special">/</span><span class="identifier">filtered</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
+<span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">range</span><span class="special">/</span><span class="identifier">adaptor</span><span class="special">/</span><span class="identifier">regular_extension</span><span class="special">/</span><span class="identifier">transformed</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
+<span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">range</span><span class="special">/</span><span class="identifier">algorithm</span><span class="special">/</span><span class="identifier">for_each</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
+<span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">lambda</span><span class="special">/</span><span class="identifier">lambda</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
+
+<span class="keyword">void</span> <span class="identifier">disp</span><span class="special">(</span><span class="keyword">int</span> <span class="identifier">x</span><span class="special">)</span> <span class="special">{</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">cout</span> <span class="special">&lt;&lt;</span> <span class="identifier">x</span> <span class="special">&lt;&lt;</span> <span class="char">' '</span><span class="special">;</span> <span class="special">}</span>
+
+<span class="keyword">int</span> <span class="identifier">main</span><span class="special">()</span>
+<span class="special">{</span>
+    <span class="keyword">using</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">lambda</span><span class="special">::</span><span class="identifier">_1</span><span class="special">;</span>
+    <span class="keyword">using</span> <span class="keyword">namespace</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">adaptors</span><span class="special">;</span>
+
+    <span class="keyword">const</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">vector</span><span class="special">&lt;</span><span class="keyword">int</span><span class="special">&gt;</span> <span class="identifier">v</span> <span class="special">=</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">assign</span><span class="special">::</span><span class="identifier">list_of</span><span class="special">(</span><span class="number">1</span><span class="special">)(</span><span class="number">2</span><span class="special">)(</span><span class="number">3</span><span class="special">)(</span><span class="number">4</span><span class="special">)(</span><span class="number">5</span><span class="special">)(</span><span class="number">6</span><span class="special">);</span>
+    <span class="identifier">boost</span><span class="special">::</span><span class="identifier">for_each_</span><span class="special">(</span><span class="identifier">v</span> <span class="special">|+</span> <span class="identifier">filtered</span><span class="special">(</span><span class="identifier">_1</span> <span class="special">%</span> <span class="number">2</span> <span class="special">==</span> <span class="number">0</span><span class="special">)</span> <span class="special">|+</span> <span class="identifier">transformed</span><span class="special">(</span><span class="identifier">_1</span> <span class="special">*</span> <span class="number">2</span><span class="special">),</span> <span class="identifier">disp</span><span class="special">);</span>
+<span class="special">}</span>
+</pre>
+<p>
+        &#12371;&#12398;&#12521;&#12452;&#12502;&#12521;&#12522;&#12391;&#12399;&#12289;regular&#28436;&#31639;&#23376;&#12391;&#12354;&#12427;operator+()&#12434;&#25552;&#20379;&#12377;&#12427;&#12290;
+        regular&#28436;&#31639;&#23376;&#12399;&#12289;&#12521;&#12512;&#12480;&#24335;&#12434;&#12424;&#12426;&#20351;&#12356;&#12420;&#12377;&#12367;&#12377;&#12427;&#12290;
+      </p>
+</div>
+<table xmlns:rev="http://www.cs.rpi.edu/~gregod/boost/tools/doc/revision" width="100%"><tr>
+<td align="left"></td>
+<td align="right"><div class="copyright-footer">Copyright &#169; 2005 -2007 Shunsuke Sogame, 2011 Akira Takahashi<p>
+        Distributed under the Boost Software License, Version 1.0. (See accompanying
+        file LICENSE_1_0.txt or copy at <a href="http://www.boost.org/LICENSE_1_0.txt" target="_top">http://www.boost.org/LICENSE_1_0.txt</a>)
+      </p>
+</div></td>
+</tr></table>
+<hr>
+<div class="spirit-nav">
+<a accesskey="p" href="../reference.html"><img src="../../images/prev.png" alt="Prev"></a><a accesskey="u" href="../reference.html"><img src="../../images/up.png" alt="Up"></a><a accesskey="h" href="../../index.html"><img src="../../images/home.png" alt="Home"></a><a accesskey="n" href="range_adaptors/dropped.html"><img src="../../images/next.png" alt="Next"></a>
+</div>
+</body>
+</html>
