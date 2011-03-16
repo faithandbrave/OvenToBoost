@@ -1,7 +1,7 @@
 // Boost.Range 2.0 Extension library
 // via PStade Oven Library
 //
-// Copyright Akira Takahashi 2011.
+// Copyright Akira Takahashi, kikairoya 2011.
 // Copyright Shunsuke Sogame 2005-2007.
 // Use, modification and distribution is subject to the Boost Software License,
 // Version 1.0. (See accompanying file LICENSE_1_0.txt or copy at
@@ -15,14 +15,14 @@
 
 #define BOOST_RANGE_DETAIL_INDIRECT_FUNCTOR_INVOKE_HELPER(n,arg_seq) \
     template <BOOST_PP_ENUM_PARAMS(BOOST_PP_EXPAND(BOOST_PP_SEQ_SIZE(arg_seq)), class A)> \
-    BOOST_DEDUCED_TYPENAME boost::result_of<indirected_functor_type(BOOST_PP_ENUM_PARAMS(BOOST_PP_EXPAND(BOOST_PP_SEQ_SIZE(arg_seq)), A))>::type \
+    BOOST_DEDUCED_TYPENAME boost::result_of<indirected_functor_type(BOOST_PP_SEQ_FOR_EACH_I(BOOST_RANGE_DETAIL_INDIRECT_FUNCTOR_ARG, 0, arg_seq))>::type \
         operator()(BOOST_PP_SEQ_FOR_EACH_I(BOOST_RANGE_DETAIL_INDIRECT_FUNCTOR_ARG, 0, arg_seq)) \
         { \
             return (*f)(BOOST_PP_ENUM_PARAMS(BOOST_PP_EXPAND(BOOST_PP_SEQ_SIZE(arg_seq)), a)); \
         } \
 \
     template <BOOST_PP_ENUM_PARAMS(BOOST_PP_EXPAND(BOOST_PP_SEQ_SIZE(arg_seq)), class A)> \
-    BOOST_DEDUCED_TYPENAME boost::result_of<indirected_functor_type(BOOST_PP_ENUM_PARAMS(BOOST_PP_EXPAND(BOOST_PP_SEQ_SIZE(arg_seq)), A))>::type \
+    BOOST_DEDUCED_TYPENAME boost::result_of<indirected_functor_type(BOOST_PP_SEQ_FOR_EACH_I(BOOST_RANGE_DETAIL_INDIRECT_FUNCTOR_ARG, 0, arg_seq))>::type \
         operator()(BOOST_PP_SEQ_FOR_EACH_I(BOOST_RANGE_DETAIL_INDIRECT_FUNCTOR_ARG, 0, arg_seq)) const \
         { \
             return (*f)(BOOST_PP_ENUM_PARAMS(BOOST_PP_EXPAND(BOOST_PP_SEQ_SIZE(arg_seq)), a)); \
