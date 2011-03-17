@@ -3,54 +3,56 @@
     Distributed under the Boost Software License, Version 1.0.
     (See accompanying file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
 /]
-[section dropped]
+[section dropped_while]
 
-`dropped` returns the suffix of the base range after the first `n` elements.
+`dropped_while` drops elements from the base range while a predicate satisfies.
 
 [table
     [[Syntax] [Code]]
-    [[Pipe] [`rng | boost::adaptors::dropped(n)`]]
-    [[Function] [`boost::adaptors::drop(rng, n)`]]
+    [[Pipe] [`rng | boost::adaptors::dropped_while(pred)`]]
+	[[Regular Operator] [`rng |+ boost::adaptors::dropped_while(pred)`]]
+    [[Function] [`boost::adaptors::drop_while(rng, pred)`]]
 ]
 
-* [*Precondition:]  type of `n` is convertible to boost::range_difference<Range>::type. and 0 <= `n`.
+* [*Precondition:] pred shall not modify referents.
 * [*Range Category:] __single_pass_range__
 * [*Range Return Type:] ...
 * [*Returned Range Category:] the range category of `rng`
 
 [heading Header]
 ``
-#include <boost/range/adaptor/dropped.hpp>
+#include <boost/range/adaptor/dropped_while.hpp>
 ``
 
 [heading Associative Header]
 ``
-#include <boost/range/adaptor/dropped_while.hpp>
+#include <boost/range/regular.hpp>
 ``
 
 [heading Example]
 ``
-#include <boost/range/adaptor/dropped.hpp>
+#include <boost/range/adaptor/dropped_while.hpp>
 #include <boost/range/algorithm/for_each.hpp>
 #include <boost/assign/list_of.hpp>
 #include <iostream>
 #include <vector>
 
 void disp(int x) { std::cout << x << ' '; }
+bool is_even(int x) { return x % 2 == 0; }
 
 using namespace boost::adaptors;
 
 int main()
 {
-    const std::vector<int> v = boost::assign::list_of(3)(1)(4)(2)(5);
+    const std::vector<int> v = boost::assign::list_of(2)(4)(6)(1)(3);
 
-    boost::for_each(v | dropped(2), disp);
+    boost::for_each(v | dropped_while(is_even), disp);
 }
 ``
 
 This would produce the output:
 ``
-4 2 5 
+1 3 
 ``
 
 [endsect]

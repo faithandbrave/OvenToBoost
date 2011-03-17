@@ -1,0 +1,169 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
+<title>taken_while</title>
+<link rel="stylesheet" href="../../../boostbook.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.76.1">
+<link rel="home" href="../../../index.html" title="Chapter&#160;1.&#160;Range Extension 0.1">
+<link rel="up" href="../range_adaptors.html" title="Range Adaptors">
+<link rel="prev" href="taken.html" title="taken">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table cellpadding="2" width="100%"><tr><td valign="top"><img alt="rangeextension" width="" height="" src="../../../../../boost-proposed-alpha-variants.png"></td></tr></table>
+<hr>
+<div class="spirit-nav">
+<a accesskey="p" href="taken.html"><img src="../../../images/prev.png" alt="Prev"></a><a accesskey="u" href="../range_adaptors.html"><img src="../../../images/up.png" alt="Up"></a><a accesskey="h" href="../../../index.html"><img src="../../../images/home.png" alt="Home"></a>
+</div>
+<div class="section">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="range_extension.reference.range_adaptors.taken_while"></a><a class="link" href="taken_while.html" title="taken_while">taken_while</a>
+</h4></div></div></div>
+<p>
+          <code class="computeroutput"><span class="identifier">taken_while</span></code>&#12399;&#12289;&#12505;&#12540;&#12473;&#12392;&#12394;&#12427;Range&#12398;&#20808;&#38957;&#12363;&#12425;&#36848;&#35486;&#12434;&#28288;&#12383;&#12377;&#38291;&#12398;&#35201;&#32032;&#12398;Range&#12434;&#36820;&#12377;&#12290;
+        </p>
+<div class="informaltable"><table class="table">
+<colgroup>
+<col>
+<col>
+</colgroup>
+<thead><tr>
+<th>
+                  <p>
+                    &#27083;&#25991;
+                  </p>
+                </th>
+<th>
+                  <p>
+                    &#12467;&#12540;&#12489;
+                  </p>
+                </th>
+</tr></thead>
+<tbody>
+<tr>
+<td>
+                  <p>
+                    &#12497;&#12452;&#12503;&#12473;&#12479;&#12452;&#12523;
+                  </p>
+                </td>
+<td>
+                  <p>
+                    <code class="computeroutput"><span class="identifier">rng</span> <span class="special">|</span>
+                    <span class="identifier">boost</span><span class="special">::</span><span class="identifier">adaptors</span><span class="special">::</span><span class="identifier">taken_while</span><span class="special">(</span><span class="identifier">pred</span><span class="special">)</span></code>
+                  </p>
+                </td>
+</tr>
+<tr>
+<td>
+                  <p>
+                    regular&#28436;&#31639;&#23376;
+                  </p>
+                </td>
+<td>
+                  <p>
+                    <code class="computeroutput"><span class="identifier">rng</span> <span class="special">|+</span>
+                    <span class="identifier">boost</span><span class="special">::</span><span class="identifier">adaptors</span><span class="special">::</span><span class="identifier">taken_while</span><span class="special">(</span><span class="identifier">pred</span><span class="special">)</span></code>
+                  </p>
+                </td>
+</tr>
+<tr>
+<td>
+                  <p>
+                    &#38306;&#25968;&#12473;&#12479;&#12452;&#12523;
+                  </p>
+                </td>
+<td>
+                  <p>
+                    <code class="computeroutput"><span class="identifier">boost</span><span class="special">::</span><span class="identifier">adaptors</span><span class="special">::</span><span class="identifier">take_while</span><span class="special">(</span><span class="identifier">rng</span><span class="special">,</span>
+                    <span class="identifier">pred</span><span class="special">)</span></code>
+                  </p>
+                </td>
+</tr>
+</tbody>
+</table></div>
+<div class="itemizedlist"><ul class="itemizedlist" type="disc">
+<li class="listitem">
+              <span class="bold"><strong>&#20107;&#21069;&#26465;&#20214;:</strong></span> pred&#12399;&#12289;&#21442;&#29031;&#12375;&#12383;&#35201;&#32032;&#12434;&#26360;&#12365;&#25563;&#12360;&#12390;&#12399;&#12394;&#12425;&#12394;&#12356;&#12290;
+            </li>
+<li class="listitem">
+              <span class="bold"><strong>Range&#12459;&#12486;&#12468;&#12522;:</strong></span> <a href="http://www.boost.org/libs/range/doc/html/range/concepts/single_pass_range.html" target="_top">Single
+              Pass Range</a>
+            </li>
+<li class="listitem">
+              <span class="bold"><strong>&#25147;&#12426;&#20516;&#22411;:</strong></span> ...
+            </li>
+<li class="listitem">
+              <span class="bold"><strong>&#36820;&#12373;&#12428;&#12427;Range&#12459;&#12486;&#12468;&#12522;:</strong></span> <code class="computeroutput"><span class="identifier">rng</span></code> &#12392; <a href="http://www.boost.org/libs/range/doc/html/range/concepts/bidirectional_range.html" target="_top">Bidirectional
+              Range</a> &#12398;Range&#12459;&#12486;&#12468;&#12522;&#12398;&#26368;&#23567;&#12290;
+            </li>
+</ul></div>
+<a name="range_extension.reference.range_adaptors.taken_while._________"></a><h6>
+<a name="range_extension.reference.range_adaptors.taken_while._________-heading"></a>
+          <a class="link" href="taken_while.html#range_extension.reference.range_adaptors.taken_while._________">&#12504;&#12483;&#12480;</a>
+        </h6>
+<p>
+          
+</p>
+<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">range</span><span class="special">/</span><span class="identifier">adaptor</span><span class="special">/</span><span class="identifier">taken_while</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
+</pre>
+<p>
+        </p>
+<a name="range_extension.reference.range_adaptors.taken_while._______________"></a><h6>
+<a name="range_extension.reference.range_adaptors.taken_while._______________-heading"></a>
+          <a class="link" href="taken_while.html#range_extension.reference.range_adaptors.taken_while._______________">&#38306;&#36899;&#12504;&#12483;&#12480;</a>
+        </h6>
+<p>
+          
+</p>
+<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">range</span><span class="special">/</span><span class="identifier">regular</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
+</pre>
+<p>
+        </p>
+<a name="range_extension.reference.range_adaptors.taken_while.___"></a><h6>
+<a name="range_extension.reference.range_adaptors.taken_while.___-heading"></a>
+          <a class="link" href="taken_while.html#range_extension.reference.range_adaptors.taken_while.___">&#20363;</a>
+        </h6>
+<p>
+          
+</p>
+<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">range</span><span class="special">/</span><span class="identifier">adaptor</span><span class="special">/</span><span class="identifier">taken_while</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
+<span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">range</span><span class="special">/</span><span class="identifier">algorithm</span><span class="special">/</span><span class="identifier">for_each</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
+<span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">assign</span><span class="special">/</span><span class="identifier">list_of</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
+<span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">iostream</span><span class="special">&gt;</span>
+<span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">vector</span><span class="special">&gt;</span>
+
+<span class="keyword">void</span> <span class="identifier">disp</span><span class="special">(</span><span class="keyword">int</span> <span class="identifier">x</span><span class="special">)</span> <span class="special">{</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">cout</span> <span class="special">&lt;&lt;</span> <span class="identifier">x</span> <span class="special">&lt;&lt;</span> <span class="char">' '</span><span class="special">;</span> <span class="special">}</span>
+<span class="keyword">bool</span> <span class="identifier">is_even</span><span class="special">(</span><span class="keyword">int</span> <span class="identifier">x</span><span class="special">)</span> <span class="special">{</span> <span class="keyword">return</span> <span class="identifier">x</span> <span class="special">%</span> <span class="number">2</span> <span class="special">==</span> <span class="number">0</span><span class="special">;</span> <span class="special">}</span>
+
+<span class="keyword">using</span> <span class="keyword">namespace</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">adaptors</span><span class="special">;</span>
+
+<span class="keyword">int</span> <span class="identifier">main</span><span class="special">()</span>
+<span class="special">{</span>
+    <span class="keyword">const</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">vector</span><span class="special">&lt;</span><span class="keyword">int</span><span class="special">&gt;</span> <span class="identifier">v</span> <span class="special">=</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">assign</span><span class="special">::</span><span class="identifier">list_of</span><span class="special">(</span><span class="number">2</span><span class="special">)(</span><span class="number">4</span><span class="special">)(</span><span class="number">6</span><span class="special">)(</span><span class="number">1</span><span class="special">)(</span><span class="number">3</span><span class="special">);</span>
+
+    <span class="identifier">boost</span><span class="special">::</span><span class="identifier">for_each</span><span class="special">(</span><span class="identifier">v</span> <span class="special">|</span> <span class="identifier">taken_while</span><span class="special">(</span><span class="identifier">is_even</span><span class="special">),</span> <span class="identifier">disp</span><span class="special">);</span>
+<span class="special">}</span>
+</pre>
+<p>
+        </p>
+<p>
+          &#12371;&#12428;&#12399;&#20197;&#19979;&#12398;&#32080;&#26524;&#12434;&#20986;&#21147;&#12377;&#12427;: 
+</p>
+<pre class="programlisting"><span class="number">2</span> <span class="number">4</span> <span class="number">6</span> 
+</pre>
+<p>
+        </p>
+</div>
+<table xmlns:rev="http://www.cs.rpi.edu/~gregod/boost/tools/doc/revision" width="100%"><tr>
+<td align="left"></td>
+<td align="right"><div class="copyright-footer">Copyright &#169; 2005 -2007 Shunsuke Sogame, 2011 Akira Takahashi<p>
+        Distributed under the Boost Software License, Version 1.0. (See accompanying
+        file LICENSE_1_0.txt or copy at <a href="http://www.boost.org/LICENSE_1_0.txt" target="_top">http://www.boost.org/LICENSE_1_0.txt</a>)
+      </p>
+</div></td>
+</tr></table>
+<hr>
+<div class="spirit-nav">
+<a accesskey="p" href="taken.html"><img src="../../../images/prev.png" alt="Prev"></a><a accesskey="u" href="../range_adaptors.html"><img src="../../../images/up.png" alt="Up"></a><a accesskey="h" href="../../../index.html"><img src="../../../images/home.png" alt="Home"></a>
+</div>
+</body>
+</html>

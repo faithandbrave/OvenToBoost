@@ -2,3 +2,6 @@ index.html
 range_extension/reference.html
 range_extension/reference/range_adaptors.html
 range_extension/reference/range_adaptors/dropped.html
+range_extension/reference/range_adaptors/dropped_while.html
+range_extension/reference/range_adaptors/taken.html
+range_extension/reference/range_adaptors/taken_while.html

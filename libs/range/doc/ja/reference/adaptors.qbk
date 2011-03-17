@@ -67,6 +67,9 @@ int main()
 regular演算子は、ラムダ式をより使いやすくする。
 
 [include adaptors/dropped.qbk]
+[include adaptors/dropped_while.qbk]
+[include adaptors/taken.qbk]
+[include adaptors/taken_while.qbk]
 
 [endsect]
 

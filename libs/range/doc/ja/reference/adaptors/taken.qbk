@@ -3,35 +3,35 @@
     Distributed under the Boost Software License, Version 1.0.
     (See accompanying file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
 /]
-[section dropped]
+[section taken]
 
-`dropped`は、ベースとなるRangeから先頭N個の要素を除いたRangeを返す。
+`taken`は、ベースとなるRangeの先頭N個の要素のRangeを返す。
 
 [table
     [[構文] [コード]]
-    [[パイプスタイル] [`rng | boost::adaptors::dropped(n)`]]
-    [[関数スタイル] [`boost::adaptors::drop(rng, n)`]]
+    [[パイプスタイル] [`rng | boost::adaptors::taken(n)`]]
+    [[関数スタイル] [`boost::adaptors::take(rng, n)`]]
 ]
 
-* [*事前条件:]  `n`の型はboost::range_difference<Range>::typeに変換可能である。また、0 <= `n`である。
+* [*事前条件:]  `n`の型はboost::range_difference<Range>::typeに変換可能である。
 * [*Rangeカテゴリ:] __single_pass_range__
 * [*戻り値型:] ...
-* [*返されるRangeカテゴリ:] `rng`のRangeカテゴリ
+* [*返されるRangeカテゴリ:] `rng` と __bidirectional_range__ のRangeカテゴリの最小。
 
 [heading ヘッダ]
 ``
-#include <boost/range/adaptor/dropped.hpp>
+#include <boost/range/adaptor/taken.hpp>
 ``
 
 [heading 関連ヘッダ]
 ``
-#include <boost/range/adaptor/dropped_while.hpp>
+#include <boost/range/adaptor/taken_while.hpp>
 ``
 
 [heading 例]
 
 ``
-#include <boost/range/adaptor/dropped.hpp>
+#include <boost/range/adaptor/taken.hpp>
 #include <boost/range/algorithm/for_each.hpp>
 #include <boost/assign/list_of.hpp>
 #include <iostream>
@@ -45,13 +45,13 @@ int main()
 {
     const std::vector<int> v = boost::assign::list_of(3)(1)(4)(2)(5);
 
-    boost::for_each(v | dropped(2), disp);
+    boost::for_each(v | taken(2), disp);
 }
 ``
 
 これは以下の結果を出力する:
 ``
-4 2 5 
+3 1 
 ``
 [endsect]
 

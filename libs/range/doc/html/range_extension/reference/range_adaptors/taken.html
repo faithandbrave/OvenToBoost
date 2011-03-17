@@ -1,28 +1,27 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
-<title>dropped</title>
+<title>taken</title>
 <link rel="stylesheet" href="../../../boostbook.css" type="text/css">
 <meta name="generator" content="DocBook XSL Stylesheets V1.76.1">
 <link rel="home" href="../../../index.html" title="Chapter&#160;1.&#160;Range Extension 0.1">
 <link rel="up" href="../range_adaptors.html" title="Range Adaptors">
-<link rel="prev" href="../range_adaptors.html" title="Range Adaptors">
-<link rel="next" href="dropped_while.html" title="dropped_while">
+<link rel="prev" href="dropped_while.html" title="dropped_while">
+<link rel="next" href="taken_while.html" title="taken_while">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
 <table cellpadding="2" width="100%"><tr><td valign="top"><img alt="rangeextension" width="" height="" src="../../../../boost-proposed-alpha-variants.png"></td></tr></table>
 <hr>
 <div class="spirit-nav">
-<a accesskey="p" href="../range_adaptors.html"><img src="../../../images/prev.png" alt="Prev"></a><a accesskey="u" href="../range_adaptors.html"><img src="../../../images/up.png" alt="Up"></a><a accesskey="h" href="../../../index.html"><img src="../../../images/home.png" alt="Home"></a><a accesskey="n" href="dropped_while.html"><img src="../../../images/next.png" alt="Next"></a>
+<a accesskey="p" href="dropped_while.html"><img src="../../../images/prev.png" alt="Prev"></a><a accesskey="u" href="../range_adaptors.html"><img src="../../../images/up.png" alt="Up"></a><a accesskey="h" href="../../../index.html"><img src="../../../images/home.png" alt="Home"></a><a accesskey="n" href="taken_while.html"><img src="../../../images/next.png" alt="Next"></a>
 </div>
 <div class="section">
 <div class="titlepage"><div><div><h4 class="title">
-<a name="range_extension.reference.range_adaptors.dropped"></a><a class="link" href="dropped.html" title="dropped">dropped</a>
+<a name="range_extension.reference.range_adaptors.taken"></a><a class="link" href="taken.html" title="taken">taken</a>
 </h4></div></div></div>
 <p>
-          <code class="computeroutput"><span class="identifier">dropped</span></code> returns the suffix
-          of the base range after the first <code class="computeroutput"><span class="identifier">n</span></code>
-          elements.
+          <code class="computeroutput"><span class="identifier">taken</span></code>, applied to the base
+          range, returns the prefix of the range of length <code class="computeroutput"><span class="identifier">n</span></code>.
         </p>
 <div class="informaltable"><table class="table">
 <colgroup>
@@ -51,7 +50,7 @@
 <td>
                   <p>
                     <code class="computeroutput"><span class="identifier">rng</span> <span class="special">|</span>
-                    <span class="identifier">boost</span><span class="special">::</span><span class="identifier">adaptors</span><span class="special">::</span><span class="identifier">dropped</span><span class="special">(</span><span class="identifier">n</span><span class="special">)</span></code>
+                    <span class="identifier">boost</span><span class="special">::</span><span class="identifier">adaptors</span><span class="special">::</span><span class="identifier">taken</span><span class="special">(</span><span class="identifier">n</span><span class="special">)</span></code>
                   </p>
                 </td>
 </tr>
@@ -63,7 +62,7 @@
                 </td>
 <td>
                   <p>
-                    <code class="computeroutput"><span class="identifier">boost</span><span class="special">::</span><span class="identifier">adaptors</span><span class="special">::</span><span class="identifier">drop</span><span class="special">(</span><span class="identifier">rng</span><span class="special">,</span>
+                    <code class="computeroutput"><span class="identifier">boost</span><span class="special">::</span><span class="identifier">adaptors</span><span class="special">::</span><span class="identifier">take</span><span class="special">(</span><span class="identifier">rng</span><span class="special">,</span>
                     <span class="identifier">n</span><span class="special">)</span></code>
                   </p>
                 </td>
@@ -73,7 +72,6 @@
 <div class="itemizedlist"><ul class="itemizedlist" type="disc">
 <li class="listitem">
               <span class="bold"><strong>Precondition:</strong></span> type of <code class="computeroutput"><span class="identifier">n</span></code> is convertible to boost::range_difference&lt;Range&gt;::type.
-              and 0 &lt;= <code class="computeroutput"><span class="identifier">n</span></code>.
             </li>
 <li class="listitem">
               <span class="bold"><strong>Range Category:</strong></span> <a href="http://www.boost.org/libs/range/doc/html/range/concepts/single_pass_range.html" target="_top">Single
@@ -83,41 +81,43 @@
               <span class="bold"><strong>Range Return Type:</strong></span> ...
             </li>
 <li class="listitem">
-              <span class="bold"><strong>Returned Range Category:</strong></span> the range
-              category of <code class="computeroutput"><span class="identifier">rng</span></code>
+              <span class="bold"><strong>Returned Range Category:</strong></span> The minimum
+              of the range category of <code class="computeroutput"><span class="identifier">rng</span></code>
+              and <a href="http://www.boost.org/libs/range/doc/html/range/concepts/bidirectional_range.html" target="_top">Bidirectional
+              Range</a>
             </li>
 </ul></div>
-<a name="range_extension.reference.range_adaptors.dropped.header"></a><h6>
-<a name="range_extension.reference.range_adaptors.dropped.header-heading"></a>
-          <a class="link" href="dropped.html#range_extension.reference.range_adaptors.dropped.header">Header</a>
+<a name="range_extension.reference.range_adaptors.taken.header"></a><h6>
+<a name="range_extension.reference.range_adaptors.taken.header-heading"></a>
+          <a class="link" href="taken.html#range_extension.reference.range_adaptors.taken.header">Header</a>
         </h6>
 <p>
           
 </p>
-<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">range</span><span class="special">/</span><span class="identifier">adaptor</span><span class="special">/</span><span class="identifier">dropped</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
+<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">range</span><span class="special">/</span><span class="identifier">adaptor</span><span class="special">/</span><span class="identifier">taken</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
 </pre>
 <p>
         </p>
-<a name="range_extension.reference.range_adaptors.dropped.associative_header"></a><h6>
-<a name="range_extension.reference.range_adaptors.dropped.associative_header-heading"></a>
-          <a class="link" href="dropped.html#range_extension.reference.range_adaptors.dropped.associative_header">Associative
+<a name="range_extension.reference.range_adaptors.taken.associative_header"></a><h6>
+<a name="range_extension.reference.range_adaptors.taken.associative_header-heading"></a>
+          <a class="link" href="taken.html#range_extension.reference.range_adaptors.taken.associative_header">Associative
           Header</a>
         </h6>
 <p>
           
 </p>
-<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">range</span><span class="special">/</span><span class="identifier">adaptor</span><span class="special">/</span><span class="identifier">dropped_while</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
+<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">range</span><span class="special">/</span><span class="identifier">adaptor</span><span class="special">/</span><span class="identifier">taken_while</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
 </pre>
 <p>
         </p>
-<a name="range_extension.reference.range_adaptors.dropped.example"></a><h6>
-<a name="range_extension.reference.range_adaptors.dropped.example-heading"></a>
-          <a class="link" href="dropped.html#range_extension.reference.range_adaptors.dropped.example">Example</a>
+<a name="range_extension.reference.range_adaptors.taken.example"></a><h6>
+<a name="range_extension.reference.range_adaptors.taken.example-heading"></a>
+          <a class="link" href="taken.html#range_extension.reference.range_adaptors.taken.example">Example</a>
         </h6>
 <p>
           
 </p>
-<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">range</span><span class="special">/</span><span class="identifier">adaptor</span><span class="special">/</span><span class="identifier">dropped</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
+<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">range</span><span class="special">/</span><span class="identifier">adaptor</span><span class="special">/</span><span class="identifier">taken</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
 <span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">range</span><span class="special">/</span><span class="identifier">algorithm</span><span class="special">/</span><span class="identifier">for_each</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
 <span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">assign</span><span class="special">/</span><span class="identifier">list_of</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
 <span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">iostream</span><span class="special">&gt;</span>
@@ -131,7 +131,7 @@
 <span class="special">{</span>
     <span class="keyword">const</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">vector</span><span class="special">&lt;</span><span class="keyword">int</span><span class="special">&gt;</span> <span class="identifier">v</span> <span class="special">=</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">assign</span><span class="special">::</span><span class="identifier">list_of</span><span class="special">(</span><span class="number">3</span><span class="special">)(</span><span class="number">1</span><span class="special">)(</span><span class="number">4</span><span class="special">)(</span><span class="number">2</span><span class="special">)(</span><span class="number">5</span><span class="special">);</span>
 
-    <span class="identifier">boost</span><span class="special">::</span><span class="identifier">for_each</span><span class="special">(</span><span class="identifier">v</span> <span class="special">|</span> <span class="identifier">dropped</span><span class="special">(</span><span class="number">2</span><span class="special">),</span> <span class="identifier">disp</span><span class="special">);</span>
+    <span class="identifier">boost</span><span class="special">::</span><span class="identifier">for_each</span><span class="special">(</span><span class="identifier">v</span> <span class="special">|</span> <span class="identifier">taken</span><span class="special">(</span><span class="number">2</span><span class="special">),</span> <span class="identifier">disp</span><span class="special">);</span>
 <span class="special">}</span>
 </pre>
 <p>
@@ -139,7 +139,7 @@
 <p>
           This would produce the output: 
 </p>
-<pre class="programlisting"><span class="number">4</span> <span class="number">2</span> <span class="number">5</span> 
+<pre class="programlisting"><span class="number">3</span> <span class="number">1</span> 
 </pre>
 <p>
         </p>
@@ -154,7 +154,7 @@
 </tr></table>
 <hr>
 <div class="spirit-nav">
-<a accesskey="p" href="../range_adaptors.html"><img src="../../../images/prev.png" alt="Prev"></a><a accesskey="u" href="../range_adaptors.html"><img src="../../../images/up.png" alt="Up"></a><a accesskey="h" href="../../../index.html"><img src="../../../images/home.png" alt="Home"></a><a accesskey="n" href="dropped_while.html"><img src="../../../images/next.png" alt="Next"></a>
+<a accesskey="p" href="dropped_while.html"><img src="../../../images/prev.png" alt="Prev"></a><a accesskey="u" href="../range_adaptors.html"><img src="../../../images/up.png" alt="Up"></a><a accesskey="h" href="../../../index.html"><img src="../../../images/home.png" alt="Home"></a><a accesskey="n" href="taken_while.html"><img src="../../../images/next.png" alt="Next"></a>
 </div>
 </body>
 </html>
