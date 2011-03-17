@@ -58,25 +58,21 @@ namespace range_detail {
         }
     };
 
-    template< class T >
-    struct dropped_holder : holder<T>
-    {
-        dropped_holder( T r ) : holder<T>(r)
-        { }
+    template <class T>
+    struct dropped_holder : holder<T> {
+        dropped_holder( T r ) : holder<T>(r) {}
     };
 
-    template< class SinglePassRng >
+    template <class SinglePassRng, class Difference>
     inline BOOST_DEDUCED_TYPENAME dropped_range<SinglePassRng>::result_type
-    operator|( SinglePassRng& r,
-               const dropped_holder<BOOST_DEDUCED_TYPENAME boost::range_difference<SinglePassRng>::type>& f )
+    operator|(SinglePassRng& r, const dropped_holder<Difference>& f)
     {
         return dropped_range<SinglePassRng>()( r, f.val );
     }
 
-    template< class SinglePassRng >
+    template <class SinglePassRng, class Difference>
     inline BOOST_DEDUCED_TYPENAME dropped_range<const SinglePassRng>::result_type
-    operator|( const SinglePassRng& r,
-               const dropped_holder<BOOST_DEDUCED_TYPENAME boost::range_difference<SinglePassRng>::type>& f )
+    operator|(const SinglePassRng& r, const dropped_holder<Difference>& f)
     {
         return dropped_range<const SinglePassRng>()( r, f.val );
     }
