@@ -27,34 +27,41 @@ namespace boost {
 namespace range_detail {
 
     template< class Range >
-    struct dropped_range {
+    struct dropped_range  : iterator_range<typename range_iterator<Range>::type> {
         typedef typename range_difference<Range>::type diff_t;
         typedef typename range_iterator<Range>::type iter_t;
+		typedef iterator_range<iter_t> base;
 
-        typedef iterator_range<iter_t> const result_type;
+        dropped_range(Range& rng, diff_t n)
+            : base(make_first_iterator(::boost::begin(rng),
+                                       ::boost::end(rng),
+                                       n,
+                                       typename boost::range_traversal<Range>::type()
+                                       ),
+                    ::boost::end(rng))
+        {}
 
-        result_type operator()(Range& rng, diff_t n) const
+    private:
+        template <class Iterator>
+        static iter_t make_first_iterator(Iterator first,
+                                          Iterator last,
+                                          diff_t n,
+                                          boost::random_access_traversal_tag)
         {
-            BOOST_CONCEPT_ASSERT((SinglePassRangeConcept<Range>));
-            return aux(::boost::begin(rng), ::boost::end(rng), n,
-					   typename boost::range_traversal<Range>::type());
+            return first + (std::min)(last - first, n);
         }
 
-        template< class Iterator >
-        result_type aux(Iterator first, Iterator last, diff_t n, boost::random_access_traversal_tag) const
-        {
-            return result_type(first + (std::min)(last - first, n), last);
-        }
-
-        template< class Iterator >
-        result_type aux(Iterator first, Iterator last, diff_t n, boost::single_pass_traversal_tag) const
+        template <class Iterator>
+        static iter_t make_first_iterator(Iterator first,
+                                          Iterator last,
+                                          diff_t n,
+                                          boost::single_pass_traversal_tag)
         {
             while (n != 0 && first != last) {
                 ++first;
                 --n;
             }
-
-            return result_type(first, last);
+            return first;
         }
     };
 
@@ -64,17 +71,17 @@ namespace range_detail {
     };
 
     template <class SinglePassRng, class Difference>
-    inline BOOST_DEDUCED_TYPENAME dropped_range<SinglePassRng>::result_type
+    inline dropped_range<SinglePassRng>
     operator|(SinglePassRng& r, const dropped_holder<Difference>& f)
     {
-        return dropped_range<SinglePassRng>()( r, f.val );
+        return dropped_range<SinglePassRng>(r, f.val);
     }
 
     template <class SinglePassRng, class Difference>
-    inline BOOST_DEDUCED_TYPENAME dropped_range<const SinglePassRng>::result_type
+    inline dropped_range<const SinglePassRng>
     operator|(const SinglePassRng& r, const dropped_holder<Difference>& f)
     {
-        return dropped_range<const SinglePassRng>()( r, f.val );
+        return dropped_range<const SinglePassRng>(r, f.val);
     }
 } // namespace range_detail
 
@@ -90,17 +97,17 @@ namespace range_detail {
         }
 
         template<class SinglePassRng>
-        inline BOOST_DEDUCED_TYPENAME dropped_range<SinglePassRng>::result_type
+        inline dropped_range<SinglePassRng>
         drop(SinglePassRng& rng, BOOST_DEDUCED_TYPENAME boost::range_difference<SinglePassRng>::type n)
         {
-            return dropped_range<SinglePassRng>()(rng, n);
+            return dropped_range<SinglePassRng>(rng, n);
         }
 
         template<class SinglePassRng>
-        inline BOOST_DEDUCED_TYPENAME dropped_range<const SinglePassRng>::result_type
+        inline dropped_range<const SinglePassRng>
         drop(const SinglePassRng& rng, BOOST_DEDUCED_TYPENAME boost::range_difference<SinglePassRng>::type n)
         {
-            return dropped_range<const SinglePassRng>()(rng, n);
+            return dropped_range<const SinglePassRng>(rng, n);
         }
 
     } // namespace adaptors

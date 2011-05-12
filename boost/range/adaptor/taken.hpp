@@ -34,20 +34,29 @@ namespace range_detail {
                     != 0; // suppress a VC++ warning.
             }
 
-            explicit countdown()
-            { }
-
-            explicit countdown(Difference n) :
-                m_n(n)
-            { }
+            countdown() {}
+            explicit countdown(Difference n) : m_n(make_diff(n)) {}
 
         private:
+            static Difference make_diff(Difference n)
+            {
+                BOOST_ASSERT(0 <= n);
+                return n;
+            }
+
             Difference m_n;
         };
     } // namespace taken_detail
 
     template <class SinglePassRng>
-    struct taken_range {
+    struct taken_range : iterator_range<
+                            boost::adaptors::detail::take_while_iterator<
+                                typename range_iterator<SinglePassRng>::type,
+                                taken_detail::countdown<
+                                    typename range_difference<SinglePassRng>::type
+                                >
+                            >
+                         > {
         typedef typename
             range_difference<SinglePassRng>::type
         diff_t;
@@ -59,23 +68,13 @@ namespace range_detail {
             >
         iter_t;
 
-        typedef
-            iterator_range<iter_t> const
-        result_type;
+        typedef iterator_range<iter_t> base;
 
-        result_type operator()(SinglePassRng& rng, diff_t n) const
+        taken_range(SinglePassRng& rng, diff_t n)
+            : base(iter_t(::boost::begin(rng), ::boost::end(rng), taken_detail::countdown<diff_t>(n)),
+                   iter_t(::boost::end(rng), ::boost::end(rng), taken_detail::countdown<diff_t>(n)))
         {
-            BOOST_CONCEPT_ASSERT((SinglePassRangeConcept<SinglePassRng>));
-            BOOST_ASSERT(0 <= n);
-            return aux(boost::begin(rng), boost::end(rng), taken_detail::countdown<diff_t>(n));
         }
-
-        template< class Iterator >
-        result_type aux(Iterator first, Iterator last, taken_detail::countdown<diff_t> cd) const
-        {
-            return result_type(iter_t(first, last, cd), iter_t(last, last, cd));
-        }
-
     };
 
     template <class T>
@@ -84,17 +83,17 @@ namespace range_detail {
     };
 
     template <class SinglePassRng, class Difference>
-    inline BOOST_DEDUCED_TYPENAME taken_range<SinglePassRng>::result_type
+    inline taken_range<SinglePassRng>
     operator|( SinglePassRng& r, const taken_holder<Difference>& f )
     {
-        return taken_range<SinglePassRng>()( r, f.val );
+        return taken_range<SinglePassRng>(r, f.val);
     }
 
     template <class SinglePassRng, class Difference>
     inline BOOST_DEDUCED_TYPENAME taken_range<const SinglePassRng>::result_type
     operator|( const SinglePassRng& r, const taken_holder<Difference>& f )
     {
-        return taken_range<const SinglePassRng>()( r, f.val );
+        return taken_range<const SinglePassRng>(r, f.val);
     }
 
 } // namespace range_detail
@@ -111,17 +110,17 @@ namespace range_detail {
         }
 
         template<class SinglePassRng>
-        inline BOOST_DEDUCED_TYPENAME taken_range<SinglePassRng>::result_type
+        inline taken_range<SinglePassRng>
         take(SinglePassRng& rng, BOOST_DEDUCED_TYPENAME range_difference<SinglePassRng>::type n)
         {
-            return taken_range<SinglePassRng>()(rng, n);
+            return taken_range<SinglePassRng>(rng, n);
         }
 
         template<class SinglePassRng>
-        inline BOOST_DEDUCED_TYPENAME taken_range<const SinglePassRng>::result_type
+        inline taken_range<const SinglePassRng>
         take(const SinglePassRng& rng, BOOST_DEDUCED_TYPENAME range_difference<SinglePassRng>::type n)
         {
-            return taken_range<const SinglePassRng>()(rng, n);
+            return taken_range<const SinglePassRng>(rng, n);
         }
 
     } // namespace adaptors
