@@ -33,22 +33,18 @@ namespace boost {
 namespace range_detail {
 
     template< class Range >
-    struct dropped_while_range {
+    struct dropped_while_range : iterator_range<typename range_iterator<Range>::type> {
         typedef typename range_iterator<Range>::type iter_t;
 
-        typedef iterator_range<iter_t> const result_type;
+        typedef iterator_range<iter_t> base;
 
         template <class UnaryPredicate>
-        result_type operator()(Range& rng, UnaryPredicate pred) const
+        dropped_while_range(Range& rng, UnaryPredicate pred)
+            : base(std::find_if(::boost::begin(rng), ::boost::end(rng),
+                                boost::adaptors::detail::not_(pred)),
+                   ::boost::end(rng))
         {
             BOOST_CONCEPT_ASSERT((SinglePassRangeConcept<Range>));
-            return aux(::boost::begin(rng), ::boost::end(rng), pred);
-        }
-
-        template< class Iterator, class UnaryPredicate >
-        result_type aux(Iterator first, Iterator last, UnaryPredicate pred) const
-        {
-            return result_type(std::find_if(first, last, boost::adaptors::detail::not_(pred)), last);
         }
     };
 
@@ -59,22 +55,22 @@ namespace range_detail {
         { }
     };
 
-	BOOST_RANGE_ADAPTOR_MAKE_REGULAR_OPERATOR(dropped_while_holder);
+    BOOST_RANGE_ADAPTOR_MAKE_REGULAR_OPERATOR(dropped_while_holder);
 
     template< class SinglePassRng, class UnaryPredicate >
-    inline BOOST_DEDUCED_TYPENAME dropped_while_range<SinglePassRng>::result_type
+    inline dropped_while_range<SinglePassRng>
     operator|( SinglePassRng& r,
                const dropped_while_holder<UnaryPredicate>& f )
     {
-        return dropped_while_range<SinglePassRng>()( r, f.val );
+        return dropped_while_range<SinglePassRng>( r, f.val );
     }
 
     template< class SinglePassRng, class UnaryPredicate >
-    inline BOOST_DEDUCED_TYPENAME dropped_while_range<const SinglePassRng>::result_type
+    inline dropped_while_range<const SinglePassRng>
     operator|( const SinglePassRng& r,
                const dropped_while_holder<UnaryPredicate>& f )
     {
-        return dropped_while_range<const SinglePassRng>()( r, f.val );
+        return dropped_while_range<const SinglePassRng>( r, f.val );
     }
 } // namespace range_detail
 
@@ -90,17 +86,17 @@ namespace range_detail {
         }
 
         template<class SinglePassRng, class UnaryPredicate>
-        inline BOOST_DEDUCED_TYPENAME dropped_while_range<SinglePassRng>::result_type
+        inline dropped_while_range<SinglePassRng>
         drop_while(SinglePassRng& rng, UnaryPredicate pred)
         {
-            return dropped_while_range<SinglePassRng>()(rng, pred);
+            return dropped_while_range<SinglePassRng>(rng, pred);
         }
 
         template<class SinglePassRng, class UnaryPredicate>
-        inline BOOST_DEDUCED_TYPENAME dropped_while_range<const SinglePassRng>::result_type
+        inline dropped_while_range<const SinglePassRng>
         drop_while(const SinglePassRng& rng, UnaryPredicate pred)
         {
-            return dropped_while_range<const SinglePassRng>()(rng, pred);
+            return dropped_while_range<const SinglePassRng>(rng, pred);
         }
 
     } // namespace adaptors

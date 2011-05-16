@@ -18,47 +18,44 @@
 namespace boost {
 namespace range {
 
-    namespace result_of {
+    template <class SinglePassRange>
+    struct split_at_result {
+    private:
+        typedef
+            typename ::boost::taken_range<SinglePassRange>
+        taken_type;
 
-        template <class SinglePassRange>
-        struct split_at {
-        private:
-            typedef
-                typename ::boost::range_detail::taken_range<SinglePassRange>::result_type
-            taken_type;
+        typedef
+            typename ::boost::dropped_range<SinglePassRange>
+        dropped_type;
 
-            typedef
-                typename ::boost::range_detail::dropped_range<SinglePassRange>::result_type
-            dropped_type;
-
-        public:
-            typedef std::pair<taken_type, dropped_type> type;
-        };
-
-    } // namespace result_of
+    public:
+        typedef std::pair<taken_type, dropped_type> type;
+    };
 
     template <class SinglePassRange>
-    inline BOOST_DEDUCED_TYPENAME result_of::split_at<SinglePassRange>::type
+    inline typename split_at_result<SinglePassRange>::type
         split_at(SinglePassRange& rng,
-                 BOOST_DEDUCED_TYPENAME boost::range_difference<SinglePassRange>::type n)
+                 typename boost::range_difference<SinglePassRange>::type n)
     {
-        typedef BOOST_DEDUCED_TYPENAME result_of::split_at<SinglePassRange>::type result_type;
+        typedef typename split_at_result<SinglePassRange>::type result_type;
         return result_type(rng | adaptors::taken(n),
                            rng | adaptors::dropped(n));
     }
 
     template <class SinglePassRange>
-    inline BOOST_DEDUCED_TYPENAME result_of::split_at<const SinglePassRange>::type
+    inline typename split_at_result<const SinglePassRange>::type
         split_at(const SinglePassRange& rng,
-                 BOOST_DEDUCED_TYPENAME boost::range_difference<SinglePassRange>::type n)
+                 typename boost::range_difference<SinglePassRange>::type n)
     {
-        typedef BOOST_DEDUCED_TYPENAME result_of::split_at<const SinglePassRange>::type result_type;
+        typedef typename split_at_result<const SinglePassRange>::type result_type;
         return result_type(rng | adaptors::taken(n),
                            rng | adaptors::dropped(n));
     }
 
 } // namespace range
 
+using range::split_at_result;
 using range::split_at;
 
 } // namespace boost

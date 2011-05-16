@@ -23,7 +23,7 @@ int main()
         const std::vector<int> left = boost::assign::list_of(3)(1);
         const std::vector<int> right = boost::assign::list_of(4)(2)(5);
 
-        boost::range::result_of::split_at<const std::vector<int> >::type r = boost::split_at(v, 2);
+        boost::range::split_at_result<const std::vector<int> >::type r = boost::split_at(v, 2);
 
         BOOST_TEST(boost::equal(r.first, left));
         BOOST_TEST(boost::equal(r.second, right));
@@ -33,7 +33,7 @@ int main()
         const std::vector<int> left = boost::assign::list_of(3)(1);
         const std::vector<int> right = boost::assign::list_of(4)(2)(5);
 
-        boost::range::result_of::split_at<std::vector<int> >::type r = boost::split_at(v, 2);
+        boost::range::split_at_result<std::vector<int> >::type r = boost::split_at(v, 2);
 
         BOOST_TEST(boost::equal(r.first, left));
         BOOST_TEST(boost::equal(r.second, right));

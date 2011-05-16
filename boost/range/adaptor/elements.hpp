@@ -34,90 +34,108 @@ namespace boost {
                 return fusion::at_key<Key>(r);
             }
         };
-    } // namespace range_detail
 
-    namespace range { namespace result_of {
         template <class SinglePassRange, int N>
-        struct elements {
-            typedef
-                range_detail::transformed_range<
-                    range_detail::element_select<SinglePassRange, N>,
+        struct elements_range :
+                transformed_range<
+                    element_select<SinglePassRange, N>,
                     SinglePassRange
                 >
-            type;
+        {
+            typedef
+                transformed_range<
+                    element_select<SinglePassRange, N>,
+                    SinglePassRange
+                >
+            base;
+
+            explicit elements_range(SinglePassRange& rng)
+                : base(element_select<SinglePassRange, N>(), rng) {}
         };
 
         template <class SinglePassRange, class Key>
-        struct elements_key {
-            typedef
-                range_detail::transformed_range<
-                    range_detail::element_key_select<SinglePassRange, Key>,
+        struct elements_key_range :
+                transformed_range<
+                    element_key_select<SinglePassRange, Key>,
                     SinglePassRange
                 >
-            type;
+        {
+            typedef
+                transformed_range<
+                    element_key_select<SinglePassRange, Key>,
+                    SinglePassRange
+                >
+            base;
+
+            explicit elements_key_range(SinglePassRange& rng)
+                : base(element_key_select<SinglePassRange, Key>(), rng) {}
         };
-    }} // namespace range::result_of
+
+    } // namespace range_detail
 
     namespace range_detail {
         template <int N> struct elements {};
         template <class Key> struct elements_key {};
 
         template <class SinglePassRange, int N>
-        inline BOOST_DEDUCED_TYPENAME ::boost::range::result_of::elements<SinglePassRange, N>::type
+        inline elements_range<SinglePassRange, N>
             operator|(SinglePassRange& rng, elements<N>)
         {
-            return rng | ::boost::adaptors::transformed(element_select<SinglePassRange, N>());
+            return elements_range<SinglePassRange, N>(rng);
         }
 
         template <class SinglePassRange, int N>
-        inline BOOST_DEDUCED_TYPENAME ::boost::range::result_of::elements<const SinglePassRange, N>::type
+        inline elements_range<const SinglePassRange, N>
             operator|(const SinglePassRange& rng, elements<N>)
         {
-            return rng | ::boost::adaptors::transformed(element_select<const SinglePassRange, N>());
+            return elements_range<const SinglePassRange, N>(rng);
         }
 
         template <class SinglePassRange, class Key>
-        inline BOOST_DEDUCED_TYPENAME ::boost::range::result_of::elements_key<SinglePassRange, Key>::type
+        inline elements_key_range<SinglePassRange, Key>
             operator|(SinglePassRange& rng, elements_key<Key>)
         {
-            return rng | ::boost::adaptors::transformed(element_key_select<SinglePassRange, Key>());
+            return elements_key_range<SinglePassRange, Key>(rng);
         }
 
         template <class SinglePassRange, class Key>
-        inline BOOST_DEDUCED_TYPENAME ::boost::range::result_of::elements_key<const SinglePassRange, Key>::type
+        inline elements_key_range<const SinglePassRange, Key>
             operator|(const SinglePassRange& rng, elements_key<Key>)
         {
-            return rng | ::boost::adaptors::transformed(element_key_select<const SinglePassRange, Key>());
+            return elements_key_range<const SinglePassRange, Key>(rng);
         }
     } // namespace range_detail
+
+    using range_detail::elements_range;
+    using range_detail::elements_key_range;
 
     namespace adaptors {
         using range_detail::elements;
         using range_detail::elements_key;
 
         template <int N, class SinglePassRange>
-        inline BOOST_DEDUCED_TYPENAME ::boost::range::result_of::elements<SinglePassRange, N>::type
+        inline elements_range<SinglePassRange, N>
             extract_elements(SinglePassRange& rng)
         {
             return rng | elements<N>();
         }
 
         template <int N, class SinglePassRange>
-        inline BOOST_DEDUCED_TYPENAME ::boost::range::result_of::elements<const SinglePassRange, N>::type
+        inline elements_range<const SinglePassRange, N>
             extract_elements(const SinglePassRange& rng)
         {
             return rng | elements<N>();
         }
 
         template <class Key, class SinglePassRange>
-        inline BOOST_DEDUCED_TYPENAME ::boost::range::result_of::elements_key<SinglePassRange, Key>::type
+        inline elements_key_range<SinglePassRange, Key>
             extract_elements_key(SinglePassRange& rng)
         {
             return rng | elements_key<Key>();
         }
 
         template <class Key, class SinglePassRange>
-        inline BOOST_DEDUCED_TYPENAME ::boost::range::result_of::elements_key<const SinglePassRange, Key>::type
+        inline elements_key_range<const SinglePassRange, Key>
             extract_elements_key(const SinglePassRange& rng)
         {
             return rng | elements_key<Key>();

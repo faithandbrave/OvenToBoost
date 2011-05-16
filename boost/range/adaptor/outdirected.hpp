@@ -22,40 +22,45 @@
 namespace boost {
 namespace range_detail {
 
-	template <class SinglePassRng>
-	struct outdirected_range {
-		typedef typename range_iterator<SinglePassRng>::type iter_t;
-
+    template <class SinglePassRng>
+    struct outdirected_range :
+            iterator_range<
+                counting_iterator<typename range_iterator<SinglePassRng>::type>
+            > {
         typedef
-            iterator_range<counting_iterator<iter_t> > const
-        result_type;
+            counting_iterator<
+                typename range_iterator<SinglePassRng>::type
+            >
+        iter_t;
 
-        result_type operator()(SinglePassRng& rng) const
+        typedef iterator_range<iter_t> base;
+
+        outdirected_range(SinglePassRng& rng)
+            : base(iter_t(::boost::begin(rng)), iter_t(::boost::end(rng)))
         {
             BOOST_CONCEPT_ASSERT((SinglePassRangeConcept<SinglePassRng>));
-            return counting_range(boost::begin(rng), boost::end(rng));
         }
-	};
+    };
 
-	struct outdirect_forwarder {};
+    struct outdirect_forwarder {};
 
-	template< class SinglePassRng >
-    inline BOOST_DEDUCED_TYPENAME outdirected_range<SinglePassRng>::result_type
-	operator|( SinglePassRng& r, outdirect_forwarder )
-	{
-		return outdirected_range<SinglePassRng>()( r );
-	}
+    template< class SinglePassRng >
+    inline outdirected_range<SinglePassRng>
+        operator|(SinglePassRng& r, outdirect_forwarder)
+    {
+        return outdirected_range<SinglePassRng>(r);
+    }
 
-	template< class SinglePassRng >
-	inline BOOST_DEDUCED_TYPENAME outdirected_range<const SinglePassRng>::result_type
-	operator|( const SinglePassRng& r, outdirect_forwarder )
-	{
-		return outdirected_range<const SinglePassRng>()( r );
-	}
+    template< class SinglePassRng >
+    inline outdirected_range<const SinglePassRng>
+        operator|(const SinglePassRng& r, outdirect_forwarder)
+    {
+        return outdirected_range<const SinglePassRng>(r);
+    }
 
 } // namespace range_detail
 
-	using range_detail::outdirected_range;
+    using range_detail::outdirected_range;
 
     namespace adaptors
     {
@@ -66,17 +71,17 @@ namespace range_detail {
         }
 
         template<class SinglePassRng>
-        inline BOOST_DEDUCED_TYPENAME outdirected_range<SinglePassRng>::result_type
-        outdirect(SinglePassRng& rng)
+        inline outdirected_range<SinglePassRng>
+            outdirect(SinglePassRng& rng)
         {
-            return outdirected_range<SinglePassRng>()(rng);
+            return outdirected_range<SinglePassRng>(rng);
         }
 
         template<class SinglePassRng>
-        inline BOOST_DEDUCED_TYPENAME outdirected_range<const SinglePassRng>::result_type
-        outdirect(const SinglePassRng& rng)
+        inline outdirected_range<const SinglePassRng>
+            outdirect(const SinglePassRng& rng)
         {
-            return outdirected_range<const SinglePassRng>()(rng);
+            return outdirected_range<const SinglePassRng>(rng);
         }
 
     } // namespace adaptors
