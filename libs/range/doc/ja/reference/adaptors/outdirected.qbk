@@ -1,0 +1,61 @@
+[/
+    Copyright 2011 Akira Takahashi
+    Distributed under the Boost Software License, Version 1.0.
+    (See accompanying file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
+/]
+[section outdirected]
+
+`outdirected`は、ベースとなるRangeの要素へのイテレータから成るRangeを返す。
+
+[table
+    [[構文] [コード]]
+    [[パイプスタイル] [`rng | boost::adaptors::outdirected`]]
+    [[関数スタイル] [`boost::adaptors::outdirect(r)`]]
+]
+
+* [*事前条件:]  
+* [*Rangeカテゴリ:] __single_pass_range__
+* [*戻り値型:] boost::outdirected_range<Range>
+* [*返されるRangeカテゴリ:] `rng` と __forward_range__ のRangeカテゴリの最小。
+
+[heading ヘッダ]
+``
+#include <boost/range/adaptor/outdirected.hpp>
+``
+
+[heading 例]
+
+``
+#include <boost/range/adaptor/outdirected.hpp>
+#include <boost/range/adaptor/indirected.hpp>
+#include <vector>
+#include <boost/assign/list_of.hpp>
+#include <boost/range/algorithm.hpp>
+#include <boost/lambda/lambda.hpp>
+
+using namespace boost::adaptors;
+namespace bll = boost::lambda;
+
+void disp(int x) { std::cout << x << ' '; }
+
+int main()
+{
+	const std::vector<int> v = boost::assign::list_of(3)(1)(4)(2)(5);
+
+	std::vector<std::vector<int>::const_iterator> iters;
+	boost::copy(v | outdirected, std::back_inserter(iters));
+	boost::sort(iters, *bll::_1 < *bll::_2);
+
+	boost::for_each(iters | indirected, disp);
+	std::cout << std::endl;
+	boost::for_each(v, disp);
+}
+``
+
+これは以下の結果を出力する:
+``
+1 2 3 4 5 
+3 1 4 2 5 
+``
+[endsect]
+

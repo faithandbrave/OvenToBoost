@@ -11,10 +11,10 @@
 import testing ;
 
 project
-	: requirements
-		<link>static
-		<threading>multi
-	;
+    : requirements
+        <link>static
+        <threading>multi
+    ;
 
 rule range-test ( name : includes * )
 {
@@ -27,23 +27,25 @@ rule range-test ( name : includes * )
 }
 
 test-suite range_extension :
-	[ range-test adaptor_test/dropped ]
-	[ range-test adaptor_test/dropped_while ]
-	[ range-test adaptor_test/elements ]
-	[ range-test adaptor_test/elements_key ]
-	[ range-test adaptor_test/outdirected ]
-	[ range-test adaptor_test/taken ]
-	[ range-test adaptor_test/taken_while ]
-	[ range-test access_test/at ]
-	[ range-test access_test/back ]
-	[ range-test access_test/front ]
+    [ range-test adaptor_test/dropped ]
+    [ range-test adaptor_test/dropped_while ]
+    [ range-test adaptor_test/elements ]
+    [ range-test adaptor_test/elements_key ]
+    [ range-test adaptor_test/memoized ]
+    [ range-test adaptor_test/outdirected ]
+    [ range-test adaptor_test/taken ]
+    [ range-test adaptor_test/taken_while ]
+    [ range-test access_test/at ]
+    [ range-test access_test/back ]
+    [ range-test access_test/front ]
 #    [ range-test directory_range ]
-	[ range-test iteration ]
-	[ range-test member_select_example ]
-	[ range-test regular ]
-	[ range-test regular_example ]
-	[ range-test regular_operator_example ]
-	[ range-test single ]
-	[ range-test split_at ]
+    [ range-test irange_ex ]
+    [ range-test iteration ]
+    [ range-test member_select_example ]
+    [ range-test regular ]
+    [ range-test regular_example ]
+    [ range-test regular_operator_example ]
+    [ range-test single ]
+    [ range-test split_at ]
     ;
 

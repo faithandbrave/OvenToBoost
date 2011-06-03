@@ -15,7 +15,7 @@
 
 * [*事前条件:]  `n`の型はboost::range_difference<Range>::typeに変換可能である。
 * [*Rangeカテゴリ:] __single_pass_range__
-* [*戻り値型:] ...
+* [*戻り値型:] boost::taken_range<Range>
 * [*返されるRangeカテゴリ:] `rng` と __bidirectional_range__ のRangeカテゴリの最小。
 
 [heading ヘッダ]

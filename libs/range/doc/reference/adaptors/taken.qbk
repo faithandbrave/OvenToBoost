@@ -15,7 +15,7 @@
 
 * [*Precondition:]  type of `n` is convertible to boost::range_difference<Range>::type.
 * [*Range Category:] __single_pass_range__
-* [*Range Return Type:] ...
+* [*Range Return Type:] boost::taken_range<Range>
 * [*Returned Range Category:] The minimum of the range category of `rng` and __bidirectional_range__
 
 [heading Header]

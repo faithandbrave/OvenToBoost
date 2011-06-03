@@ -15,7 +15,7 @@
 
 * [*Precondition:]  type of `n` is convertible to boost::range_difference<Range>::type. and 0 <= `n`.
 * [*Range Category:] __single_pass_range__
-* [*Range Return Type:] ...
+* [*Range Return Type:] boost::dropped_range<Range>
 * [*Returned Range Category:] the range category of `rng`
 
 [heading Header]

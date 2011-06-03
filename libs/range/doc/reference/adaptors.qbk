@@ -70,6 +70,10 @@ Regular operator is useful for lambda expression.
 
 [include adaptors/dropped.qbk]
 [include adaptors/dropped_while.qbk]
+[include adaptors/elements.qbk]
+[include adaptors/elements_key.qbk]
+[include adaptors/memoized.qbk]
+[include adaptors/outdirected.qbk]
 [include adaptors/taken.qbk]
 [include adaptors/taken_while.qbk]
 

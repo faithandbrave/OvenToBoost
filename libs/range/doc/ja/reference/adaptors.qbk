@@ -3,7 +3,7 @@
     Distributed under the Boost Software License, Version 1.0.
     (See accompanying file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
 /]
-[section Range Adaptors]
+[section:range_adaptors Range Adaptors]
 
 このライブラリは、PStade.OvenやHaskell Preludeライブラリから影響を受けたRangeアダプタを含んでいる。
 これらはより強力なRangeプログラミング(関数プログラミング)で必要とされる。
@@ -68,6 +68,9 @@ regular演算子は、ラムダ式をより使いやすくする。
 
 [include adaptors/dropped.qbk]
 [include adaptors/dropped_while.qbk]
+[include adaptors/elements.qbk]
+[include adaptors/elements_key.qbk]
+[include adaptors/outdirected.qbk]
 [include adaptors/taken.qbk]
 [include adaptors/taken_while.qbk]
 

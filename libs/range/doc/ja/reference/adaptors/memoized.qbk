@@ -1,0 +1,73 @@
+[/
+    Copyright 2011 Akira Takahashi
+    Distributed under the Boost Software License, Version 1.0.
+    (See accompanying file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
+/]
+[section dropped]
+
+`memoized` は、値が繰り返し使用するようなケースで高速化のために、キャッシュするRangeを返す。
+
+[table
+    [[構文] [コード]]
+    [[パイプスタイル] [`rng | boost::adaptors::memoized`]]
+    [[関数スタイル] [`boost::adaptors::memoize(rng)`]]
+]
+
+* [*事前条件:] Range is Readable. range_value<Range>::type is Assignable.
+* [*Rangeカテゴリ:] __single_pass_range__
+* [*戻り値の型:] boost::memoized_range<Range>
+* [*戻り値のRangeカテゴリ:] __forward_range__
+
+[heading ヘッダ]
+``
+#include <boost/range/adaptor/memoized.hpp>
+``
+
+[heading 例]
+``
+#include <iostream>
+#include <boost/range/adaptor/transformed.hpp>
+#include <boost/range/adaptor/filtered.hpp>
+#include <boost/range/adaptor/memoized.hpp>
+#include <boost/range/algorithm/for_each.hpp>
+
+int add(int x)
+{
+    std::cout << "add function : " << x << std::endl;
+    return x + 1;
+}
+
+bool pred(int x)
+{
+    return true;
+}
+
+void disp(int x)
+{
+    std::cout << x << std::endl;
+}
+
+int main()
+{
+    using namespace boost::adaptors;
+
+    const int ar[] = {1, 2, 3};
+    boost::for_each(ar | transformed(add) | memoized | filtered(pred), disp);
+}
+``
+
+これは以下の結果を出力する:
+``
+add function : 1
+2
+add function : 2
+3
+add function : 3
+4
+``
+
+`memoized`を使用しない場合、`add`関数は2回ずつ呼ばれる。
+
+
+[endsect]
+

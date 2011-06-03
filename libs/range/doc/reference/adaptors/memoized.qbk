@@ -1,0 +1,73 @@
+[/
+    Copyright 2011 Akira Takahashi
+    Distributed under the Boost Software License, Version 1.0.
+    (See accompanying file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
+/]
+[section dropped]
+
+`memoized` returns a range whose values are cached for speed, preparing for repeated dereferences.
+
+[table
+    [[Syntax] [Code]]
+    [[Pipe] [`rng | boost::adaptors::memoized`]]
+    [[Function] [`boost::adaptors::memoize(rng)`]]
+]
+
+* [*Precondition:] Range is Readable. range_value<Range>::type is Assignable.
+* [*Range Category:] __single_pass_range__
+* [*Range Return Type:] boost::memoized_range<Range>
+* [*Returned Range Category:] __forward_range__
+
+[heading Header]
+``
+#include <boost/range/adaptor/memoized.hpp>
+``
+
+[heading Example]
+``
+#include <iostream>
+#include <boost/range/adaptor/transformed.hpp>
+#include <boost/range/adaptor/filtered.hpp>
+#include <boost/range/adaptor/memoized.hpp>
+#include <boost/range/algorithm/for_each.hpp>
+
+int add(int x)
+{
+    std::cout << "add function : " << x << std::endl;
+    return x + 1;
+}
+
+bool pred(int x)
+{
+    return true;
+}
+
+void disp(int x)
+{
+    std::cout << x << std::endl;
+}
+
+int main()
+{
+    using namespace boost::adaptors;
+
+    const int ar[] = {1, 2, 3};
+    boost::for_each(ar | transformed(add) | memoized | filtered(pred), disp);
+}
+``
+
+This would produce the output:
+``
+add function : 1
+2
+add function : 2
+3
+add function : 3
+4
+``
+
+If do not use `memoized`, `add` function called twice.
+
+
+[endsect]
+

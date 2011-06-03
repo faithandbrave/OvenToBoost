@@ -1,0 +1,78 @@
+[/
+    Copyright 2011 Akira Takahashi
+    Distributed under the Boost Software License, Version 1.0.
+    (See accompanying file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
+/]
+[section elements_key]
+
+`elements_key` returns extracted corresponding to the specified key from element of value type of base range.
+
+[table
+    [[Syntax] [Code]]
+    [[Pipe] [`rng | boost::adaptors::elements_key<Key>()`]]
+    [[Function] [`boost::adaptors::extract_elements_key<Key>(rng)`]]
+]
+
+* [*Precondition:]  valu type of range require __fusion_assosiative_sequence__.
+* [*Range Category:] __single_pass_range__
+* [*Range Return Type:] elements_key_range<Range, Key>
+* [*Returned Range Category:] the range category of `rng`
+
+[heading Header]
+``
+#include <boost/range/adaptor/elements.hpp>
+``
+
+[heading Example]
+``
+#include <boost/range/adaptor/elements.hpp>
+#include <boost/range/algorithm/for_each.hpp>
+#include <boost/fusion/include/adapt_assoc_struct.hpp>
+#include <boost/assign/list_of.hpp>
+#include <iostream>
+#include <vector>
+#include <string>
+
+struct id_tag {};
+struct name_tag {};
+
+struct Person {
+    int id;
+    std::string name;
+
+    Person(int id_, const std::string& name_)
+        : id(id_), name(name_) {}
+};
+
+BOOST_FUSION_ADAPT_ASSOC_STRUCT(
+    Person,
+    (int, id, id_tag)
+    (std::string, name, name_tag)
+)
+
+void disp(const std::string& name) { std::cout << name << std::endl; }
+
+using namespace boost::adaptors;
+
+int main()
+{
+    std::vector<Person> v = boost::assign::list_of
+        (Person(1, "Alice"))
+        (Person(2, "Millia"))
+        (Person(3, "Bob"))
+        ;
+
+    boost::for_each(v | elements_key<name_tag>(), disp);
+}
+``
+
+This would produce the output:
+``
+Alice
+Millia
+Bob
+
+``
+
+[endsect]
+

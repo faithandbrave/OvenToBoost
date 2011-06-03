@@ -1,0 +1,74 @@
+[/
+    Copyright 2011 Akira Takahashi
+    Distributed under the Boost Software License, Version 1.0.
+    (See accompanying file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
+/]
+[section elements]
+
+`elements`は、ベースとなるRangeの要素型からN番目の要素のみを抽出したRangeを生成する。
+
+[table
+    [[構文] [コード]]
+    [[パイプスタイル] [`rng | boost::adaptors::elements<N>()`]]
+    [[関数スタイル] [`boost::adaptors::extract_elements<N>(rng)`]]
+]
+
+* [*事前条件:] Rangeの要素型は、__fusion_forward_sequence__である必要がある。
+* [*Rangeカテゴリ:] __single_pass_range__
+* [*戻り値型:] elements_range<Range, N>
+* [*返されるRangeカテゴリ:] `rng`のRangeカテゴリ
+
+[heading ヘッダ]
+``
+#include <boost/range/adaptor/elements.hpp>
+``
+[heading 例]
+
+``
+#include <boost/range/adaptor/elements.hpp>
+#include <boost/range/algorithm/for_each.hpp>
+#include <boost/fusion/include/adapt_struct.hpp>
+#include <boost/assign/list_of.hpp>
+#include <iostream>
+#include <vector>
+#include <string>
+
+struct Person {
+    int id;
+    std::string name;
+
+    Person(int id_, const std::string& name_)
+        : id(id_), name(name_) {}
+};
+
+BOOST_FUSION_ADAPT_STRUCT(
+    Person,
+    (int, id)
+    (std::string, name)
+)
+
+void disp(const std::string& name) { std::cout << name << std::endl; }
+
+using namespace boost::adaptors;
+
+int main()
+{
+    const std::vector<Person> v = boost::assign::list_of
+        (Person(1, "Alice"))
+        (Person(2, "Millia"))
+        (Person(3, "Bob"))
+        ;
+
+    boost::for_each(v | elements<1>(), disp);
+}
+``
+
+これは以下の結果を出力する:
+``
+Alice
+Millia
+Bob
+
+``
+[endsect]
+

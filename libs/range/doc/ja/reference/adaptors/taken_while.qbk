@@ -16,7 +16,7 @@
 
 * [*事前条件:] predは、参照した要素を書き換えてはならない。
 * [*Rangeカテゴリ:] __single_pass_range__
-* [*戻り値型:] ...
+* [*戻り値型:] boost::taken_while_range<Range>
 * [*返されるRangeカテゴリ:] `rng` と __bidirectional_range__ のRangeカテゴリの最小。
 
 [heading ヘッダ]

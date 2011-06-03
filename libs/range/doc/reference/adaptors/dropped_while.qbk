@@ -16,7 +16,7 @@
 
 * [*Precondition:] pred shall not modify referents.
 * [*Range Category:] __single_pass_range__
-* [*Range Return Type:] ...
+* [*Range Return Type:] boost::dropped_while_range<Range>
 * [*Returned Range Category:] the range category of `rng`
 
 [heading Header]
