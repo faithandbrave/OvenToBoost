@@ -5,25 +5,25 @@
 /]
 [section dropped]
 
-`memoized` ‚ÍA’l‚ªŒJ‚è•Ô‚µg—p‚·‚é‚æ‚¤‚ÈƒP[ƒX‚Å‚‘¬‰»‚Ì‚½‚ß‚ÉAƒLƒƒƒbƒVƒ…‚·‚éRange‚ğ•Ô‚·B
+`memoized` ã¯ã€å€¤ãŒç¹°ã‚Šè¿”ã—ä½¿ç”¨ã™ã‚‹ã‚ˆã†ãªã‚±ãƒ¼ã‚¹ã§é«˜é€ŸåŒ–ã®ãŸã‚ã«ã€ã‚­ãƒ£ãƒƒã‚·ãƒ¥ã™ã‚‹Rangeã‚’è¿”ã™ã€‚
 
 [table
-    [[\•¶] [ƒR[ƒh]]
-    [[ƒpƒCƒvƒXƒ^ƒCƒ‹] [`rng | boost::adaptors::memoized`]]
-    [[ŠÖ”ƒXƒ^ƒCƒ‹] [`boost::adaptors::memoize(rng)`]]
+    [[æ§‹æ–‡] [ã‚³ãƒ¼ãƒ‰]]
+    [[ãƒ‘ã‚¤ãƒ—ã‚¹ã‚¿ã‚¤ãƒ«] [`rng | boost::adaptors::memoized`]]
+    [[é–¢æ•°ã‚¹ã‚¿ã‚¤ãƒ«] [`boost::adaptors::memoize(rng)`]]
 ]
 
-* [*–‘OğŒ:] Range is Readable. range_value<Range>::type is Assignable.
-* [*RangeƒJƒeƒSƒŠ:] __single_pass_range__
-* [*–ß‚è’l‚ÌŒ^:] boost::memoized_range<Range>
-* [*–ß‚è’l‚ÌRangeƒJƒeƒSƒŠ:] __forward_range__
+* [*äº‹å‰æ¡ä»¶:] Range is Readable. range_value<Range>::type is Assignable.
+* [*Rangeã‚«ãƒ†ã‚´ãƒª:] __single_pass_range__
+* [*æˆ»ã‚Šå€¤ã®å‹:] boost::memoized_range<Range>
+* [*æˆ»ã‚Šå€¤ã®Rangeã‚«ãƒ†ã‚´ãƒª:] __forward_range__
 
-[heading ƒwƒbƒ_]
+[heading ãƒ˜ãƒƒãƒ€]
 ``
 #include <boost/range/adaptor/memoized.hpp>
 ``
 
-[heading —á]
+[heading ä¾‹]
 ``
 #include <iostream>
 #include <boost/range/adaptor/transformed.hpp>
@@ -56,7 +56,7 @@ int main()
 }
 ``
 
-‚±‚ê‚ÍˆÈ‰º‚ÌŒ‹‰Ê‚ğo—Í‚·‚é:
+ã“ã‚Œã¯ä»¥ä¸‹ã®çµæœã‚’å‡ºåŠ›ã™ã‚‹:
 ``
 add function : 1
 2
@@ -66,7 +66,7 @@ add function : 3
 4
 ``
 
-`memoized`‚ğg—p‚µ‚È‚¢ê‡A`add`ŠÖ”‚Í2‰ñ‚¸‚ÂŒÄ‚Î‚ê‚éB
+`memoized`ã‚’ä½¿ç”¨ã—ãªã„å ´åˆã€`add`é–¢æ•°ã¯2å›ãšã¤å‘¼ã°ã‚Œã‚‹ã€‚
 
 
 [endsect]
