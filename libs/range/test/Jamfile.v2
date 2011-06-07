@@ -47,5 +47,6 @@ test-suite range_extension :
     [ range-test regular_operator_example ]
     [ range-test single ]
     [ range-test split_at ]
+    [ range-test to_container ]
     ;
 
