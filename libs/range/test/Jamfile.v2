@@ -38,6 +38,10 @@ test-suite range_extension :
     [ range-test access_test/at ]
     [ range-test access_test/back ]
     [ range-test access_test/front ]
+	[ range-test algorithm_ext_test/all_of ]
+	[ range-test algorithm_ext_test/any_of ]
+	[ range-test algorithm_ext_test/none_of ]
+    [ range-test algorithm_ext_test/fused_for_each ]
 #    [ range-test directory_range ]
     [ range-test irange_ex ]
     [ range-test iteration ]
@@ -47,6 +51,5 @@ test-suite range_extension :
     [ range-test regular_operator_example ]
     [ range-test single ]
     [ range-test split_at ]
-    [ range-test to_container ]
     ;
 
