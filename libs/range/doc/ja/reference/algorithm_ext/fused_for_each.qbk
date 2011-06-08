@@ -1,0 +1,74 @@
+[/
+    Copyright 2011 Akira Takahashi
+    Distributed under the Boost Software License, Version 1.0.
+    (See accompanying file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
+/]
+[section:fused_for_each fused_for_each]
+
+[heading プロトタイプ]
+
+``
+template <class SinglePassRange, class UnaryFunction>
+void fused_for_each(SinglePassRange& rng, UnaryFunction f);
+
+template <class SinglePassRange, class UnaryFunction>
+void fused_for_each(const SinglePassRange& rng, UnaryFunction f);
+``
+
+[heading 名前空間]
+
+`boost` もしくは `boost::range`。
+
+[heading 説明]
+
+`fused_for_each` は、タプルを展開して関数適用するfor_eachである。
+`rng`からイテレーションされた要素`x`において、`boost::fusion::make_fused(f)(x)`のように関数適用される。
+
+[heading ヘッダ]
+
+boost/range/algorithm_ext/fused_for_each.hpp
+
+[heading 要件]
+
+# `SinglePassRange`は  __single_pass_range__ コンセプトである。
+# `rng`の要素`x`は、 __fusion_forward_sequence__ である。
+
+[heading 計算量]
+
+線形。正確に`distance(rng)`回`UnaryFunction`が適用される。
+
+[heading 例]
+``
+#include <iostream>
+#include <vector>
+#include <boost/assign/list_of.hpp>
+#include <boost/fusion/include/make_vector.hpp>
+#include <boost/range/algorithm_ext/fused_for_each.hpp>
+
+void disp(int x, char c, const std::string& s)
+{
+    std::cout << x << ", " <<  c << ", " << s << std::endl;
+}
+
+int main()
+{
+    typedef boost::fusion::vector<int, char, std::string> value_type;
+    const std::vector<value_type> v = boost::assign::list_of<value_type>
+        (1, 'a', "xyz")
+        (2, 'b', "Hello")
+        (3, 'c', "foo")
+        ;
+
+    boost::fused_for_each(v, disp);
+}
+``
+
+これは以下の結果を出力する：
+``
+1, a, xyz
+2, b, Hello
+3, c, foo
+``
+
+
+[endsect]

@@ -6,11 +6,7 @@
 [section:reference Reference]
 
 [include reference/adaptors.qbk]
-[/
-    [include reference/ranges.qbk]
-    [include reference/utilities.qbk]
-    [include reference/extending.qbk]
-/]
+[include reference/regular_extension.qbk]
 
 [endsect]
 

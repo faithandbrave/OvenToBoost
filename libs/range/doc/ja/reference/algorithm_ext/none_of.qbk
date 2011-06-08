@@ -1,0 +1,39 @@
+[/
+    Copyright 2011 Akira Takahashi
+    Distributed under the Boost Software License, Version 1.0.
+    (See accompanying file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
+/]
+[section:none_of none_of]
+
+[heading プロトタイプ]
+
+``
+template <class SinglePassRange, class UnaryPredicate>
+bool none_of(SinglePassRange& rng, UnaryPredicate pred);
+
+template <class SinglePassRange, class UnaryPredicate>
+bool none_of(const SinglePassRange& rng, UnaryPredicate pred);
+``
+
+[heading 名前空間]
+
+`boost` or `boost::range`.
+
+[heading 説明]
+
+`none_of`は、Rangeの全ての要素において述語がfalseだった場合にtrueを返す。
+これはC++11の`std::none_of`のRangeバージョンである。
+
+[heading 説明]
+
+boost/range/algorithm_ext/none_of.hpp
+
+[heading 要件]
+
+# `SinglePassRange`は __single_pass_range__ コンセプトである。
+
+[heading 計算量]
+
+述語の高々 boost::end(rng) - boost::begin(rng) 回の適用。
+
+[endsect]

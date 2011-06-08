@@ -1,0 +1,39 @@
+[/
+    Copyright 2011 Akira Takahashi
+    Distributed under the Boost Software License, Version 1.0.
+    (See accompanying file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
+/]
+[section:all_of all_of]
+
+[heading プロトタイプ]
+
+``
+template <class SinglePassRange, class UnaryPredicate>
+bool all_of(SinglePassRange& rng, UnaryPredicate pred);
+
+template <class SinglePassRange, class UnaryPredicate>
+bool all_of(const SinglePassRange& rng, UnaryPredicate pred);
+``
+
+[heading 名前空間]
+
+`boost` もしくは `boost::range`。
+
+[heading 説明]
+
+`all_of` は、Rangeの全ての要素全てにおいて述語がtrueだった場合にtrueを返す。
+これはC++11の`std::all_of`のRangeバージョンである。
+
+[heading ヘッダ]
+
+boost/range/algorithm_ext/all_of.hpp
+
+[heading 要件]
+
+# `SinglePassRange`は __single_pass_range__ コンセプトである。
+
+[heading 計算量]
+
+述語の高々 boost::end(rng) - boost::begin(rng) 回の適用。
+
+[endsect]

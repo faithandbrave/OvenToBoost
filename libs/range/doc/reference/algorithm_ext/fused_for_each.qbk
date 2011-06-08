@@ -1,0 +1,74 @@
+[/
+    Copyright 2011 Akira Takahashi
+    Distributed under the Boost Software License, Version 1.0.
+    (See accompanying file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
+/]
+[section:fused_for_each fused_for_each]
+
+[heading Prototype]
+
+``
+template <class SinglePassRange, class UnaryFunction>
+void fused_for_each(SinglePassRange& rng, UnaryFunction f);
+
+template <class SinglePassRange, class UnaryFunction>
+void fused_for_each(const SinglePassRange& rng, UnaryFunction f);
+``
+
+[heading Namespace]
+
+`boost` or `boost::range`.
+
+[heading Description]
+
+`fused_for_each` is for_each which expansion tuple to apply function.
+For each iteration, the element `x` is used from `rng` to invoke `boost::fusion::make_fused(f)(x)`.
+
+[heading Definition]
+
+boost/range/algorithm_ext/fused_for_each.hpp
+
+[heading Requirements]
+
+# `SinglePassRange` is a model of the __single_pass_range__ Concept.
+# `rng`'s element `x` requires __fusion_forward_sequence__.
+
+[heading Complexity]
+
+Linear. Exactly `distance(rng)` applications of `UnaryFunction`.
+
+[heading Example]
+``
+#include <iostream>
+#include <vector>
+#include <boost/assign/list_of.hpp>
+#include <boost/fusion/include/make_vector.hpp>
+#include <boost/range/algorithm_ext/fused_for_each.hpp>
+
+void disp(int x, char c, const std::string& s)
+{
+    std::cout << x << ", " <<  c << ", " << s << std::endl;
+}
+
+int main()
+{
+    typedef boost::fusion::vector<int, char, std::string> value_type;
+    const std::vector<value_type> v = boost::assign::list_of<value_type>
+        (1, 'a', "xyz")
+        (2, 'b', "Hello")
+        (3, 'c', "foo")
+        ;
+
+    boost::fused_for_each(v, disp);
+}
+``
+
+This would produce the output:
+``
+1, a, xyz
+2, b, Hello
+3, c, foo
+``
+
+
+[endsect]

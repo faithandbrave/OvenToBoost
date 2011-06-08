@@ -1,0 +1,16 @@
+[/
+    Copyright 2011 Akira Takahashi
+    Distributed under the Boost Software License, Version 1.0.
+    (See accompanying file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
+/]
+[section:regular_extension Regular Extension]
+
+このライブラリの特徴の一つであるregular演算子は、外付け可能に設計されている。
+このライブラリで提供されるRangeアダプタはregular演算子も提供しているが、Boost Range Libraryの既存のRangeアダプタに対するregular演算子の拡張も同時に提供する。
+この拡張は、このライブラリがBoost Range Libraryに統合されれば標準搭載する。
+
+[include regular_extension/filtered.qbk]
+[include regular_extension/transformed.qbk]
+
+[endsect]
+

@@ -1,0 +1,39 @@
+[/
+    Copyright 2011 Akira Takahashi
+    Distributed under the Boost Software License, Version 1.0.
+    (See accompanying file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
+/]
+[section:any_of any_of]
+
+[heading プロトタイプ]
+
+``
+template <class SinglePassRange, class UnaryPredicate>
+bool any_of(SinglePassRange& rng, UnaryPredicate pred);
+
+template <class SinglePassRange, class UnaryPredicate>
+bool any_of(const SinglePassRange& rng, UnaryPredicate pred);
+``
+
+[heading 名前空間]
+
+`boost` もしくは `boost::range`。
+
+[heading 説明]
+
+`any_of`はRangeのいずれかの要素において述語がtrueの場合にtrueを返す。
+これはC++11の`std::any_of`のRangeバージョンである。
+
+[heading ヘッダ]
+
+boost/range/algorithm_ext/any_of.hpp
+
+[heading 要件]
+
+# `SinglePassRange`は __single_pass_range__ コンセプトである。
+
+[heading 計算量]
+
+述語の高々 boost::end(rng) - boost::begin(rng) 回の適用。
+
+[endsect]

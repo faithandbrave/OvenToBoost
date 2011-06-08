@@ -1,0 +1,39 @@
+[/
+    Copyright 2011 Akira Takahashi
+    Distributed under the Boost Software License, Version 1.0.
+    (See accompanying file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
+/]
+[section:all_of all_of]
+
+[heading Prototype]
+
+``
+template <class SinglePassRange, class UnaryPredicate>
+bool all_of(SinglePassRange& rng, UnaryPredicate pred);
+
+template <class SinglePassRange, class UnaryPredicate>
+bool all_of(const SinglePassRange& rng, UnaryPredicate pred);
+``
+
+[heading Namespace]
+
+`boost` or `boost::range`.
+
+[heading Description]
+
+`all_of` returns true if a predicate is true for all the referents in the range.
+range version of C++11 `std::all_of`.
+
+[heading Definition]
+
+boost/range/algorithm_ext/all_of.hpp
+
+[heading Requirements]
+
+# `SinglePassRange` is a model of the __single_pass_range__ Concept.
+
+[heading Complexity]
+
+At most boost::end(rng) - boost::begin(rng) applications of the predicate.
+
+[endsect]

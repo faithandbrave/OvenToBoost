@@ -1,0 +1,39 @@
+[/
+    Copyright 2011 Akira Takahashi
+    Distributed under the Boost Software License, Version 1.0.
+    (See accompanying file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
+/]
+[section:none_of none_of]
+
+[heading Prototype]
+
+``
+template <class SinglePassRange, class UnaryPredicate>
+bool none_of(SinglePassRange& rng, UnaryPredicate pred);
+
+template <class SinglePassRange, class UnaryPredicate>
+bool none_of(const SinglePassRange& rng, UnaryPredicate pred);
+``
+
+[heading Namespace]
+
+`boost` or `boost::range`.
+
+[heading Description]
+
+`none_of` returns false if a predicate is true for a referent in the range.
+range version of C++11 `std::none_of`.
+
+[heading Definition]
+
+boost/range/algorithm_ext/none_of.hpp
+
+[heading Requirements]
+
+# `SinglePassRange` is a model of the __single_pass_range__ Concept.
+
+[heading Complexity]
+
+At most boost::end(rng) - boost::begin(rng) applications of the predicate.
+
+[endsect]
