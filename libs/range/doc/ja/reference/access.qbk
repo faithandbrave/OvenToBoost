@@ -8,6 +8,7 @@
 Range Accessでは、Rangeの各要素へアクセスするための関数を提供する。
 
 [include adaptors/at.qbk]
+[include adaptors/value_at.qbk]
 [include adaptors/back.qbk]
 [include adaptors/front.qbk]
 

@@ -3,19 +3,19 @@
     Distributed under the Boost Software License, Version 1.0.
     (See accompanying file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
 /]
-[section at]
+[section value_at]
 
-`at`は、ベースとなるRangeのN番目の要素を抽出する。
+`value_at`は、ベースとなるRangeのN番目の要素をコピーによって抽出する。
 
 [table
     [[構文] [コード]]
-    [[パイプスタイル] [`rng | boost::range::access::at(n)`]]
-    [[関数スタイル] [`boost::range::access::at(rng, n)`]]
+    [[パイプスタイル] [`rng | boost::range::access::value_at(n)`]]
+    [[関数スタイル] [`boost::range::access::value_at(rng, n)`]]
 ]
 
 * [*事前条件:]  `n`の型はboost::range_difference<Range>::typeに変換可能である。また、0 <= `n`である。
 * [*Rangeカテゴリ:] __single_pass_range__
-* [*戻り値型:] boost::range_reference<Range>::type
+* [*戻り値型:] boost::range_value<Range>::type
 
 [heading ヘッダ]
 ``
@@ -47,18 +47,14 @@ int main()
 {
     std::vector<int> v = boost::assign::list_of(3)(1)(4);
 
-    int& x = v | at(2);
+    int x = v | value_at(2);
     std::cout << x << std::endl;
-
-    x = 5; // change value
-    boost::for_each(v, disp);
 }
 ``
 
 これは以下の結果を出力する:
 ``
 4
-3 1 5 
 ``
 [endsect]
 
