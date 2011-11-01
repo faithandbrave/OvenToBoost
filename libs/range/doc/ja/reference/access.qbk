@@ -10,7 +10,9 @@ Range Accessでは、Rangeの各要素へアクセスするための関数を提
 [include adaptors/at.qbk]
 [include adaptors/value_at.qbk]
 [include adaptors/back.qbk]
+[include adaptors/value_back.qbk]
 [include adaptors/front.qbk]
+[include adaptors/value_front.qbk]
 
 [endsect]
 

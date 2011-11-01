@@ -5,21 +5,20 @@
 /]
 [section at]
 
-`at`は、ベースとなるRangeのN番目の要素を抽出する。
+`front`は、ベースとなるRangeの先頭要素を抽出する。
 
 [table
     [[構文] [コード]]
-    [[パイプスタイル] [`rng | boost::range::access::at(n)`]]
-    [[関数スタイル] [`boost::range::access::at(rng, n)`]]
+    [[パイプスタイル] [`rng | boost::range::access::front`]]
+    [[関数スタイル] [`boost::range::access::front(rng)`]]
 ]
 
-* [*事前条件:]  `n`の型はboost::range_difference<Range>::typeに変換可能である。また、0 <= `n`である。
-* [*Rangeカテゴリ:] __random_access_range__
+* [*Rangeカテゴリ:] __single_pass_range__
 * [*戻り値型:] boost::range_reference<Range>::type
 
 [heading ヘッダ]
 ``
-#include <boost/range/access/at.hpp>
+#include <boost/range/access/front.hpp>
 ``
 もしくは
 ``
@@ -34,9 +33,9 @@
 #include <boost/assign/list_of.hpp>
 #include <boost/range/algorithm/for_each.hpp>
 
-#include <boost/range/access/at.hpp>
+#include <boost/range/access/front.hpp>
 
-using boost::range::access::at;
+using boost::range::access::front;
 
 void disp(int x)
 {
@@ -47,7 +46,7 @@ int main()
 {
     std::vector<int> v = boost::assign::list_of(3)(1)(4);
 
-    int& x = v | at(2);
+    int& x = v | front;
     std::cout << x << std::endl;
 
     x = 5; // change value
@@ -57,8 +56,8 @@ int main()
 
 これは以下の結果を出力する:
 ``
-4
-3 1 5 
+3
+5 1 4 
 ``
 [endsect]
 

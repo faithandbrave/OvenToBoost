@@ -5,21 +5,20 @@
 /]
 [section at]
 
-`at`は、ベースとなるRangeのN番目の要素を抽出する。
+`value_back`は、ベースとなるRangeの最後尾要素をコピーによって抽出する。
 
 [table
     [[構文] [コード]]
-    [[パイプスタイル] [`rng | boost::range::access::at(n)`]]
-    [[関数スタイル] [`boost::range::access::at(rng, n)`]]
+    [[パイプスタイル] [`rng | boost::range::access::value_back`]]
+    [[関数スタイル] [`boost::range::access::value_back(rng)`]]
 ]
 
-* [*事前条件:]  `n`の型はboost::range_difference<Range>::typeに変換可能である。また、0 <= `n`である。
-* [*Rangeカテゴリ:] __random_access_range__
+* [*Rangeカテゴリ:] __bidirectional_range__
 * [*戻り値型:] boost::range_reference<Range>::type
 
 [heading ヘッダ]
 ``
-#include <boost/range/access/at.hpp>
+#include <boost/range/access/back.hpp>
 ``
 もしくは
 ``
@@ -34,9 +33,9 @@
 #include <boost/assign/list_of.hpp>
 #include <boost/range/algorithm/for_each.hpp>
 
-#include <boost/range/access/at.hpp>
+#include <boost/range/access/back.hpp>
 
-using boost::range::access::at;
+using boost::range::access::back;
 
 void disp(int x)
 {
@@ -47,18 +46,14 @@ int main()
 {
     std::vector<int> v = boost::assign::list_of(3)(1)(4);
 
-    int& x = v | at(2);
+    int x = v | back;
     std::cout << x << std::endl;
-
-    x = 5; // change value
-    boost::for_each(v, disp);
 }
 ``
 
 これは以下の結果を出力する:
 ``
 4
-3 1 5 
 ``
 [endsect]
 
