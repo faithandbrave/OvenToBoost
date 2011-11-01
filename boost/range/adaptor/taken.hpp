@@ -90,7 +90,7 @@ namespace range_detail {
     }
 
     template <class SinglePassRng, class Difference>
-    inline BOOST_DEDUCED_TYPENAME taken_range<const SinglePassRng>::result_type
+    inline taken_range<const SinglePassRng>
     operator|( const SinglePassRng& r, const taken_holder<Difference>& f )
     {
         return taken_range<const SinglePassRng>(r, f.val);
