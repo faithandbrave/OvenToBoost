@@ -25,11 +25,36 @@
 [heading 例]
 
 ``
+#include <iostream>
+#include <vector>
+#include <boost/assign/list_of.hpp>
+#include <boost/range/algorithm/for_each.hpp>
 
+#include <boost/range/access/at.hpp>
+
+using boost::range::access::at;
+
+void disp(int x)
+{
+    std::cout << x << ' ';
+}
+
+int main()
+{
+    std::vector<int> v = boost::assign::list_of(3)(1)(4);
+
+    int& x = v | at(2);
+    std::cout << x << std::endl;
+
+    x = 5; // change value
+    boost::for_each(v, disp);
+}
 ``
 
 これは以下の結果を出力する:
 ``
+4
+3 1 5 
 ``
 [endsect]
 
