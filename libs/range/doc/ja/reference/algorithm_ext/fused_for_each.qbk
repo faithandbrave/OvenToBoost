@@ -5,7 +5,7 @@
 /]
 [section:fused_for_each fused_for_each]
 
-[heading ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—]
+[heading ƒvƒƒgƒ^ƒCƒv]
 
 ``
 template <class SinglePassRange, class UnaryFunction>
@@ -15,29 +15,29 @@ template <class SinglePassRange, class UnaryFunction>
 void fused_for_each(const SinglePassRange& rng, UnaryFunction f);
 ``
 
-[heading åå‰ç©ºé–“]
+[heading –¼‘O‹óŠÔ]
 
-`boost` ã‚‚ã—ãã¯ `boost::range`ã€‚
+`boost` ‚à‚µ‚­‚Í `boost::range`B
 
-[heading èª¬æ˜]
+[heading à–¾]
 
-`fused_for_each` ã¯ã€ã‚¿ãƒ—ãƒ«ã‚’å±•é–‹ã—ã¦é–¢æ•°é©ç”¨ã™ã‚‹for_eachã§ã‚ã‚‹ã€‚
-`rng`ã‹ã‚‰ã‚¤ãƒ†ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³ã•ã‚ŒãŸè¦ç´ `x`ã«ãŠã„ã¦ã€`boost::fusion::make_fused(f)(x)`ã®ã‚ˆã†ã«é–¢æ•°é©ç”¨ã•ã‚Œã‚‹ã€‚
+`fused_for_each` ‚ÍAƒ^ƒvƒ‹‚ğ“WŠJ‚µ‚ÄŠÖ”“K—p‚·‚éfor_each‚Å‚ ‚éB
+`rng`‚©‚çƒCƒeƒŒ[ƒVƒ‡ƒ“‚³‚ê‚½—v‘f`x`‚É‚¨‚¢‚ÄA`boost::fusion::make_fused(f)(x)`‚Ì‚æ‚¤‚ÉŠÖ”“K—p‚³‚ê‚éB
 
-[heading ãƒ˜ãƒƒãƒ€]
+[heading ƒwƒbƒ_]
 
 boost/range/algorithm_ext/fused_for_each.hpp
 
-[heading è¦ä»¶]
+[heading —vŒ]
 
-# `SinglePassRange`ã¯  __single_pass_range__ ã‚³ãƒ³ã‚»ãƒ—ãƒˆã§ã‚ã‚‹ã€‚
-# `rng`ã®è¦ç´ `x`ã¯ã€ __fusion_forward_sequence__ ã§ã‚ã‚‹ã€‚
+# `SinglePassRange`‚Í  __single_pass_range__ ƒRƒ“ƒZƒvƒg‚Å‚ ‚éB
+# `rng`‚Ì—v‘f`x`‚ÍA __fusion_forward_sequence__ ‚Å‚ ‚éB
 
-[heading è¨ˆç®—é‡]
+[heading ŒvZ—Ê]
 
-ç·šå½¢ã€‚æ­£ç¢ºã«`distance(rng)`å›`UnaryFunction`ãŒé©ç”¨ã•ã‚Œã‚‹ã€‚
+üŒ`B³Šm‚É`distance(rng)`‰ñ`UnaryFunction`‚ª“K—p‚³‚ê‚éB
 
-[heading ä¾‹]
+[heading —á]
 ``
 #include <iostream>
 #include <vector>
@@ -63,7 +63,7 @@ int main()
 }
 ``
 
-ã“ã‚Œã¯ä»¥ä¸‹ã®çµæœã‚’å‡ºåŠ›ã™ã‚‹ï¼š
+‚±‚ê‚ÍˆÈ‰º‚ÌŒ‹‰Ê‚ğo—Í‚·‚éF
 ``
 1, a, xyz
 2, b, Hello
