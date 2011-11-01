@@ -1,0 +1,72 @@
+[/
+    Copyright 2011 Akira Takahashi
+    Distributed under the Boost Software License, Version 1.0.
+    (See accompanying file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
+/]
+[section:iteration iteration]
+
+[heading プロトタイプ]
+
+``
+template <class Init, class Next>
+iterator_range<detail::iteration_iterator<Init, Next> > iteration(const Init& init, Next next)
+``
+
+[heading 名前空間]
+
+`boost` もしくは `boost::range`。
+
+[heading 説明]
+
+`iteration` は、第1引数を第2引数の関数オブジェクトに適用した結果を、イテレータを進めた際の間接参照の戻りとする、無限 __single_pass_range である。第1引数の値が、無限Rangeの最初の要素となる。
+
+Note:
+Range Conceptは、無限Rangeを厳密には許可していない。そのため、`iteration`の戻り値のRangeは、beginからendまでgoogolplex回のインクリメントで到達可能であると仮定する。
+
+[heading ヘッダ]
+``
+<boost/range/iteration.hpp>
+``
+もしくは
+``
+<boost/range/range/iteration.hpp>
+``
+
+[heading 事前条件]
+
+# Next型は、Init型を1引数受け取り、Init型を返す関数オブジェクトであること
+
+[heading 返されるRangeカテゴリ]
+__single_pass_range__
+
+[heading 例]
+
+``
+#include <iostream>
+#include <boost/range/iteration.hpp>
+#include <boost/range/adaptor/taken.hpp>
+#include <boost/range/algorithm/for_each.hpp>
+
+int next(int x)
+{
+    return x * 2;
+}
+
+void disp(int x) { std::cout << x << std::endl; }
+
+int main()
+{
+    boost::for_each(boost::iteration(1, next) | boost::adaptors::taken(5), disp);
+}
+``
+
+これは以下の結果を出力する:
+``
+1
+2
+4
+8
+16 
+``
+
+[endsect]

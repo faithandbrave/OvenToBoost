@@ -26,6 +26,11 @@
 #include <boost/range/access.hpp>
 ``
 
+[heading 名前空間]
+``
+boost::range::access
+``
+
 [heading 例]
 
 ``
