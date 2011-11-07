@@ -18,17 +18,17 @@
 namespace boost {
 
 namespace range {
-	template <class T>
-	inline iterator_range<const T*> single(const T& x)
-	{
-		return make_iterator_range(boost::addressof(x), boost::addressof(x) + 1);
-	}
+    template <class T>
+    inline iterator_range<const T*> single(const T& x)
+    {
+        return make_iterator_range(boost::addressof(x), boost::addressof(x) + 1);
+    }
 
-	template <class T>
-	inline iterator_range<T*> single(T& x)
-	{
-		return make_iterator_range(boost::addressof(x), boost::addressof(x) + 1);
-	}
+    template <class T>
+    inline iterator_range<T*> single(T& x)
+    {
+        return make_iterator_range(boost::addressof(x), boost::addressof(x) + 1);
+    }
 } // namespace range
 
 } // namespace boost

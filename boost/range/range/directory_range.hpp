@@ -25,8 +25,8 @@ inline iterator_range<filesystem::directory_iterator>
 inline iterator_range<filesystem::recursive_directory_iterator>
     recursive_directory_range(const filesystem::path& p)
 {
-	return make_iterator_range(filesystem::recursive_directory_iterator(p),
-			                   filesystem::recursive_directory_iterator());
+    return make_iterator_range(filesystem::recursive_directory_iterator(p),
+                               filesystem::recursive_directory_iterator());
 }
 
 }} // namespace boost::range
