@@ -1,0 +1,60 @@
+[/
+    Copyright 2011 Akira Takahashi
+    Distributed under the Boost Software License, Version 1.0.
+    (See accompanying file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
+/]
+[section:directory_range directory_range]
+
+[heading プロトタイプ]
+
+``
+iterator_range<filesystem::directory_iterator>
+  directory_range(const filesystem::path& p);
+``
+
+[heading 名前空間]
+
+`boost` もしくは `boost::range`。
+
+[heading 説明]
+
+`directory_range` は、ディレクトリのコンテンツにアクセスする __single_pass_range である。
+
+[heading ヘッダ]
+``
+<boost/range/directory_range.hpp>
+``
+もしくは
+``
+<boost/range/range/directory_range.hpp>
+``
+
+[heading 返されるRangeカテゴリ]
+__single_pass_range__
+
+[heading 例]
+
+``
+#include <iostream>
+#include <boost/range/directory_range.hpp>
+#include <boost/range/algorithm/for_each.hpp>
+
+void disp(const boost::filesystem::path& p)
+{
+    std::cout << p.filename() << std::endl;
+}
+
+int main()
+{
+    boost::filesystem::path p = "test_directory";
+    boost::for_each(boost::directory_range(p), disp);
+}
+``
+
+これは以下の結果を出力する(例):
+``
+a.txt
+b.png
+``
+
+[endsect]

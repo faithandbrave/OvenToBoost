@@ -5,7 +5,10 @@
 /]
 [section Algorithm Extension]
 
+[include range_utility/directory_range.qbk]
 [include range_utility/iteration.qbk]
+[include range_utility/recursive_directory_range.qbk]
+[include range_utility/single.qbk]
 
 [endsect]
 

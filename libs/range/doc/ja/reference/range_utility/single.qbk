@@ -1,0 +1,58 @@
+[/
+    Copyright 2011 Akira Takahashi
+    Distributed under the Boost Software License, Version 1.0.
+    (See accompanying file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
+/]
+[section:single single]
+
+[heading プロトタイプ]
+
+``
+template <class T>
+iterator_range<const T*> single(const T& x);
+
+template <class T>
+iterator_range<T*> single(T& x);
+``
+
+[heading 名前空間]
+
+`boost` もしくは `boost::range`。
+
+[heading 説明]
+
+`single` は、与えられたオブジェクトを1要素のRangeとしてアダプトするための関数である。
+
+[heading ヘッダ]
+``
+<boost/range/single.hpp>
+``
+もしくは
+``
+<boost/range/range/single.hpp>
+``
+
+[heading 返されるRangeカテゴリ]
+__random_access_range__
+
+[heading 例]
+
+``
+#include <iostream>
+#include <boost/range/single.hpp>
+#include <boost/range/algorithm/for_each.hpp>
+
+void disp(int x) { std::cout << x << std::endl; }
+
+int main()
+{
+    boost::for_each(boost::single(3), disp);
+}
+``
+
+これは以下の結果を出力する:
+``
+3
+``
+
+[endsect]
