@@ -1,0 +1,64 @@
+[/
+    Copyright 2011 Akira Takahashi
+    Distributed under the Boost Software License, Version 1.0.
+    (See accompanying file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
+/]
+[section:design_rationale Design Rationale]
+
+[section:regular_op Regular Operator]
+
+関数オブジェクトをRegular Conceptにアダプトするための`regular`関数は、Rangeアダプタにラムダ式を渡す際に使用する。
+``
+template <class InputIterator, class F>
+F for_each_(InputIterator first, InputIterator last, F f)
+{
+    InputIterator it; // default construct
+    it = first; // copy assign
+
+    while (it != last) {
+        f(*it);
+        ++i;
+    }
+    return f;
+}
+
+template <class Range, class F>
+F for_each_(const Range& r, F f)
+{
+    return for_each(boost::begin(r), boost::end(r), f);
+}
+
+...
+using boost::lambda::_1;
+for_each_(r | filtered(_1 % 2 == 0), f);         // エラー！default construct/copy assignができない
+for_each_(r | filtered(regular(_1 % 2 == 0)), f); // OK
+``
+ラムダ式が簡単に関数オブジェクトを定義するためにあるはずが、`regular`によって少々冗長になってしまった。なんらかの方法によって短い表記を提供する必要があるだろう。
+
+- 選択肢1. 暗黙の`regular`
+ライブラリ内でラムダ式(もしくはRegular Conceptを満たさない型)かどうかを判定し、自動的に`regular`を行うことは不可能ではない。しかし、`regular`にはコストが伴うため、暗黙に行うのはよくないだろう。
+
+- 選択肢2. 名前空間を分ける
+`regular`を自動的に行うRangeアダプタを名前空間を分けて提供するという選択肢も考えられる：
+``
+using boost::adaptors::regular;
+for_each(r | filtered(_1 % 2 == 0), f);
+``
+しかしこれは冗長さの問題を解決しない。
+
+- 選択肢3. `regular`演算子
+消去法によって、冗長さをなくす選択肢は演算子であると考えられる。では、どの演算子がいいだろうか。
+パイプ演算子operator|()と近しく、優先順位と結合規則が同じ演算子が必要だが、残念ながらoperator|()と同じ優先順位、結合規則を持つ演算子は存在しない。
+そのため、operator|()に手を加えて、operator|()と同じ優先順位と結合規則を持つ演算子を生み出す必要があり、このライブラリではoperator|()と単項operator+()を組み合わせたoperator|+()演算子を採用することにした。
+これで、Rangeアダプタとラムダ式を組み合わせた例は以下のように書くことができる：
+``
+using boost::lambda::_1;
+for_each_(r |  filtered(regular(_1 % 2 == 0)), f); // OK : regular関数を使用
+for_each_(r |+ filtered(_1 % 2 == 0), f);          // OK : regular演算子を使用
+``
+なお、関数スタイルのregularも同時に提供する。
+
+[endsect]
+
+[endsect]
+

@@ -33,4 +33,4 @@
 
 [include overview.qbk]
 [include reference.qbk]
-
+[include design_rationale.qbk]
