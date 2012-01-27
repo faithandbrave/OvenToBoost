@@ -48,8 +48,8 @@ namespace range_detail {
 
         explicit memoized_range(Range& rng)
             : base(
-                  iter_t(make_shared<memo_t>(::boost::begin(rng))),
-                  iter_t(make_shared<memo_t>(::boost::end(rng)))
+                  iter_t(::boost::make_shared<memo_t>(::boost::begin(rng))),
+                  iter_t(::boost::make_shared<memo_t>(::boost::end(rng)))
               )
         {}
     };
