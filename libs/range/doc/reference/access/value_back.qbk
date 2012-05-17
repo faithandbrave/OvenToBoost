@@ -1,0 +1,64 @@
+[/
+    Copyright 2011 Akira Takahashi
+    Distributed under the Boost Software License, Version 1.0.
+    (See accompanying file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
+/]
+[section at]
+
+`value_back` returns a copy of the last referent in the range.
+
+[table
+    [[Syntax] [Code]]
+    [[Pipe] [`rng | boost::range::access::value_back`]]
+    [[Function] [`boost::range::access::value_back(rng)`]]
+]
+
+* [*Range Category:] __bidirectional_range__
+* [*Range Return Type:] boost::range_reference<Range>::type
+
+[heading Header]
+``
+#include <boost/range/access/back.hpp>
+``
+or
+``
+#include <boost/range/access.hpp>
+``
+
+[heading Namespace]
+``
+boost::range::access
+``
+
+[heading Example]
+
+``
+#include <iostream>
+#include <vector>
+#include <boost/assign/list_of.hpp>
+#include <boost/range/algorithm/for_each.hpp>
+
+#include <boost/range/access/back.hpp>
+
+using boost::range::access::back;
+
+void disp(int x)
+{
+    std::cout << x << ' ';
+}
+
+int main()
+{
+    std::vector<int> v = boost::assign::list_of(3)(1)(4);
+
+    int x = v | back;
+    std::cout << x << std::endl;
+}
+``
+
+This would produce the output:
+``
+4
+``
+[endsect]
+

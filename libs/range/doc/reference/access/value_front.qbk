@@ -1,0 +1,59 @@
+[/
+    Copyright 2011 Akira Takahashi
+    Distributed under the Boost Software License, Version 1.0.
+    (See accompanying file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
+/]
+[section at]
+
+`value_front` returns a copy of the first referent in the range.
+
+[table
+    [[Syntax] [Code]]
+    [[Pipe] [`rng | boost::range::access::value_front`]]
+    [[Function] [`boost::range::access::value_front(rng)`]]
+]
+
+* [*Range Category:] __single_pass_range__
+* [*Range Return Type:] boost::range_reference<Range>::type
+
+[heading Header]
+``
+#include <boost/range/access/front.hpp>
+``
+or
+``
+#include <boost/range/access.hpp>
+``
+
+[heading Example]
+
+``
+#include <iostream>
+#include <vector>
+#include <boost/assign/list_of.hpp>
+#include <boost/range/algorithm/for_each.hpp>
+
+#include <boost/range/access/front.hpp>
+
+using boost::range::access::front;
+
+void disp(int x)
+{
+    std::cout << x << ' ';
+}
+
+int main()
+{
+    std::vector<int> v = boost::assign::list_of(3)(1)(4);
+
+    int x = v | front;
+    std::cout << x << std::endl;
+}
+``
+
+This would produce the output:
+``
+3
+``
+[endsect]
+
