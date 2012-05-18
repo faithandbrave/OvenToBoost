@@ -1,0 +1,72 @@
+[/
+    Copyright 2011 Akira Takahashi
+    Distributed under the Boost Software License, Version 1.0.
+    (See accompanying file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
+/]
+[section:iteration iteration]
+
+[heading Prototype]
+
+``
+template <class Init, class Next>
+iterator_range<detail::iteration_iterator<Init, Next> > iteration(const Init& init, Next next)
+``
+
+[heading Namespace]
+
+`boost` or `boost::range`.
+
+[heading Description]
+
+`iteration` makes an infinite __single_pass_range__ where the first item is calculated by applying the function on the first argument, the second item by applying the function on the previous result and so on.
+
+Note:
+Strictly speaking, the range concept doesn't allow an infinite range. So assume here the end iterator is reachable from the begin iterator in the googolplex number of increments.
+
+[heading Header]
+``
+<boost/range/iteration.hpp>
+``
+or
+``
+<boost/range/range/iteration.hpp>
+``
+
+[heading Precondition]
+
+# `Next` is unary function type has `Init` type parameter unary function and `Init` result type.
+
+[heading Returned Range Category]
+__single_pass_range__
+
+[heading Example]
+
+``
+#include <iostream>
+#include <boost/range/iteration.hpp>
+#include <boost/range/adaptor/taken.hpp>
+#include <boost/range/algorithm/for_each.hpp>
+
+int next(int x)
+{
+    return x * 2;
+}
+
+void disp(int x) { std::cout << x << std::endl; }
+
+int main()
+{
+    boost::for_each(boost::iteration(1, next) | boost::adaptors::taken(5), disp);
+}
+``
+
+This would produce the output:
+``
+1
+2
+4
+8
+16 
+``
+
+[endsect]
