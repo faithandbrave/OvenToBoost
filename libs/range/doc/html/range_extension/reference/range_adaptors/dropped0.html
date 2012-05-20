@@ -1,0 +1,166 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
+<title>dropped</title>
+<link rel="stylesheet" href="../../../boostbook.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.76.1">
+<link rel="home" href="../../../index.html" title="Chapter&#160;1.&#160;Range Extension 0.1">
+<link rel="up" href="../range_adaptors.html" title="Range Adaptors">
+<link rel="prev" href="elements_key.html" title="elements_key">
+<link rel="next" href="outdirected.html" title="outdirected">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table cellpadding="2" width="100%"><tr><td valign="top"><img alt="rangeextension" width="" height="" src="../../../../boost-proposed-alpha-variants.png"></td></tr></table>
+<hr>
+<div class="spirit-nav">
+<a accesskey="p" href="elements_key.html"><img src="../../../images/prev.png" alt="Prev"></a><a accesskey="u" href="../range_adaptors.html"><img src="../../../images/up.png" alt="Up"></a><a accesskey="h" href="../../../index.html"><img src="../../../images/home.png" alt="Home"></a><a accesskey="n" href="outdirected.html"><img src="../../../images/next.png" alt="Next"></a>
+</div>
+<div class="section">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="range_extension.reference.range_adaptors.dropped0"></a><a class="link" href="dropped0.html" title="dropped">dropped</a>
+</h4></div></div></div>
+<p>
+          <code class="computeroutput"><span class="identifier">memoized</span></code> returns a range
+          whose values are cached for speed, preparing for repeated dereferences.
+        </p>
+<div class="informaltable"><table class="table">
+<colgroup>
+<col>
+<col>
+</colgroup>
+<thead><tr>
+<th>
+                  <p>
+                    Syntax
+                  </p>
+                </th>
+<th>
+                  <p>
+                    Code
+                  </p>
+                </th>
+</tr></thead>
+<tbody>
+<tr>
+<td>
+                  <p>
+                    Pipe
+                  </p>
+                </td>
+<td>
+                  <p>
+                    <code class="computeroutput"><span class="identifier">rng</span> <span class="special">|</span>
+                    <span class="identifier">boost</span><span class="special">::</span><span class="identifier">adaptors</span><span class="special">::</span><span class="identifier">memoized</span></code>
+                  </p>
+                </td>
+</tr>
+<tr>
+<td>
+                  <p>
+                    Function
+                  </p>
+                </td>
+<td>
+                  <p>
+                    <code class="computeroutput"><span class="identifier">boost</span><span class="special">::</span><span class="identifier">adaptors</span><span class="special">::</span><span class="identifier">memoize</span><span class="special">(</span><span class="identifier">rng</span><span class="special">)</span></code>
+                  </p>
+                </td>
+</tr>
+</tbody>
+</table></div>
+<div class="itemizedlist"><ul class="itemizedlist" type="disc">
+<li class="listitem">
+              <span class="bold"><strong>Precondition:</strong></span> Range is Readable. range_value&lt;Range&gt;::type
+              is Assignable.
+            </li>
+<li class="listitem">
+              <span class="bold"><strong>Range Category:</strong></span> <a href="http://www.boost.org/libs/range/doc/html/range/concepts/single_pass_range.html" target="_top">Single
+              Pass Range</a>
+            </li>
+<li class="listitem">
+              <span class="bold"><strong>Range Return Type:</strong></span> boost::memoized_range&lt;Range&gt;
+            </li>
+<li class="listitem">
+              <span class="bold"><strong>Returned Range Category:</strong></span> <a href="http://www.boost.org/libs/range/doc/html/range/concepts/forward_range.html" target="_top">Forward
+              Range</a>
+            </li>
+</ul></div>
+<h6>
+<a name="range_extension.reference.range_adaptors.dropped.h3"></a>
+          <span><a name="range_extension.reference.range_adaptors.dropped.header0"></a></span><a class="link" href="dropped0.html#range_extension.reference.range_adaptors.dropped.header0">Header</a>
+        </h6>
+<p>
+</p>
+<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">range</span><span class="special">/</span><span class="identifier">adaptor</span><span class="special">/</span><span class="identifier">memoized</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
+</pre>
+<p>
+        </p>
+<h6>
+<a name="range_extension.reference.range_adaptors.dropped.h4"></a>
+          <span><a name="range_extension.reference.range_adaptors.dropped.example0"></a></span><a class="link" href="dropped0.html#range_extension.reference.range_adaptors.dropped.example0">Example</a>
+        </h6>
+<p>
+</p>
+<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">iostream</span><span class="special">&gt;</span>
+<span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">range</span><span class="special">/</span><span class="identifier">adaptor</span><span class="special">/</span><span class="identifier">transformed</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
+<span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">range</span><span class="special">/</span><span class="identifier">adaptor</span><span class="special">/</span><span class="identifier">filtered</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
+<span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">range</span><span class="special">/</span><span class="identifier">adaptor</span><span class="special">/</span><span class="identifier">memoized</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
+<span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">range</span><span class="special">/</span><span class="identifier">algorithm</span><span class="special">/</span><span class="identifier">for_each</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
+
+<span class="keyword">int</span> <span class="identifier">add</span><span class="special">(</span><span class="keyword">int</span> <span class="identifier">x</span><span class="special">)</span>
+<span class="special">{</span>
+    <span class="identifier">std</span><span class="special">::</span><span class="identifier">cout</span> <span class="special">&lt;&lt;</span> <span class="string">"add function : "</span> <span class="special">&lt;&lt;</span> <span class="identifier">x</span> <span class="special">&lt;&lt;</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">endl</span><span class="special">;</span>
+    <span class="keyword">return</span> <span class="identifier">x</span> <span class="special">+</span> <span class="number">1</span><span class="special">;</span>
+<span class="special">}</span>
+
+<span class="keyword">bool</span> <span class="identifier">pred</span><span class="special">(</span><span class="keyword">int</span> <span class="identifier">x</span><span class="special">)</span>
+<span class="special">{</span>
+    <span class="keyword">return</span> <span class="keyword">true</span><span class="special">;</span>
+<span class="special">}</span>
+
+<span class="keyword">void</span> <span class="identifier">disp</span><span class="special">(</span><span class="keyword">int</span> <span class="identifier">x</span><span class="special">)</span>
+<span class="special">{</span>
+    <span class="identifier">std</span><span class="special">::</span><span class="identifier">cout</span> <span class="special">&lt;&lt;</span> <span class="identifier">x</span> <span class="special">&lt;&lt;</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">endl</span><span class="special">;</span>
+<span class="special">}</span>
+
+<span class="keyword">int</span> <span class="identifier">main</span><span class="special">()</span>
+<span class="special">{</span>
+    <span class="keyword">using</span> <span class="keyword">namespace</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">adaptors</span><span class="special">;</span>
+
+    <span class="keyword">const</span> <span class="keyword">int</span> <span class="identifier">ar</span><span class="special">[]</span> <span class="special">=</span> <span class="special">{</span><span class="number">1</span><span class="special">,</span> <span class="number">2</span><span class="special">,</span> <span class="number">3</span><span class="special">};</span>
+    <span class="identifier">boost</span><span class="special">::</span><span class="identifier">for_each</span><span class="special">(</span><span class="identifier">ar</span> <span class="special">|</span> <span class="identifier">transformed</span><span class="special">(</span><span class="identifier">add</span><span class="special">)</span> <span class="special">|</span> <span class="identifier">memoized</span> <span class="special">|</span> <span class="identifier">filtered</span><span class="special">(</span><span class="identifier">pred</span><span class="special">),</span> <span class="identifier">disp</span><span class="special">);</span>
+<span class="special">}</span>
+</pre>
+<p>
+        </p>
+<p>
+          This would produce the output:
+</p>
+<pre class="programlisting"><span class="identifier">add</span> <span class="identifier">function</span> <span class="special">:</span> <span class="number">1</span>
+<span class="number">2</span>
+<span class="identifier">add</span> <span class="identifier">function</span> <span class="special">:</span> <span class="number">2</span>
+<span class="number">3</span>
+<span class="identifier">add</span> <span class="identifier">function</span> <span class="special">:</span> <span class="number">3</span>
+<span class="number">4</span>
+</pre>
+<p>
+        </p>
+<p>
+          If do not use <code class="computeroutput"><span class="identifier">memoized</span></code>,
+          <code class="computeroutput"><span class="identifier">add</span></code> function called twice.
+        </p>
+</div>
+<table xmlns:rev="http://www.cs.rpi.edu/~gregod/boost/tools/doc/revision" width="100%"><tr>
+<td align="left"></td>
+<td align="right"><div class="copyright-footer">Copyright &#169; 2005-2007 Shunsuke Sogame<br>Copyright &#169; 2011 Akira Takahashi<p>
+        Distributed under the Boost Software License, Version 1.0. (See accompanying
+        file LICENSE_1_0.txt or copy at <a href="http://www.boost.org/LICENSE_1_0.txt" target="_top">http://www.boost.org/LICENSE_1_0.txt</a>)
+      </p>
+</div></td>
+</tr></table>
+<hr>
+<div class="spirit-nav">
+<a accesskey="p" href="elements_key.html"><img src="../../../images/prev.png" alt="Prev"></a><a accesskey="u" href="../range_adaptors.html"><img src="../../../images/up.png" alt="Up"></a><a accesskey="h" href="../../../index.html"><img src="../../../images/home.png" alt="Home"></a><a accesskey="n" href="outdirected.html"><img src="../../../images/next.png" alt="Next"></a>
+</div>
+</body>
+</html>
