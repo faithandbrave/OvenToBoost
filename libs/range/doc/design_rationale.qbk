@@ -1,0 +1,62 @@
+[/
+    Copyright 2011 Akira Takahashi
+    Distributed under the Boost Software License, Version 1.0.
+    (See accompanying file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
+/]
+[section:design_rationale Design Rationale]
+
+[section:regular_op Regular Operator]
+
+`regular` function Range adapter to pass the lambda expression to use.
+
+``
+template <class InputIterator, class F>
+F for_each_(InputIterator first, InputIterator last, F f)
+{
+    InputIterator it; // default construct
+    it = first; // copy assign
+
+    while (it != last) {
+        f(*it);
+        ++i;
+    }
+    return f;
+}
+
+template <class Range, class F>
+F for_each_(const Range& r, F f)
+{
+    return for_each(boost::begin(r), boost::end(r), f);
+}
+
+...
+using boost::lambda::_1;
+for_each_(r | filtered(_1 % 2 == 0), f);          // Error! Can't default construct/copy assign
+for_each_(r | filtered(regular(_1 % 2 == 0)), f); // OK
+``
+Lambda expression is easy to define a function object that `regular` by became a verbose. We would provide short syntax by some way.
+
+- 1. implicit `regular`
+Auto `regular` (Lambda type check) is not impossible. However, implicit `regular` is not good because `regular` has some cost.
+
+- 2. separate namespace
+`regular` specialize namespace way:
+``
+using boost::adaptors::regular;
+for_each(r | filtered(_1 % 2 == 0), f);
+``
+However, this way doesn't resolve the verbose issue.
+
+- 3. `regular` operator
+By elimination method, solution is operator. What any operator?
+We need operator|() the same precedence and associativity of operators. But, unfortunately such operator is not exist. Therefore, We need produce new operator. This library provide operator|+() compound operator by operator|() and unary operator+().
+``
+using boost::lambda::_1;
+for_each_(r |  filtered(regular(_1 % 2 == 0)), f); // OK : use regular function
+for_each_(r |+ filtered(_1 % 2 == 0), f);          // OK : use regular operator
+``
+
+[endsect]
+
+[endsect]
+
