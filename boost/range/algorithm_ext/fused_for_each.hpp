@@ -1,3 +1,6 @@
+#ifndef BOOST_RANGE_ALGORITHM_EXT_FUSED_FOR_EACH
+#define BOOST_RANGE_ALGORITHM_EXT_FUSED_FOR_EACH
+
 // Boost.Range 2.0 Extension library
 //
 // Copyright Akira Takahashi 2011.
@@ -29,4 +32,4 @@ using range::fused_for_each;
 
 } // namespace boost
 
-
+#endif // BOOST_RANGE_ALGORITHM_EXT_FUSED_FOR_EACH
