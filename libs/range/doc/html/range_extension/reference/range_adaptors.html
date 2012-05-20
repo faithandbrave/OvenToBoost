@@ -22,6 +22,10 @@
 <div class="toc"><dl>
 <dt><span class="section"><a href="range_adaptors/dropped.html">dropped</a></span></dt>
 <dt><span class="section"><a href="range_adaptors/dropped_while.html">dropped_while</a></span></dt>
+<dt><span class="section"><a href="range_adaptors/elements.html">elements</a></span></dt>
+<dt><span class="section"><a href="range_adaptors/elements_key.html">elements_key</a></span></dt>
+<dt><span class="section"><a href="range_adaptors/dropped0.html">dropped</a></span></dt>
+<dt><span class="section"><a href="range_adaptors/outdirected.html">outdirected</a></span></dt>
 <dt><span class="section"><a href="range_adaptors/taken.html">taken</a></span></dt>
 <dt><span class="section"><a href="range_adaptors/taken_while.html">taken_while</a></span></dt>
 </dl></div>
@@ -31,7 +35,6 @@
         programming). The library is easy and powerful use lazy sequence.
       </p>
 <p>
-        
 </p>
 <pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">range</span><span class="special">/</span><span class="identifier">adaptors</span><span class="special">/</span><span class="identifier">iteration</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
 <span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">range</span><span class="special">/</span><span class="identifier">adaptors</span><span class="special">/</span><span class="identifier">taken</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
@@ -42,12 +45,12 @@
 <span class="keyword">void</span> <span class="identifier">disp</span><span class="special">(</span><span class="keyword">int</span> <span class="identifier">x</span><span class="special">)</span> <span class="special">{</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">cout</span> <span class="special">&lt;&lt;</span> <span class="identifier">x</span> <span class="special">&lt;&lt;</span> <span class="char">' '</span><span class="special">;</span> <span class="special">}</span>
 
 <span class="identifier">boost</span><span class="special">::</span><span class="identifier">for_each</span><span class="special">(</span><span class="identifier">boost</span><span class="special">::</span><span class="identifier">iteration</span><span class="special">(</span><span class="number">1</span><span class="special">,</span> <span class="identifier">next</span><span class="special">)</span> <span class="special">|</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">adaptors</span><span class="special">::</span><span class="identifier">taken</span><span class="special">(</span><span class="number">5</span><span class="special">),</span> <span class="identifier">disp</span><span class="special">);</span>
-  <span class="comment">// 1 2 4 8 10
-</span></pre>
+  <span class="comment">// 1 2 4 8 10</span>
+</pre>
 <p>
       </p>
 <p>
-        And, The library refer lambda expression(BLL and C++0x Lambda). 
+        And, The library refer lambda expression(BLL and C++0x Lambda).
 </p>
 <pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">range</span><span class="special">/</span><span class="identifier">adaptors</span><span class="special">/</span><span class="identifier">iteration</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
 <span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">range</span><span class="special">/</span><span class="identifier">adaptors</span><span class="special">/</span><span class="identifier">taken</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
@@ -61,8 +64,8 @@
 <span class="keyword">void</span> <span class="identifier">disp</span><span class="special">(</span><span class="keyword">int</span> <span class="identifier">x</span><span class="special">)</span> <span class="special">{</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">cout</span> <span class="special">&lt;&lt;</span> <span class="identifier">x</span> <span class="special">&lt;&lt;</span> <span class="char">' '</span><span class="special">;</span> <span class="special">}</span>
 
 <span class="identifier">boost</span><span class="special">::</span><span class="identifier">for_each</span><span class="special">(</span><span class="identifier">boost</span><span class="special">::</span><span class="identifier">iteration</span><span class="special">(</span><span class="number">1</span><span class="special">,</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">regular</span><span class="special">(</span><span class="identifier">_1</span> <span class="special">*</span> <span class="number">2</span><span class="special">))</span> <span class="special">|</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">adaptors</span><span class="special">::</span><span class="identifier">taken</span><span class="special">(</span><span class="number">5</span><span class="special">),</span> <span class="identifier">disp</span><span class="special">);</span>
-  <span class="comment">// 1 2 4 8 10
-</span></pre>
+  <span class="comment">// 1 2 4 8 10</span>
+</pre>
 <p>
       </p>
 <p>
@@ -70,7 +73,7 @@
       </p>
 <p>
         regular alway needs use lambda expression in iterator adaptor. But, regular
-        write is boring. The library has syntax sugar for regular function. 
+        write is boring. The library has syntax sugar for regular function.
 </p>
 <pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">iostream</span><span class="special">&gt;</span>
 <span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">vector</span><span class="special">&gt;</span>
@@ -98,7 +101,7 @@
 </div>
 <table xmlns:rev="http://www.cs.rpi.edu/~gregod/boost/tools/doc/revision" width="100%"><tr>
 <td align="left"></td>
-<td align="right"><div class="copyright-footer">Copyright &#169; 2005 -2007 Shunsuke Sogame, 2011 Akira Takahashi<p>
+<td align="right"><div class="copyright-footer">Copyright &#169; 2005-2007 Shunsuke Sogame<br>Copyright &#169; 2011 Akira Takahashi<p>
         Distributed under the Boost Software License, Version 1.0. (See accompanying
         file LICENSE_1_0.txt or copy at <a href="http://www.boost.org/LICENSE_1_0.txt" target="_top">http://www.boost.org/LICENSE_1_0.txt</a>)
       </p>
