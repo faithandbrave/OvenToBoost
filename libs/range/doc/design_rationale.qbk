@@ -36,10 +36,10 @@ for_each_(r | filtered(regular(_1 % 2 == 0)), f); // OK
 ``
 Lambda expression is easy to define a function object that `regular` by became a verbose. We would provide short syntax by some way.
 
-- 1. implicit `regular`
+*1. implicit `regular`
 Auto `regular` (Lambda type check) is not impossible. However, implicit `regular` is not good because `regular` has some cost.
 
-- 2. separate namespace
+*2. separate namespace
 `regular` specialize namespace way:
 ``
 using boost::adaptors::regular;
@@ -47,7 +47,7 @@ for_each(r | filtered(_1 % 2 == 0), f);
 ``
 However, this way doesn't resolve the verbose issue.
 
-- 3. `regular` operator
+*3. `regular` operator
 By elimination method, solution is operator. What any operator?
 We need operator|() the same precedence and associativity of operators. But, unfortunately such operator is not exist. Therefore, We need produce new operator. This library provide operator|+() compound operator by operator|() and unary operator+().
 ``
