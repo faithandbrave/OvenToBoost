@@ -6,14 +6,14 @@
 <meta name="generator" content="DocBook XSL Stylesheets V1.76.1">
 <link rel="home" href="../../../index.html" title="Chapter&#160;1.&#160;Range Extension 0.1">
 <link rel="up" href="../range_adaptors.html" title="Range Adaptors">
-<link rel="prev" href="dropped_while.html" title="dropped_while">
+<link rel="prev" href="outdirected.html" title="outdirected">
 <link rel="next" href="taken_while.html" title="taken_while">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
 <table cellpadding="2" width="100%"><tr><td valign="top"><img alt="rangeextension" width="" height="" src="../../../../boost-proposed-alpha-variants.png"></td></tr></table>
 <hr>
 <div class="spirit-nav">
-<a accesskey="p" href="dropped_while.html"><img src="../../../images/prev.png" alt="Prev"></a><a accesskey="u" href="../range_adaptors.html"><img src="../../../images/up.png" alt="Up"></a><a accesskey="h" href="../../../index.html"><img src="../../../images/home.png" alt="Home"></a><a accesskey="n" href="taken_while.html"><img src="../../../images/next.png" alt="Next"></a>
+<a accesskey="p" href="outdirected.html"><img src="../../../images/prev.png" alt="Prev"></a><a accesskey="u" href="../range_adaptors.html"><img src="../../../images/up.png" alt="Up"></a><a accesskey="h" href="../../../index.html"><img src="../../../images/home.png" alt="Home"></a><a accesskey="n" href="taken_while.html"><img src="../../../images/next.png" alt="Next"></a>
 </div>
 <div class="section">
 <div class="titlepage"><div><div><h4 class="title">
@@ -78,7 +78,7 @@
               Pass Range</a>
             </li>
 <li class="listitem">
-              <span class="bold"><strong>Range Return Type:</strong></span> ...
+              <span class="bold"><strong>Range Return Type:</strong></span> boost::taken_range&lt;Range&gt;
             </li>
 <li class="listitem">
               <span class="bold"><strong>Returned Range Category:</strong></span> The minimum
@@ -87,35 +87,32 @@
               Range</a>
             </li>
 </ul></div>
-<a name="range_extension.reference.range_adaptors.taken.header"></a><h6>
-<a name="range_extension.reference.range_adaptors.taken.header-heading"></a>
-          <a class="link" href="taken.html#range_extension.reference.range_adaptors.taken.header">Header</a>
+<h6>
+<a name="range_extension.reference.range_adaptors.taken.h0"></a>
+          <span><a name="range_extension.reference.range_adaptors.taken.header"></a></span><a class="link" href="taken.html#range_extension.reference.range_adaptors.taken.header">Header</a>
         </h6>
 <p>
-          
 </p>
 <pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">range</span><span class="special">/</span><span class="identifier">adaptor</span><span class="special">/</span><span class="identifier">taken</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
 </pre>
 <p>
         </p>
-<a name="range_extension.reference.range_adaptors.taken.associative_header"></a><h6>
-<a name="range_extension.reference.range_adaptors.taken.associative_header-heading"></a>
-          <a class="link" href="taken.html#range_extension.reference.range_adaptors.taken.associative_header">Associative
+<h6>
+<a name="range_extension.reference.range_adaptors.taken.h1"></a>
+          <span><a name="range_extension.reference.range_adaptors.taken.associative_header"></a></span><a class="link" href="taken.html#range_extension.reference.range_adaptors.taken.associative_header">Associative
           Header</a>
         </h6>
 <p>
-          
 </p>
 <pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">range</span><span class="special">/</span><span class="identifier">adaptor</span><span class="special">/</span><span class="identifier">taken_while</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
 </pre>
 <p>
         </p>
-<a name="range_extension.reference.range_adaptors.taken.example"></a><h6>
-<a name="range_extension.reference.range_adaptors.taken.example-heading"></a>
-          <a class="link" href="taken.html#range_extension.reference.range_adaptors.taken.example">Example</a>
+<h6>
+<a name="range_extension.reference.range_adaptors.taken.h2"></a>
+          <span><a name="range_extension.reference.range_adaptors.taken.example"></a></span><a class="link" href="taken.html#range_extension.reference.range_adaptors.taken.example">Example</a>
         </h6>
 <p>
-          
 </p>
 <pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">range</span><span class="special">/</span><span class="identifier">adaptor</span><span class="special">/</span><span class="identifier">taken</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
 <span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">range</span><span class="special">/</span><span class="identifier">algorithm</span><span class="special">/</span><span class="identifier">for_each</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
@@ -137,16 +134,16 @@
 <p>
         </p>
 <p>
-          This would produce the output: 
+          This would produce the output:
 </p>
-<pre class="programlisting"><span class="number">3</span> <span class="number">1</span> 
+<pre class="programlisting"><span class="number">3</span> <span class="number">1</span>
 </pre>
 <p>
         </p>
 </div>
 <table xmlns:rev="http://www.cs.rpi.edu/~gregod/boost/tools/doc/revision" width="100%"><tr>
 <td align="left"></td>
-<td align="right"><div class="copyright-footer">Copyright &#169; 2005 -2007 Shunsuke Sogame, 2011 Akira Takahashi<p>
+<td align="right"><div class="copyright-footer">Copyright &#169; 2005-2007 Shunsuke Sogame<br>Copyright &#169; 2011 Akira Takahashi<p>
         Distributed under the Boost Software License, Version 1.0. (See accompanying
         file LICENSE_1_0.txt or copy at <a href="http://www.boost.org/LICENSE_1_0.txt" target="_top">http://www.boost.org/LICENSE_1_0.txt</a>)
       </p>
@@ -154,7 +151,7 @@
 </tr></table>
 <hr>
 <div class="spirit-nav">
-<a accesskey="p" href="dropped_while.html"><img src="../../../images/prev.png" alt="Prev"></a><a accesskey="u" href="../range_adaptors.html"><img src="../../../images/up.png" alt="Up"></a><a accesskey="h" href="../../../index.html"><img src="../../../images/home.png" alt="Home"></a><a accesskey="n" href="taken_while.html"><img src="../../../images/next.png" alt="Next"></a>
+<a accesskey="p" href="outdirected.html"><img src="../../../images/prev.png" alt="Prev"></a><a accesskey="u" href="../range_adaptors.html"><img src="../../../images/up.png" alt="Up"></a><a accesskey="h" href="../../../index.html"><img src="../../../images/home.png" alt="Home"></a><a accesskey="n" href="taken_while.html"><img src="../../../images/next.png" alt="Next"></a>
 </div>
 </body>
 </html>

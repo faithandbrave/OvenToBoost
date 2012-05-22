@@ -1,0 +1,171 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
+<title>elements_key</title>
+<link rel="stylesheet" href="../../../boostbook.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.76.1">
+<link rel="home" href="../../../index.html" title="Chapter&#160;1.&#160;Range Extension 0.1">
+<link rel="up" href="../range_adaptors.html" title="Range Adaptors">
+<link rel="prev" href="elements.html" title="elements">
+<link rel="next" href="dropped0.html" title="dropped">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table cellpadding="2" width="100%"><tr><td valign="top"><img alt="rangeextension" width="" height="" src="../../../../boost-proposed-alpha-variants.png"></td></tr></table>
+<hr>
+<div class="spirit-nav">
+<a accesskey="p" href="elements.html"><img src="../../../images/prev.png" alt="Prev"></a><a accesskey="u" href="../range_adaptors.html"><img src="../../../images/up.png" alt="Up"></a><a accesskey="h" href="../../../index.html"><img src="../../../images/home.png" alt="Home"></a><a accesskey="n" href="dropped0.html"><img src="../../../images/next.png" alt="Next"></a>
+</div>
+<div class="section">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="range_extension.reference.range_adaptors.elements_key"></a><a class="link" href="elements_key.html" title="elements_key">elements_key</a>
+</h4></div></div></div>
+<p>
+          <code class="computeroutput"><span class="identifier">elements_key</span></code> returns extracted
+          corresponding to the specified key from element of value type of base range.
+        </p>
+<div class="informaltable"><table class="table">
+<colgroup>
+<col>
+<col>
+</colgroup>
+<thead><tr>
+<th>
+                  <p>
+                    Syntax
+                  </p>
+                </th>
+<th>
+                  <p>
+                    Code
+                  </p>
+                </th>
+</tr></thead>
+<tbody>
+<tr>
+<td>
+                  <p>
+                    Pipe
+                  </p>
+                </td>
+<td>
+                  <p>
+                    <code class="computeroutput"><span class="identifier">rng</span> <span class="special">|</span>
+                    <span class="identifier">boost</span><span class="special">::</span><span class="identifier">adaptors</span><span class="special">::</span><span class="identifier">elements_key</span><span class="special">&lt;</span><span class="identifier">Key</span><span class="special">&gt;()</span></code>
+                  </p>
+                </td>
+</tr>
+<tr>
+<td>
+                  <p>
+                    Function
+                  </p>
+                </td>
+<td>
+                  <p>
+                    <code class="computeroutput"><span class="identifier">boost</span><span class="special">::</span><span class="identifier">adaptors</span><span class="special">::</span><span class="identifier">extract_elements_key</span><span class="special">&lt;</span><span class="identifier">Key</span><span class="special">&gt;(</span><span class="identifier">rng</span><span class="special">)</span></code>
+                  </p>
+                </td>
+</tr>
+</tbody>
+</table></div>
+<div class="itemizedlist"><ul class="itemizedlist" type="disc">
+<li class="listitem">
+              <span class="bold"><strong>Precondition:</strong></span> valu type of range require
+              <a href="http://www.boost.org/libs/fusion/doc/html/fusion/sequence/concepts/associative_sequence.html" target="_top">Fusion
+              Assosiative Sequence</a>.
+            </li>
+<li class="listitem">
+              <span class="bold"><strong>Range Category:</strong></span> <a href="http://www.boost.org/libs/range/doc/html/range/concepts/single_pass_range.html" target="_top">Single
+              Pass Range</a>
+            </li>
+<li class="listitem">
+              <span class="bold"><strong>Range Return Type:</strong></span> elements_key_range&lt;Range,
+              Key&gt;
+            </li>
+<li class="listitem">
+              <span class="bold"><strong>Returned Range Category:</strong></span> the range
+              category of <code class="computeroutput"><span class="identifier">rng</span></code>
+            </li>
+</ul></div>
+<h6>
+<a name="range_extension.reference.range_adaptors.elements_key.h0"></a>
+          <span><a name="range_extension.reference.range_adaptors.elements_key.header"></a></span><a class="link" href="elements_key.html#range_extension.reference.range_adaptors.elements_key.header">Header</a>
+        </h6>
+<p>
+</p>
+<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">range</span><span class="special">/</span><span class="identifier">adaptor</span><span class="special">/</span><span class="identifier">elements</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
+</pre>
+<p>
+        </p>
+<h6>
+<a name="range_extension.reference.range_adaptors.elements_key.h1"></a>
+          <span><a name="range_extension.reference.range_adaptors.elements_key.example"></a></span><a class="link" href="elements_key.html#range_extension.reference.range_adaptors.elements_key.example">Example</a>
+        </h6>
+<p>
+</p>
+<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">range</span><span class="special">/</span><span class="identifier">adaptor</span><span class="special">/</span><span class="identifier">elements</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
+<span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">range</span><span class="special">/</span><span class="identifier">algorithm</span><span class="special">/</span><span class="identifier">for_each</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
+<span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">fusion</span><span class="special">/</span><span class="identifier">include</span><span class="special">/</span><span class="identifier">adapt_assoc_struct</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
+<span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">assign</span><span class="special">/</span><span class="identifier">list_of</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
+<span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">iostream</span><span class="special">&gt;</span>
+<span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">vector</span><span class="special">&gt;</span>
+<span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">string</span><span class="special">&gt;</span>
+
+<span class="keyword">struct</span> <span class="identifier">id_tag</span> <span class="special">{};</span>
+<span class="keyword">struct</span> <span class="identifier">name_tag</span> <span class="special">{};</span>
+
+<span class="keyword">struct</span> <span class="identifier">Person</span> <span class="special">{</span>
+    <span class="keyword">int</span> <span class="identifier">id</span><span class="special">;</span>
+    <span class="identifier">std</span><span class="special">::</span><span class="identifier">string</span> <span class="identifier">name</span><span class="special">;</span>
+
+    <span class="identifier">Person</span><span class="special">(</span><span class="keyword">int</span> <span class="identifier">id_</span><span class="special">,</span> <span class="keyword">const</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">string</span><span class="special">&amp;</span> <span class="identifier">name_</span><span class="special">)</span>
+        <span class="special">:</span> <span class="identifier">id</span><span class="special">(</span><span class="identifier">id_</span><span class="special">),</span> <span class="identifier">name</span><span class="special">(</span><span class="identifier">name_</span><span class="special">)</span> <span class="special">{}</span>
+<span class="special">};</span>
+
+<span class="identifier">BOOST_FUSION_ADAPT_ASSOC_STRUCT</span><span class="special">(</span>
+    <span class="identifier">Person</span><span class="special">,</span>
+    <span class="special">(</span><span class="keyword">int</span><span class="special">,</span> <span class="identifier">id</span><span class="special">,</span> <span class="identifier">id_tag</span><span class="special">)</span>
+    <span class="special">(</span><span class="identifier">std</span><span class="special">::</span><span class="identifier">string</span><span class="special">,</span> <span class="identifier">name</span><span class="special">,</span> <span class="identifier">name_tag</span><span class="special">)</span>
+<span class="special">)</span>
+
+<span class="keyword">void</span> <span class="identifier">disp</span><span class="special">(</span><span class="keyword">const</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">string</span><span class="special">&amp;</span> <span class="identifier">name</span><span class="special">)</span> <span class="special">{</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">cout</span> <span class="special">&lt;&lt;</span> <span class="identifier">name</span> <span class="special">&lt;&lt;</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">endl</span><span class="special">;</span> <span class="special">}</span>
+
+<span class="keyword">using</span> <span class="keyword">namespace</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">adaptors</span><span class="special">;</span>
+
+<span class="keyword">int</span> <span class="identifier">main</span><span class="special">()</span>
+<span class="special">{</span>
+    <span class="identifier">std</span><span class="special">::</span><span class="identifier">vector</span><span class="special">&lt;</span><span class="identifier">Person</span><span class="special">&gt;</span> <span class="identifier">v</span> <span class="special">=</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">assign</span><span class="special">::</span><span class="identifier">list_of</span>
+        <span class="special">(</span><span class="identifier">Person</span><span class="special">(</span><span class="number">1</span><span class="special">,</span> <span class="string">"Alice"</span><span class="special">))</span>
+        <span class="special">(</span><span class="identifier">Person</span><span class="special">(</span><span class="number">2</span><span class="special">,</span> <span class="string">"Millia"</span><span class="special">))</span>
+        <span class="special">(</span><span class="identifier">Person</span><span class="special">(</span><span class="number">3</span><span class="special">,</span> <span class="string">"Bob"</span><span class="special">))</span>
+        <span class="special">;</span>
+
+    <span class="identifier">boost</span><span class="special">::</span><span class="identifier">for_each</span><span class="special">(</span><span class="identifier">v</span> <span class="special">|</span> <span class="identifier">elements_key</span><span class="special">&lt;</span><span class="identifier">name_tag</span><span class="special">&gt;(),</span> <span class="identifier">disp</span><span class="special">);</span>
+<span class="special">}</span>
+</pre>
+<p>
+        </p>
+<p>
+          This would produce the output:
+</p>
+<pre class="programlisting"><span class="identifier">Alice</span>
+<span class="identifier">Millia</span>
+<span class="identifier">Bob</span>
+</pre>
+<p>
+        </p>
+</div>
+<table xmlns:rev="http://www.cs.rpi.edu/~gregod/boost/tools/doc/revision" width="100%"><tr>
+<td align="left"></td>
+<td align="right"><div class="copyright-footer">Copyright &#169; 2005-2007 Shunsuke Sogame<br>Copyright &#169; 2011 Akira Takahashi<p>
+        Distributed under the Boost Software License, Version 1.0. (See accompanying
+        file LICENSE_1_0.txt or copy at <a href="http://www.boost.org/LICENSE_1_0.txt" target="_top">http://www.boost.org/LICENSE_1_0.txt</a>)
+      </p>
+</div></td>
+</tr></table>
+<hr>
+<div class="spirit-nav">
+<a accesskey="p" href="elements.html"><img src="../../../images/prev.png" alt="Prev"></a><a accesskey="u" href="../range_adaptors.html"><img src="../../../images/up.png" alt="Up"></a><a accesskey="h" href="../../../index.html"><img src="../../../images/home.png" alt="Home"></a><a accesskey="n" href="dropped0.html"><img src="../../../images/next.png" alt="Next"></a>
+</div>
+</body>
+</html>
