@@ -4,9 +4,9 @@
     (See accompanying file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
 /]
 
-The library is Extension to Boost Range Library.
-The library includes powerful extension, Range adaptor and utilities, for Range programming.
-For example, quick sort can be write using Boost.Range extended by the library:
+This library is enhanced version of Boost Range Library.
+It has powerful Range adaptors and utilities for Range programming.
+For example, using this library, we can write quick sort as the following:
 ``
     typedef
         any_range<int, forward_traversal_tag, int&, std::ptrdiff_t>

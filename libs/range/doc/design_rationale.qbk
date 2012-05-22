@@ -7,7 +7,7 @@
 
 [section:regular_op Regular Operator]
 
-`regular` function Range adapter to pass the lambda expression to use.
+`regular` function is an adaptor for passing some lambda expression to Range adaptors.
 
 ``
 template <class InputIterator, class F>
@@ -34,22 +34,23 @@ using boost::lambda::_1;
 for_each_(r | filtered(_1 % 2 == 0), f);          // Error! Can't default construct/copy assign
 for_each_(r | filtered(regular(_1 % 2 == 0)), f); // OK
 ``
-Lambda expression is easy to define a function object that `regular` by became a verbose. We would provide short syntax by some way.
+Lambda expression is to define some function object easily. However, using `regular` makes rather verbose. There should be some short syntax.
 
 *1. implicit `regular`
-Auto `regular` (Lambda type check) is not impossible. However, implicit `regular` is not good because `regular` has some cost.
+It is not impossible to check whether it is a lambda expression (or satisfy the Regular Concept) and adapt `regular` implicitly. But it is not a good idea because `regular` takes some costs. Therefore, implicit `regular` should be avoided.
 
-*2. separate namespace
-`regular` specialize namespace way:
+*2. separating namespace
+Consider this way of separating namespace and adapting `regular` automatically.
 ``
 using boost::adaptors::regular;
 for_each(r | filtered(_1 % 2 == 0), f);
 ``
-However, this way doesn't resolve the verbose issue.
+Unfortunately, it is far from the solution.
 
 *3. `regular` operator
-By elimination method, solution is operator. What any operator?
-We need operator|() the same precedence and associativity of operators. But, unfortunately such operator is not exist. Therefore, We need produce new operator. This library provide operator|+() compound operator by operator|() and unary operator+().
+So, by the process of exclusion, it may as well define some operator. but which is?
+We need some operator which has the same precedence and associativity. Unfortunately, there is no built-in alternative of that sort. Hence we have to create new operator: operator|+(), which is a combination of operator|() and unary operator+().
+Finally, we can write the example of the first as the following:
 ``
 using boost::lambda::_1;
 for_each_(r |  filtered(regular(_1 % 2 == 0)), f); // OK : use regular function
