@@ -5,9 +5,9 @@
 /]
 [section Range Adaptors]
 
-The library includes Range Adaptor is inspired by PStade.Oven and Haskell Prelude Library.
-There are needs for powerful range programming(functional programming).
-The library is easy and powerful use lazy sequence.
+Range Adaptors involved in this library are inspired by PStade.Oven and Haskell Prelude Library.
+They are of use for powerful range programming(functional programming).
+Additionaly, it makes lazy sequence much easier, powerful to use by this library.
 
 ``
 #include <boost/range/adaptors/iteration.hpp>
@@ -22,7 +22,7 @@ boost::for_each(boost::iteration(1, next) | boost::adaptors::taken(5), disp);
   // 1 2 4 8 10
 ``
 
-And, The library refer lambda expression(BLL and C++0x Lambda).
+And also, this library deals with lambda expression(BLL and C++11 Lambda).
 ``
 #include <boost/range/adaptors/iteration.hpp>
 #include <boost/range/adaptors/taken.hpp>
@@ -39,12 +39,10 @@ boost::for_each(boost::iteration(1, boost::regular(_1 * 2)) | boost::adaptors::t
   // 1 2 4 8 10
 ``
 
-regular is lambda expression adapt to Regular Concept.
+regular is a functhon that adapt lambda expression to Regular Concept.
+ 
+Whenever using lambda expression with iterator adaptors, we must write down regular function. But it is verbous. So, there is a syntax sugar for regular function in this library.
 
-
-regular alway needs use lambda expression in iterator adaptor.
-But, regular write is boring.
-The library has syntax sugar for regular function.
 ``
 #include <iostream>
 #include <vector>
@@ -65,8 +63,8 @@ int main()
     boost::for_each_(v |+ filtered(_1 % 2 == 0) |+ transformed(_1 * 2), disp);
 }
 ``
-The library provides regular operator : operator|+().
-Regular operator is useful for lambda expression.
+This library provides regular operator : operator|+().
+It makes easier to use lambda expression with Range Adaptors.
 
 [include adaptors/dropped.qbk]
 [include adaptors/dropped_while.qbk]
