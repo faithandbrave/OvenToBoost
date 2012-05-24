@@ -5,7 +5,7 @@
 /]
 [section filtered]
 
-This header is add regular operator to `filtered` adaptor of Boost Range Library.
+By including this header, regular operator can be applied to `filtered` adaptor of Boost Range Library.
 
 [table
     [[Syntax] [Code]]

@@ -21,8 +21,8 @@ void fused_for_each(const SinglePassRange& rng, UnaryFunction f);
 
 [heading Description]
 
-`fused_for_each` is for_each which expansion tuple to apply function.
-For each iteration, the element `x` is used from `rng` to invoke `boost::fusion::make_fused(f)(x)`.
+`fused_for_each` is for_each which expands tuple and applies function that has parameters of each element of the tuple.
+For each iteration, the element `x` of `rng` is used to be applied as `boost::fusion::make_fused(f)(x)`.
 
 [heading Definition]
 
@@ -35,7 +35,7 @@ boost/range/algorithm_ext/fused_for_each.hpp
 
 [heading Complexity]
 
-Linear. Exactly `distance(rng)` applications of `UnaryFunction`.
+Linear. It applies `UnaryFunction` `distance(rng)` times.
 
 [heading Example]
 ``

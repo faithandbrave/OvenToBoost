@@ -5,7 +5,7 @@
 /]
 [section elements_key]
 
-`elements_key` returns extracted corresponding to the specified key from element of value type of base range.
+`elements_key` generates a range extracted the corresponding element specified by key from the base range.
 
 [table
     [[Syntax] [Code]]
@@ -13,7 +13,7 @@
     [[Function] [`boost::adaptors::extract_elements_key<Key>(rng)`]]
 ]
 
-* [*Precondition:]  valu type of range require __fusion_assosiative_sequence__.
+* [*Precondition:] each value type of range requires __fusion_forward_sequence__.
 * [*Range Category:] __single_pass_range__
 * [*Range Return Type:] elements_key_range<Range, Key>
 * [*Returned Range Category:] the range category of `rng`

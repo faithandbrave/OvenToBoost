@@ -5,7 +5,7 @@
 /]
 [section elements]
 
-`elements` returns extracted Nth element of value type of base range.
+`elements` generates a range extracted the Nth element from the base range.
 
 [table
     [[Syntax] [Code]]
@@ -13,7 +13,7 @@
     [[Function] [`boost::adaptors::extract_elements<N>(rng)`]]
 ]
 
-* [*Precondition:]  valu type of range require __fusion_forward_sequence__.
+* * [*Precondition:] each value type of range requires __fusion_forward_sequence__.
 * [*Range Category:] __single_pass_range__
 * [*Range Return Type:] elements_range<Range, N>
 * [*Returned Range Category:] the range category of `rng`
