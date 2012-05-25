@@ -46,8 +46,10 @@
         </h6>
 <p>
           <code class="computeroutput"><span class="identifier">fused_for_each</span></code> is for_each
-          which expansion tuple to apply function. For each iteration, the element
-          <code class="computeroutput"><span class="identifier">x</span></code> is used from <code class="computeroutput"><span class="identifier">rng</span></code> to invoke <code class="computeroutput"><span class="identifier">boost</span><span class="special">::</span><span class="identifier">fusion</span><span class="special">::</span><span class="identifier">make_fused</span><span class="special">(</span><span class="identifier">f</span><span class="special">)(</span><span class="identifier">x</span><span class="special">)</span></code>.
+          which expands tuple and applies function that has parameters of each element
+          of the tuple. For each iteration, the element <code class="computeroutput"><span class="identifier">x</span></code>
+          of <code class="computeroutput"><span class="identifier">rng</span></code> is used to be applied
+          as <code class="computeroutput"><span class="identifier">boost</span><span class="special">::</span><span class="identifier">fusion</span><span class="special">::</span><span class="identifier">make_fused</span><span class="special">(</span><span class="identifier">f</span><span class="special">)(</span><span class="identifier">x</span><span class="special">)</span></code>.
         </p>
 <h6>
 <a name="range_extension.reference.algorithm_extension.fused_for_each.h3"></a>
@@ -67,7 +69,7 @@
               Pass Range</a> Concept.
             </li>
 <li class="listitem">
-              <code class="computeroutput"><span class="identifier">rng</span></code>'s element <code class="computeroutput"><span class="identifier">x</span></code> requires <a href="http://boost-consulting.com/boost/libs/fusion/doc/html/fusion/sequences/concepts/forward_sequence.html" target="_top">Fusion
+              <code class="computeroutput"><span class="identifier">rng</span></code>'s element <code class="computeroutput"><span class="identifier">x</span></code> requires <a href="http://www.boost.org/libs/fusion/doc/html/fusion/sequence/concepts/forward_sequence.html" target="_top">Fusion
               Forward Sequence</a>.
             </li>
 </ol></div>
@@ -76,7 +78,9 @@
           <span><a name="range_extension.reference.algorithm_extension.fused_for_each.complexity"></a></span><a class="link" href="fused_for_each.html#range_extension.reference.algorithm_extension.fused_for_each.complexity">Complexity</a>
         </h6>
 <p>
-          Linear. Exactly <code class="computeroutput"><span class="identifier">distance</span><span class="special">(</span><span class="identifier">rng</span><span class="special">)</span></code> applications of <code class="computeroutput"><span class="identifier">UnaryFunction</span></code>.
+          Linear. It applies <code class="computeroutput"><span class="identifier">UnaryFunction</span></code>
+          <code class="computeroutput"><span class="identifier">distance</span><span class="special">(</span><span class="identifier">rng</span><span class="special">)</span></code>
+          times.
         </p>
 <h6>
 <a name="range_extension.reference.algorithm_extension.fused_for_each.h6"></a>

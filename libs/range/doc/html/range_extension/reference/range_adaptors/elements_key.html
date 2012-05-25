@@ -7,21 +7,22 @@
 <link rel="home" href="../../../index.html" title="Chapter&#160;1.&#160;Range Extension 0.1">
 <link rel="up" href="../range_adaptors.html" title="Range Adaptors">
 <link rel="prev" href="elements.html" title="elements">
-<link rel="next" href="dropped0.html" title="dropped">
+<link rel="next" href="memoized.html" title="memoized">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
 <table cellpadding="2" width="100%"><tr><td valign="top"><img alt="rangeextension" width="" height="" src="../../../../boost-proposed-alpha-variants.png"></td></tr></table>
 <hr>
 <div class="spirit-nav">
-<a accesskey="p" href="elements.html"><img src="../../../images/prev.png" alt="Prev"></a><a accesskey="u" href="../range_adaptors.html"><img src="../../../images/up.png" alt="Up"></a><a accesskey="h" href="../../../index.html"><img src="../../../images/home.png" alt="Home"></a><a accesskey="n" href="dropped0.html"><img src="../../../images/next.png" alt="Next"></a>
+<a accesskey="p" href="elements.html"><img src="../../../images/prev.png" alt="Prev"></a><a accesskey="u" href="../range_adaptors.html"><img src="../../../images/up.png" alt="Up"></a><a accesskey="h" href="../../../index.html"><img src="../../../images/home.png" alt="Home"></a><a accesskey="n" href="memoized.html"><img src="../../../images/next.png" alt="Next"></a>
 </div>
 <div class="section">
 <div class="titlepage"><div><div><h4 class="title">
 <a name="range_extension.reference.range_adaptors.elements_key"></a><a class="link" href="elements_key.html" title="elements_key">elements_key</a>
 </h4></div></div></div>
 <p>
-          <code class="computeroutput"><span class="identifier">elements_key</span></code> returns extracted
-          corresponding to the specified key from element of value type of base range.
+          <code class="computeroutput"><span class="identifier">elements_key</span></code> generates
+          a range extracted the corresponding element specified by key from the base
+          range.
         </p>
 <div class="informaltable"><table class="table">
 <colgroup>
@@ -70,9 +71,9 @@
 </table></div>
 <div class="itemizedlist"><ul class="itemizedlist" type="disc">
 <li class="listitem">
-              <span class="bold"><strong>Precondition:</strong></span> valu type of range require
-              <a href="http://www.boost.org/libs/fusion/doc/html/fusion/sequence/concepts/associative_sequence.html" target="_top">Fusion
-              Assosiative Sequence</a>.
+              <span class="bold"><strong>Precondition:</strong></span> each value type of range
+              requires <a href="http://www.boost.org/libs/fusion/doc/html/fusion/sequence/concepts/forward_sequence.html" target="_top">Fusion
+              Forward Sequence</a>.
             </li>
 <li class="listitem">
               <span class="bold"><strong>Range Category:</strong></span> <a href="http://www.boost.org/libs/range/doc/html/range/concepts/single_pass_range.html" target="_top">Single
@@ -165,7 +166,7 @@
 </tr></table>
 <hr>
 <div class="spirit-nav">
-<a accesskey="p" href="elements.html"><img src="../../../images/prev.png" alt="Prev"></a><a accesskey="u" href="../range_adaptors.html"><img src="../../../images/up.png" alt="Up"></a><a accesskey="h" href="../../../index.html"><img src="../../../images/home.png" alt="Home"></a><a accesskey="n" href="dropped0.html"><img src="../../../images/next.png" alt="Next"></a>
+<a accesskey="p" href="elements.html"><img src="../../../images/prev.png" alt="Prev"></a><a accesskey="u" href="../range_adaptors.html"><img src="../../../images/up.png" alt="Up"></a><a accesskey="h" href="../../../index.html"><img src="../../../images/home.png" alt="Home"></a><a accesskey="n" href="memoized.html"><img src="../../../images/next.png" alt="Next"></a>
 </div>
 </body>
 </html>
