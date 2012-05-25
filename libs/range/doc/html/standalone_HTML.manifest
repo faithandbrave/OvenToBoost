@@ -5,7 +5,7 @@ range_extension/reference/range_adaptors/dropped.html
 range_extension/reference/range_adaptors/dropped_while.html
 range_extension/reference/range_adaptors/elements.html
 range_extension/reference/range_adaptors/elements_key.html
-range_extension/reference/range_adaptors/dropped0.html
+range_extension/reference/range_adaptors/memoized.html
 range_extension/reference/range_adaptors/outdirected.html
 range_extension/reference/range_adaptors/taken.html
 range_extension/reference/range_adaptors/taken_while.html
@@ -20,7 +20,8 @@ range_extension/reference/algorithm_extension/none_of.html
 range_extension/reference/algorithm_extension0.html
 range_extension/reference/algorithm_extension/directory_range.html
 range_extension/reference/algorithm_extension/iteration.html
-range_extension/reference/algorithm_extension/directory_range0.html
+range_extension/reference/algorithm_extension/recursive_directory_range.html
 range_extension/reference/algorithm_extension/single.html
 range_extension/design_rationale.html
 range_extension/design_rationale/regular_op.html
+range_extension/acknowledgements.html

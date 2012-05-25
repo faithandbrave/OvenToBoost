@@ -21,7 +21,7 @@ void fused_for_each(const SinglePassRange& rng, UnaryFunction f);
 
 [heading Description]
 
-`fused_for_each` is for_each which expands tuple and applies function that has parameters of each element of the tuple.
+`fused_for_each` is for_each which expands tuple and applies function that has parameters of each element of the tuple.[br]
 For each iteration, the element `x` of `rng` is used to be applied as `boost::fusion::make_fused(f)(x)`.
 
 [heading Definition]

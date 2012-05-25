@@ -4,8 +4,8 @@
     (See accompanying file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
 /]
 
-This library is enhanced version of Boost Range Library.
-It has powerful Range adaptors and utilities for Range programming.
+This library is enhanced version of Boost Range Library.[br]
+It has powerful Range adaptors and utilities for Range programming.[br]
 For example, using this library, we can write quick sort as the following:
 ``
     typedef

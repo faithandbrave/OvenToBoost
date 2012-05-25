@@ -5,8 +5,8 @@
 /]
 [section Range Adaptors]
 
-Range Adaptors involved in this library are inspired by PStade.Oven and Haskell Prelude Library.
-They are of use for powerful range programming(functional programming).
+Range Adaptors involved in this library are inspired by PStade.Oven and Haskell Prelude Library.[br]
+They are of use for powerful range programming(functional programming).[br]
 Additionaly, it makes lazy sequence much easier, powerful to use by this library.
 
 ``
@@ -63,7 +63,7 @@ int main()
     boost::for_each_(v |+ filtered(_1 % 2 == 0) |+ transformed(_1 * 2), disp);
 }
 ``
-This library provides regular operator : operator|+().
+This library provides regular operator : operator|+().[br]
 It makes easier to use lambda expression with Range Adaptors.
 
 [include adaptors/dropped.qbk]
