@@ -5,8 +5,8 @@
 /]
 [section:regular_extension Regular Extension]
 
-The one of the remarkable feature in this library is regular operator designed non-intrusively.
-In addition to regular operator of the Range Adaptor involved in, this library also provides regular operator extension for Range Adaptors in the Boost Range Library.
+The one of the remarkable feature in this library is regular operator designed non-intrusively.[br]
+In addition to regular operator of the Range Adaptor involved in, this library also provides regular operator extension for Range Adaptors in the Boost Range Library.[br]
 If this library are integrated into the Boost Range Library, this extension will be as the standard feature.
 
 [include regular_extension/filtered.qbk]

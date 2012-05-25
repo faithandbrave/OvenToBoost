@@ -14,7 +14,7 @@ iterator_range<filesystem::recursive_directory_iterator>
 
 [heading Namespace]
 
-`boost` もしくは `boost::range`。
+`boost` or `boost::range`.
 
 [heading Description]
 
