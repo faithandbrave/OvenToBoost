@@ -24,15 +24,16 @@
 <dt><span class="section"><a href="range_adaptors/dropped_while.html">dropped_while</a></span></dt>
 <dt><span class="section"><a href="range_adaptors/elements.html">elements</a></span></dt>
 <dt><span class="section"><a href="range_adaptors/elements_key.html">elements_key</a></span></dt>
-<dt><span class="section"><a href="range_adaptors/dropped0.html">dropped</a></span></dt>
+<dt><span class="section"><a href="range_adaptors/memoized.html">memoized</a></span></dt>
 <dt><span class="section"><a href="range_adaptors/outdirected.html">outdirected</a></span></dt>
 <dt><span class="section"><a href="range_adaptors/taken.html">taken</a></span></dt>
 <dt><span class="section"><a href="range_adaptors/taken_while.html">taken_while</a></span></dt>
 </dl></div>
 <p>
-        The library includes Range Adaptor is inspired by PStade.Oven and Haskell
-        Prelude Library. There are needs for powerful range programming(functional
-        programming). The library is easy and powerful use lazy sequence.
+        Range Adaptors involved in this library are inspired by PStade.Oven and Haskell
+        Prelude Library. They are of use for powerful range programming(functional
+        programming). Additionaly, it makes lazy sequence much easier, powerful to
+        use by this library.
       </p>
 <p>
 </p>
@@ -50,7 +51,7 @@
 <p>
       </p>
 <p>
-        And, The library refer lambda expression(BLL and C++0x Lambda).
+        And also, this library deals with lambda expression(BLL and C++11 Lambda).
 </p>
 <pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">range</span><span class="special">/</span><span class="identifier">adaptors</span><span class="special">/</span><span class="identifier">iteration</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
 <span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">range</span><span class="special">/</span><span class="identifier">adaptors</span><span class="special">/</span><span class="identifier">taken</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
@@ -69,11 +70,14 @@
 <p>
       </p>
 <p>
-        regular is lambda expression adapt to Regular Concept.
+        regular is a functhon that adapt lambda expression to Regular Concept.
       </p>
 <p>
-        regular alway needs use lambda expression in iterator adaptor. But, regular
-        write is boring. The library has syntax sugar for regular function.
+        Whenever using lambda expression with iterator adaptors, we must write down
+        regular function. But it is verbous. So, there is a syntax sugar for regular
+        function in this library.
+      </p>
+<p>
 </p>
 <pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">iostream</span><span class="special">&gt;</span>
 <span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">vector</span><span class="special">&gt;</span>
@@ -95,8 +99,8 @@
 <span class="special">}</span>
 </pre>
 <p>
-        The library provides regular operator : operator|+(). Regular operator is
-        useful for lambda expression.
+        This library provides regular operator : operator|+(). It makes easier to
+        use lambda expression with Range Adaptors.
       </p>
 </div>
 <table xmlns:rev="http://www.cs.rpi.edu/~gregod/boost/tools/doc/revision" width="100%"><tr>
