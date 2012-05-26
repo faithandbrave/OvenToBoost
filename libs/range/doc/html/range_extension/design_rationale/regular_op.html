@@ -7,12 +7,13 @@
 <link rel="home" href="../../index.html" title="Chapter&#160;1.&#160;Range Extension 0.1">
 <link rel="up" href="../design_rationale.html" title="Design Rationale">
 <link rel="prev" href="../design_rationale.html" title="Design Rationale">
+<link rel="next" href="../acknowledgements.html" title="Acknowledments">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
 <table cellpadding="2" width="100%"><tr><td valign="top"><img alt="rangeextension" width="" height="" src="../../../boost-proposed-alpha-variants.png"></td></tr></table>
 <hr>
 <div class="spirit-nav">
-<a accesskey="p" href="../design_rationale.html"><img src="../../images/prev.png" alt="Prev"></a><a accesskey="u" href="../design_rationale.html"><img src="../../images/up.png" alt="Up"></a><a accesskey="h" href="../../index.html"><img src="../../images/home.png" alt="Home"></a>
+<a accesskey="p" href="../design_rationale.html"><img src="../../images/prev.png" alt="Prev"></a><a accesskey="u" href="../design_rationale.html"><img src="../../images/up.png" alt="Up"></a><a accesskey="h" href="../../index.html"><img src="../../images/home.png" alt="Home"></a><a accesskey="n" href="../acknowledgements.html"><img src="../../images/next.png" alt="Next"></a>
 </div>
 <div class="section">
 <div class="titlepage"><div><div><h3 class="title">
@@ -20,8 +21,8 @@
       Operator</a>
 </h3></div></div></div>
 <p>
-        <code class="computeroutput"><span class="identifier">regular</span></code> function Range adapter
-        to pass the lambda expression to use.
+        <code class="computeroutput"><span class="identifier">regular</span></code> function is an adaptor
+        for passing some lambda expression to Range adaptors.
       </p>
 <p>
 </p>
@@ -50,39 +51,41 @@
 <span class="identifier">for_each_</span><span class="special">(</span><span class="identifier">r</span> <span class="special">|</span> <span class="identifier">filtered</span><span class="special">(</span><span class="identifier">regular</span><span class="special">(</span><span class="identifier">_1</span> <span class="special">%</span> <span class="number">2</span> <span class="special">==</span> <span class="number">0</span><span class="special">)),</span> <span class="identifier">f</span><span class="special">);</span> <span class="comment">// OK</span>
 </pre>
 <p>
-        Lambda expression is easy to define a function object that <code class="computeroutput"><span class="identifier">regular</span></code> by became a verbose. We would provide
-        short syntax by some way.
+        Lambda expression is to define some function object easily. However, using
+        <code class="computeroutput"><span class="identifier">regular</span></code> makes rather verbose.
+        There should be some short syntax.
       </p>
-<p>
-        - 1. implicit <code class="computeroutput"><span class="identifier">regular</span></code> Auto
-        <code class="computeroutput"><span class="identifier">regular</span></code> (Lambda type check)
-        is not impossible. However, implicit <code class="computeroutput"><span class="identifier">regular</span></code>
-        is not good because <code class="computeroutput"><span class="identifier">regular</span></code>
-        has some cost.
-      </p>
-<p>
-        - 2. separate namespace <code class="computeroutput"><span class="identifier">regular</span></code>
-        specialize namespace way:
-</p>
+<div class="itemizedlist"><ul class="itemizedlist" type="disc">
+<li class="listitem">
+            1. implicit <code class="computeroutput"><span class="identifier">regular</span></code> It
+            is not impossible to check whether it is a lambda expression (or satisfy
+            the Regular Concept) and adapt <code class="computeroutput"><span class="identifier">regular</span></code>
+            implicitly. But it is not a good idea because <code class="computeroutput"><span class="identifier">regular</span></code>
+            takes some costs. Therefore, implicit <code class="computeroutput"><span class="identifier">regular</span></code>
+            should be avoided.
+          </li>
+<li class="listitem">
+            2. separating namespace Consider this way of separating namespace and
+            adapting <code class="computeroutput"><span class="identifier">regular</span></code> automatically.
 <pre class="programlisting"><span class="keyword">using</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">adaptors</span><span class="special">::</span><span class="identifier">regular</span><span class="special">;</span>
 <span class="identifier">for_each</span><span class="special">(</span><span class="identifier">r</span> <span class="special">|</span> <span class="identifier">filtered</span><span class="special">(</span><span class="identifier">_1</span> <span class="special">%</span> <span class="number">2</span> <span class="special">==</span> <span class="number">0</span><span class="special">),</span> <span class="identifier">f</span><span class="special">);</span>
 </pre>
-<p>
-        However, this way doesn't resolve the verbose issue.
-      </p>
-<p>
-        - 3. <code class="computeroutput"><span class="identifier">regular</span></code> operator By
-        elimination method, solution is operator. What any operator? We need operator|()
-        the same precedence and associativity of operators. But, unfortunately such
-        operator is not exist. Therefore, We need produce new operator. This library
-        provide operator|+() compound operator by operator|() and unary operator+().
-</p>
+            Unfortunately, it is far from the solution.
+          </li>
+<li class="listitem">
+            3. <code class="computeroutput"><span class="identifier">regular</span></code> operator So,
+            by the process of exclusion, it may as well define some operator. but
+            which is?<br> We need some operator which has the same precedence and
+            associativity. Unfortunately, there is no built-in alternative of that
+            sort. Hence we have to create new operator: operator|+(), which is a
+            combination of operator|() and unary operator+().<br> Finally, we can
+            write the example of the first as the following:
 <pre class="programlisting"><span class="keyword">using</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">lambda</span><span class="special">::</span><span class="identifier">_1</span><span class="special">;</span>
 <span class="identifier">for_each_</span><span class="special">(</span><span class="identifier">r</span> <span class="special">|</span>  <span class="identifier">filtered</span><span class="special">(</span><span class="identifier">regular</span><span class="special">(</span><span class="identifier">_1</span> <span class="special">%</span> <span class="number">2</span> <span class="special">==</span> <span class="number">0</span><span class="special">)),</span> <span class="identifier">f</span><span class="special">);</span> <span class="comment">// OK : use regular function</span>
 <span class="identifier">for_each_</span><span class="special">(</span><span class="identifier">r</span> <span class="special">|+</span> <span class="identifier">filtered</span><span class="special">(</span><span class="identifier">_1</span> <span class="special">%</span> <span class="number">2</span> <span class="special">==</span> <span class="number">0</span><span class="special">),</span> <span class="identifier">f</span><span class="special">);</span>          <span class="comment">// OK : use regular operator</span>
 </pre>
-<p>
-      </p>
+          </li>
+</ul></div>
 </div>
 <table xmlns:rev="http://www.cs.rpi.edu/~gregod/boost/tools/doc/revision" width="100%"><tr>
 <td align="left"></td>
@@ -94,7 +97,7 @@
 </tr></table>
 <hr>
 <div class="spirit-nav">
-<a accesskey="p" href="../design_rationale.html"><img src="../../images/prev.png" alt="Prev"></a><a accesskey="u" href="../design_rationale.html"><img src="../../images/up.png" alt="Up"></a><a accesskey="h" href="../../index.html"><img src="../../images/home.png" alt="Home"></a>
+<a accesskey="p" href="../design_rationale.html"><img src="../../images/prev.png" alt="Prev"></a><a accesskey="u" href="../design_rationale.html"><img src="../../images/up.png" alt="Up"></a><a accesskey="h" href="../../index.html"><img src="../../images/home.png" alt="Home"></a><a accesskey="n" href="../acknowledgements.html"><img src="../../images/next.png" alt="Next"></a>
 </div>
 </body>
 </html>

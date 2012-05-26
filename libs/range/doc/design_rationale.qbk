@@ -48,8 +48,8 @@ for_each(r | filtered(_1 % 2 == 0), f);
 Unfortunately, it is far from the solution.
 
 *3. `regular` operator
-So, by the process of exclusion, it may as well define some operator. but which is?
-We need some operator which has the same precedence and associativity. Unfortunately, there is no built-in alternative of that sort. Hence we have to create new operator: operator|+(), which is a combination of operator|() and unary operator+().
+So, by the process of exclusion, it may as well define some operator. but which is?[br]
+We need some operator which has the same precedence and associativity. Unfortunately, there is no built-in alternative of that sort. Hence we have to create new operator: operator|+(), which is a combination of operator|() and unary operator+().[br]
 Finally, we can write the example of the first as the following:
 ``
 using boost::lambda::_1;
