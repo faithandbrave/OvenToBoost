@@ -16,10 +16,10 @@ namespace boost {
 namespace range_detail {
 
 template <class Range>
-class to_container_wrapper {
+class as_container_wrapper {
     Range range_;
 public:
-    explicit to_container_wrapper(Range& range)
+    explicit as_container_wrapper(Range& range)
         : range_(range) {}
 
     template <class Container>
@@ -29,31 +29,31 @@ public:
     }
 };
 
-struct to_container_functor {
+struct as_container_functor {
     template <class>
     struct result;
 
     template <class F, class Range>
     struct result<F(Range)> {
-        typedef to_container_wrapper<const Range> type;
+        typedef as_container_wrapper<const Range> type;
     };
 
     template <class Range>
-    to_container_wrapper<const Range> operator()(const Range& r) const
+    as_container_wrapper<const Range> operator()(const Range& r) const
     {
-        return to_container_wrapper<const Range>(r);
+        return as_container_wrapper<const Range>(r);
     }
 };
 
 } // namespace range_detail
 
 namespace {
-    const range_detail::to_container_functor to_container = {};
+    const range_detail::as_container_functor as_container = {};
 }
 
 template <class Range>
-inline range_detail::to_container_wrapper<const Range>
-    operator|(const Range& r, range_detail::to_container_functor f)
+inline range_detail::as_container_wrapper<const Range>
+    operator|(const Range& r, range_detail::as_container_functor f)
 {
     return f(r);
 }

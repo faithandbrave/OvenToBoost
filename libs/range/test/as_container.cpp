@@ -12,7 +12,7 @@
 #include <vector>
 #include <boost/assign/list_of.hpp>
 #include <boost/range/adaptor/filtered.hpp>
-#include <boost/range/to_container.hpp>
+#include <boost/range/as_container.hpp>
 
 bool is_odd(int x) { return x % 2 == 0; }
 
@@ -21,7 +21,7 @@ int main()
     // pipe operator style
     {
         const std::vector<int> v1 = boost::assign::list_of(1)(2)(3)(4)(5);
-        const std::vector<int> v2 = v1 | boost::adaptors::filtered(is_odd) | boost::to_container;
+        const std::vector<int> v2 = v1 | boost::adaptors::filtered(is_odd) | boost::as_container;
 
         BOOST_TEST(boost::equal(
             v2,
@@ -32,7 +32,7 @@ int main()
     // function style
     {
         const std::vector<int> v1 = boost::assign::list_of(1)(2)(3)(4)(5);
-        const std::vector<int> v2 = boost::to_container(boost::adaptors::filter(v1, is_odd));
+        const std::vector<int> v2 = boost::as_container(boost::adaptors::filter(v1, is_odd));
 
         BOOST_TEST(boost::equal(
             v2,
