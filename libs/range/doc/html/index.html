@@ -38,7 +38,7 @@
 <dt><span class="section"><a href="range_extension/reference/range_adaptors/dropped_while.html">dropped_while</a></span></dt>
 <dt><span class="section"><a href="range_extension/reference/range_adaptors/elements.html">elements</a></span></dt>
 <dt><span class="section"><a href="range_extension/reference/range_adaptors/elements_key.html">elements_key</a></span></dt>
-<dt><span class="section"><a href="range_extension/reference/range_adaptors/dropped0.html">dropped</a></span></dt>
+<dt><span class="section"><a href="range_extension/reference/range_adaptors/memoized.html">memoized</a></span></dt>
 <dt><span class="section"><a href="range_extension/reference/range_adaptors/outdirected.html">outdirected</a></span></dt>
 <dt><span class="section"><a href="range_extension/reference/range_adaptors/taken.html">taken</a></span></dt>
 <dt><span class="section"><a href="range_extension/reference/range_adaptors/taken_while.html">taken_while</a></span></dt>
@@ -62,19 +62,20 @@
 <dd><dl>
 <dt><span class="section"><a href="range_extension/reference/algorithm_extension/directory_range.html">directory_range</a></span></dt>
 <dt><span class="section"><a href="range_extension/reference/algorithm_extension/iteration.html">iteration</a></span></dt>
-<dt><span class="section"><a href="range_extension/reference/algorithm_extension/directory_range0.html">directory_range</a></span></dt>
+<dt><span class="section"><a href="range_extension/reference/algorithm_extension/recursive_directory_range.html">recursive_directory_range</a></span></dt>
 <dt><span class="section"><a href="range_extension/reference/algorithm_extension/single.html">single</a></span></dt>
 </dl></dd>
 </dl></dd>
 <dt><span class="section"><a href="range_extension/design_rationale.html">Design Rationale</a></span></dt>
 <dd><dl><dt><span class="section"><a href="range_extension/design_rationale/regular_op.html">Regular
       Operator</a></span></dt></dl></dd>
+<dt><span class="section"><a href="range_extension/acknowledgements.html">Acknowledments</a></span></dt>
 </dl>
 </div>
 <p>
-    The library is Extension to Boost Range Library. The library includes powerful
-    extension, Range adaptor and utilities, for Range programming. For example, quick
-    sort can be write using Boost.Range extended by the library:
+    This library is enhanced version of Boost Range Library.<br> It has powerful
+    Range adaptors and utilities for Range programming.<br> For example, using
+    this library, we can write quick sort as the following:
 </p>
 <pre class="programlisting"><span class="keyword">typedef</span>
     <span class="identifier">any_range</span><span class="special">&lt;</span><span class="keyword">int</span><span class="special">,</span> <span class="identifier">forward_traversal_tag</span><span class="special">,</span> <span class="keyword">int</span><span class="special">&amp;,</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">ptrdiff_t</span><span class="special">&gt;</span>
@@ -106,7 +107,7 @@
   </p>
 </div>
 <table xmlns:rev="http://www.cs.rpi.edu/~gregod/boost/tools/doc/revision" width="100%"><tr>
-<td align="left"><p><small>Last revised: May 20, 2012 at 16:59:56 GMT</small></p></td>
+<td align="left"><p><small>Last revised: May 25, 2012 at 16:47:41 GMT</small></p></td>
 <td align="right"><div class="copyright-footer"></div></td>
 </tr></table>
 <hr>
