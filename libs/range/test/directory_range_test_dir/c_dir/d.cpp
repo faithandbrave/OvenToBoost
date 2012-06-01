@@ -1,0 +1,3 @@
+// This file is released under the Boost Software License (please see http://boost.org/LICENSE_1_0.txt or the accompanying LICENSE_1_0.txt file for the full text.
+// Copyright Akira Takahashi 2011-2012.
+// This file is for unit test.
