@@ -18,18 +18,18 @@
 int main()
 {
     using boost::range::access::at;
-	using boost::range::access::value_at;
+    using boost::range::access::value_at;
 
     // operator style
     {
         const std::vector<int> v = boost::assign::list_of(3)(1)(4)(2)(5);
         BOOST_TEST((v | at(2)) == 4);
-		BOOST_TEST((v | value_at(2)) == 4);
+        BOOST_TEST((v | value_at(2)) == 4);
     }
     {
         std::vector<int> v = boost::assign::list_of(3)(1)(4)(2)(5);
         BOOST_TEST((v | at(2)) == 4);
-		BOOST_TEST((v | value_at(2)) == 4);
+        BOOST_TEST((v | value_at(2)) == 4);
 
         v | at(2) = 0;
         const std::vector<int> expected = boost::assign::list_of(3)(1)(0)(2)(5);
@@ -40,19 +40,19 @@ int main()
     {
         const std::vector<int> v = boost::assign::list_of(3)(1)(4)(2)(5);
         BOOST_TEST(at(v, 2) == 4);
-		BOOST_TEST(value_at(v, 2) == 4);
+        BOOST_TEST(value_at(v, 2) == 4);
     }
     {
         std::vector<int> v = boost::assign::list_of(3)(1)(4)(2)(5);
         BOOST_TEST(at(v, 2) == 4);
-		BOOST_TEST(value_at(v, 2) == 4);
+        BOOST_TEST(value_at(v, 2) == 4);
 
         at(v, 2) = 0;
         const std::vector<int> expected = boost::assign::list_of(3)(1)(0)(2)(5);
         BOOST_TEST(boost::equal(v, expected));
     }
 
-	// result_of
+    // result_of
     {
         const std::vector<int> v1 = boost::assign::list_of(1)(2)(3);
         const std::vector<int> v2 = boost::assign::list_of(4)(5)(6);

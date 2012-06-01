@@ -30,7 +30,7 @@ namespace range_detail {
     struct dropped_range  : iterator_range<typename range_iterator<Range>::type> {
         typedef typename range_difference<Range>::type diff_t;
         typedef typename range_iterator<Range>::type iter_t;
-		typedef iterator_range<iter_t> base;
+        typedef iterator_range<iter_t> base;
 
         dropped_range(Range& rng, diff_t n)
             : base(make_first_iterator(::boost::begin(rng),

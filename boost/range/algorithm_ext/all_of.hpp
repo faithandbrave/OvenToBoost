@@ -15,9 +15,9 @@
   #include <boost/algorithm/cxx11/all_of.hpp>
 
 namespace boost {
-	namespace range {
-	  	using boost::algorithm::all_of;
-	}
+    namespace range {
+        using boost::algorithm::all_of;
+    }
     using boost::range::all_of;
 }
 #else

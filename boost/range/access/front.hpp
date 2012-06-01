@@ -23,13 +23,13 @@ namespace boost {
     namespace range_detail {
 
         struct front_t {
-			template <class Signature>
-			struct result;
+            template <class Signature>
+            struct result;
 
-			template <class F, class SinglePassRange>
-			struct result<F(SinglePassRange&)> :
+            template <class F, class SinglePassRange>
+            struct result<F(SinglePassRange&)> :
                 range_reference<
-				    typename remove_reference<SinglePassRange>::type
+                    typename remove_reference<SinglePassRange>::type
                 > {};
 
             template <class SinglePassRange>
@@ -49,27 +49,27 @@ namespace boost {
             }
         };
 
-		struct value_front_t {
-			template <class Signature>
-			struct result;
+        struct value_front_t {
+            template <class Signature>
+            struct result;
 
-			template <class F, class SinglePassRange>
-			struct result<F(SinglePassRange)> :
+            template <class F, class SinglePassRange>
+            struct result<F(SinglePassRange)> :
                 range_value<
                     typename remove_reference<SinglePassRange>::type
                 > {};
 
-			template <class SinglePassRange>
-			BOOST_DEDUCED_TYPENAME range_value<SinglePassRange>::type
-				operator()(const SinglePassRange& rng) const
-			{
-				BOOST_ASSERT(!boost::empty(rng));
-				return *boost::begin(rng);
-			}
-		};
+            template <class SinglePassRange>
+            BOOST_DEDUCED_TYPENAME range_value<SinglePassRange>::type
+                operator()(const SinglePassRange& rng) const
+            {
+                BOOST_ASSERT(!boost::empty(rng));
+                return *boost::begin(rng);
+            }
+        };
 
         const front_t front = {};
-		const value_front_t value_front = {};
+        const value_front_t value_front = {};
 
         template <class SinglePassRange>
         BOOST_DEDUCED_TYPENAME range_reference<SinglePassRange>::type
@@ -85,18 +85,18 @@ namespace boost {
             return f(rng);
         }
 
-		template <class SinglePassRange>
-		BOOST_DEDUCED_TYPENAME range_value<SinglePassRange>::type
-			operator|(const SinglePassRange& rng, const value_front_t& f)
-		{
-			return f(rng);
-		}
+        template <class SinglePassRange>
+        BOOST_DEDUCED_TYPENAME range_value<SinglePassRange>::type
+            operator|(const SinglePassRange& rng, const value_front_t& f)
+        {
+            return f(rng);
+        }
 
     } // namespace range_detail
 
     namespace range { namespace access {
         using ::boost::range_detail::front;
-		using ::boost::range_detail::value_front;
+        using ::boost::range_detail::value_front;
     }} // namespace range::access
 }
 

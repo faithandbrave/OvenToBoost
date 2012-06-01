@@ -15,9 +15,9 @@
   #include <boost/algorithm/cxx11/none_of.hpp>
 
 namespace boost {
-	namespace range {
-	  	using boost::algorithm::none_of;
-	}
+    namespace range {
+        using boost::algorithm::none_of;
+    }
     using boost::range::none_of;
 }
 #else

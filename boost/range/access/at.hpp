@@ -25,7 +25,7 @@ namespace boost {
 
         template <class Difference>
         struct at_forwarder {
-			template <class Signature>
+            template <class Signature>
             struct result;
 
             template <class F, class RandomAccessRange>
@@ -37,7 +37,7 @@ namespace boost {
             Difference n;
             explicit at_forwarder(Difference n_) : n(n_) {}
 
-			template <class RandomAccessRange>
+            template <class RandomAccessRange>
             BOOST_DEDUCED_TYPENAME range_reference<RandomAccessRange>::type
                 operator()(RandomAccessRange& rng) const
             {
@@ -56,7 +56,7 @@ namespace boost {
 
         template <class Difference>
         struct value_at_forwarder {
-			template <class Signature>
+            template <class Signature>
             struct result;
 
             template <class F, class RandomAccessRange>
@@ -68,7 +68,7 @@ namespace boost {
             Difference n;
             explicit value_at_forwarder(Difference n_) : n(n_) {}
 
-			template <class RandomAccessRange>
+            template <class RandomAccessRange>
             BOOST_DEDUCED_TYPENAME range_value<RandomAccessRange>::type
                 operator()(const RandomAccessRange& rng) const
             {

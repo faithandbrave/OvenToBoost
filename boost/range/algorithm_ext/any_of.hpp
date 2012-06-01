@@ -15,9 +15,9 @@
   #include <boost/algorithm/cxx11/any_of.hpp>
 
 namespace boost {
-	namespace range {
-	  	using boost::algorithm::any_of;
-	}
+    namespace range {
+        using boost::algorithm::any_of;
+    }
     using boost::range::any_of;
 }
 #else
