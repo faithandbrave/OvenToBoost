@@ -13,7 +13,7 @@
 #include <boost/config.hpp>
 #include <boost/utility/result_of.hpp>
 
-#if defined(BOOST_HAS_VARIADIC_TMPL) && defined(BOOST_HAS_RVALUE_REFS)
+#if !defined(BOOST_NO_VARIADIC_TEMPLATES) && !defined(BOOST_NO_RVALUE_REFERENCES)
     #include <utility> // std::forward
 #else
     #include <boost/preprocessor/repetition/repeat.hpp>
@@ -51,7 +51,7 @@ struct indirect_functor {
     template <class Signature>
     struct result;
 
-#if defined(BOOST_HAS_VARIADIC_TMPL)
+#if !defined(BOOST_NO_VARIADIC_TEMPLATES)
     template <class F2, class... Args>
     struct result<F2(Args...)> : boost::result_of<indirected_functor_type(Args...)> {};
 #else
@@ -63,18 +63,18 @@ struct indirect_functor {
     indirect_functor() {}
     indirect_functor(F f) : f(f) {}
 
-#if defined(BOOST_HAS_VARIADIC_TMPL) && defined(BOOST_HAS_RVALUE_REFS)
+#if !defined(BOOST_NO_VARIADIC_TEMPLATES) && !defined(BOOST_NO_RVALUE_REFERENCES)
     template <class... Args>
-    BOOST_DEDUCED_TYPENAME boost::result_of<indirected_functor_type(Args...)>::type
+    typename boost::result_of<indirected_functor_type(Args...)>::type
         operator()(Args&&... args) const
     {
-        return (*f)(std::forward<Args>(args)...);
+        return (*f)(static_cast<Args&&>(args)...);
     }
 
     template <class... Args>
-    BOOST_DEDUCED_TYPENAME boost::result_of<indirected_functor_type(Args...)>::type operator()(Args&&... args)
+    typename boost::result_of<indirected_functor_type(Args...)>::type operator()(Args&&... args)
     {
-        return (*f)(std::forward<Args>(args)...);
+        return (*f)(static_cast<Args&&>(args)...);
     }
 #else
     #include "./indirect_functor_invoke_pp.hpp"
