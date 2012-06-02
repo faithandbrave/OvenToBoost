@@ -104,5 +104,9 @@ namespace range_detail {
 
 } // namespace boost
 
+#ifdef BOOST_MSVC
+#pragma warning( pop )
+#endif
+
 #endif // BOOST_RANGE_ADAPTOR_DROPPED_WHILE_IMPL_HPP
 
