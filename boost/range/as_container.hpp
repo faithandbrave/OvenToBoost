@@ -1,3 +1,6 @@
+#ifndef BOOST_RANGE_AS_CONTAINER_INCLUDE
+#define BOOST_RANGE_AS_CONTAINER_INCLUDE
+
 // Boost.Range 2.0 Extension library
 // via PStade Oven Library
 //
@@ -59,4 +62,6 @@ inline range_detail::as_container_wrapper<const Range>
 }
 
 } // namespace boost
+
+#endif // BOOST_RANGE_AS_CONTAINER_INCLUDE
 
