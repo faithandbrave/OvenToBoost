@@ -13,9 +13,7 @@
 #include <boost/config.hpp>
 #include <boost/utility/result_of.hpp>
 
-#if !defined(BOOST_NO_VARIADIC_TEMPLATES) && !defined(BOOST_NO_RVALUE_REFERENCES)
-    #include <utility> // std::forward
-#else
+#if defined(BOOST_NO_VARIADIC_TEMPLATES) || defined(BOOST_NO_RVALUE_REFERENCES)
     #include <boost/preprocessor/repetition/repeat.hpp>
     #include <boost/preprocessor/repetition/enum_params.hpp>
     #include <boost/preprocessor/repetition/enum_trailing_params.hpp>
