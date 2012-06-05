@@ -89,12 +89,12 @@ public:
 // totally_ordered
     bool operator<(const this_type& other) const
     {
-        return m_opx < other.m_opx;
+        return m_opx.get_ptr() < other.m_opx.get_ptr();
     }
 
     bool operator==(const this_type& other) const
     {
-        return m_opx == other.m_opx;
+        return m_opx.get_ptr() == other.m_opx.get_ptr();
     }
 
 private:

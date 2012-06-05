@@ -12,6 +12,7 @@
 
 #include <boost/config.hpp>
 #include <boost/utility/result_of.hpp>
+#include <boost/operators.hpp> // totally_ordered
 
 #if defined(BOOST_NO_VARIADIC_TEMPLATES) || defined(BOOST_NO_RVALUE_REFERENCES)
     #include <boost/preprocessor/repetition/repeat.hpp>
@@ -43,8 +44,9 @@ struct pointer_value<T*> {
 };
 
 template <class F>
-struct indirect_functor {
+struct indirect_functor : boost::totally_ordered1< indirect_functor<F> >{
     typedef typename pointer_value<F>::type indirected_functor_type;
+    typedef indirect_functor this_type;
 
     template <class Signature>
     struct result;
@@ -77,6 +79,16 @@ struct indirect_functor {
 #else
     #include "./indirect_functor_invoke_pp.hpp"
 #endif
+
+    bool operator<(const this_type& other) const
+    {
+        return f < other.f;
+    }
+
+    bool operator==(const this_type& other) const
+    {
+        return f == other.f;
+    }
 };
 
 }}} // namespace boost::range::detail

@@ -13,12 +13,28 @@
 #include <boost/range/regular.hpp>
 #include <boost/lambda/lambda.hpp>
 
+#define NO_USE(x) static_cast<void>(x)
+
 template< class F >
 void regular_check(F const f)
 {
     F f1(f);
     F f2; // Default Constructible
     f2 = f1; // Copy Assignable
+
+    bool less = f1 < f2;
+    bool lesseq = f1 <= f2;
+    bool greater = f1 > f2;
+    bool greatereq = f1 >= f2;
+    bool eq = f1 == f2;
+    bool noteq = f1 != f2;
+
+    NO_USE(less);
+    NO_USE(lesseq);
+    NO_USE(greater);
+    NO_USE(greatereq);
+    NO_USE(eq);
+    NO_USE(noteq);
 }
 
 int main()
