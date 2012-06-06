@@ -17,7 +17,7 @@ iterator_range<T*> single(T& x);
 
 [heading Namespace]
 
-`boost` or `boost::range`。
+`boost` or `boost::range`.
 
 [heading Description]
 

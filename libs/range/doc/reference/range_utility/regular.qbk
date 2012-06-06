@@ -1,0 +1,78 @@
+[/
+    Copyright 2011 Akira Takahashi
+    Distributed under the Boost Software License, Version 1.0.
+    (See accompanying file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
+/]
+[section:regular regular]
+
+[heading Prototype]
+
+``
+template <class F>
+RegularFunctorType regular(F f)
+``
+
+[heading Namespace]
+
+`boost` or `boost::range`.
+
+[heading Description]
+
+A Boost.Lambda functor and C++11 Lambda Expression are neither __default_constructible__ nor __assignable__. An iterator holding such a functor can't conform to even Input Iterator. `regular` converts `f` into a __regular__ concept for iterators.
+
+[heading Header]
+``
+<boost/range/regular.hpp>
+``
+
+[heading Returned Type]
+__polymorphic_function__object__ which is __default_constructible__, __assignable__, __less_than_comparable__ and __equality_comparable__.
+
+[heading Example]
+
+``
+#include <iostream>
+#include <boost/range/regular.hpp>
+#include <boost/range/iteration.hpp>
+#include <boost/range/adaptor/taken.hpp>
+#include <boost/lambda/lambda.hpp>
+
+void disp(int x)
+{
+    std::cout << x << std::endl;
+}
+
+template <class InputIterator, class F>
+void for_each_(InputIterator first, InputIterator last, F f)
+{
+    InputIterator it; // Default Constructible
+    it = first; // Copy Assignable
+    for (; it != last; ++it) {
+        f(*it);
+    }
+}
+
+template <class SinglePassRange, class F>
+void for_each_(const SinglePassRange& rng, F f)
+{
+    return for_each_(boost::begin(rng), boost::end(rng), f);
+}
+
+int main()
+{
+    using boost::lambda::_1;
+
+    for_each_(boost::iteration(1, boost::regular(_1 * 2)) | boost::adaptors::taken(5), disp);
+}
+``
+
+This would produce the output:
+``
+1
+2
+4
+8
+16
+``
+
+[endsect]
