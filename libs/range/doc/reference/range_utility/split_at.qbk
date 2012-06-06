@@ -1,0 +1,83 @@
+[/
+    Copyright 2011 Akira Takahashi
+    Distributed under the Boost Software License, Version 1.0.
+    (See accompanying file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
+/]
+[section:split_at split_at]
+
+[heading Prototype]
+
+``
+template <class SinglePassRange>
+struct split_at_result {
+	typedef std::pair<TakenRange, DroppedRange> type;
+};
+
+template <class SinglePassRange>
+typename split_at_result<SinglePassRange>::type
+	split_at(SinglePassRange& rng,
+			 typename boost::range_difference<SinglePassRange>::type n);
+
+template <class SinglePassRange>
+typename split_at_result<const SinglePassRange>::type
+	split_at(const SinglePassRange& rng,
+			 typename boost::range_difference<SinglePassRange>::type n);
+``
+
+[heading Namespace]
+
+`boost` or `boost::range`.
+
+[heading Description]
+
+`split_at` makes a pair of `rng | taken(n)` and `rng | dropped(n)`.
+
+[heading Header]
+``
+<boost/range/split_at.hpp>
+``
+
+[heading Return]
+`make_pair(rng | taken(n), rng | dropped(n));`
+
+[heading Example]
+
+``
+#include <boost/range/split_at.hpp>
+#include <boost/range/algorithm/for_each.hpp>
+#include <boost/lambda/lambda.hpp>
+#include <boost/assign/list_of.hpp>
+#include <iostream>
+#include <vector>
+#include <string>
+
+template <class Range>
+void disp(const std::string& name, const Range& r)
+{
+    using boost::lambda::_1;
+
+    std::cout << name << " : ";
+    boost::for_each(r, std::cout << _1 << ' ');
+    std::cout << std::endl;
+}
+
+int main()
+{
+    typedef std::vector<int> vec;
+
+    const vec v = boost::assign::list_of(1)(2)(3)(4)(5);
+
+    boost::split_at_result<const vec>::type splitted = boost::split_at(v, 2);
+
+    disp("first", splitted.first);
+    disp("second", splitted.second);
+}
+``
+
+This would produce the output:
+``
+first : 1 2 
+second : 3 4 5 
+``
+
+[endsect]

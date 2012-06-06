@@ -9,6 +9,7 @@
 [include range_utility/iteration.qbk]
 [include range_utility/recursive_directory_range.qbk]
 [include range_utility/single.qbk]
+[include range_utility/split_at.qbk]
 [include range_utility/regular.qbk]
 
 [endsect]
