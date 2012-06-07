@@ -18,7 +18,7 @@ RegularFunctorType regular(F f)
 
 [heading Description]
 
-A Boost.Lambda functor and C++11 Lambda Expression are neither __default_constructible__ nor __assignable__. An iterator holding such a functor can't conform to even Input Iterator. `regular` converts `f` into a __regular__ concept for iterators.
+Boost.Lambda functor and C++11 Lambda Expression are neither __default_constructible__ nor __assignable__. That is the reason why a certain iterator containing such a functor doesn't meet even the requirement of Input Iterator concept. Therefore, to meet that requirement, `regular` converts `f` into a __regular__ concept.
 
 [heading Requirements]
 
@@ -30,7 +30,7 @@ F is __copy_constructible__.
 ``
 
 [heading Returned Type]
-__polymorphic_function__object__ which is __default_constructible__, __assignable__, __less_than_comparable__ and __equality_comparable__. Return type's relational operator is compare pointer.
+__polymorphic_function__object__ is __default_constructible__, __asignable__, __less_than_comparable__ and __equality_comparable__. Relational operator of the return type tests for pointer equality.
 
 [heading Example]
 
