@@ -47,6 +47,7 @@ test-suite range_extension :
     [ range-test iteration ]
     [ range-test member_select_example ]
     [ range-test regular ]
+    [ range-test regular_nullary_call ]
     [ range-test regular_example ]
     [ range-test regular_operator_example ]
     [ range-test single ]

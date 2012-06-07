@@ -93,5 +93,22 @@ struct indirect_functor : boost::totally_ordered1< indirect_functor<F> >{
 
 }}} // namespace boost::range::detail
 
+namespace boost {
+#if !defined(BOOST_RESULT_OF_USE_DECLTYPE) || defined(BOOST_NO_DECLTYPE)
+    template <class F>
+    struct result_of<boost::range::detail::indirect_functor<F>()> {
+        typedef typename boost::result_of<
+            typename boost::range::detail::indirect_functor<F>::indirected_functor_type()
+        >::type type;
+    };
+#endif
+    template <class F>
+    struct tr1_result_of<boost::range::detail::indirect_functor<F>()> {
+        typedef typename boost::tr1_result_of<
+            typename boost::range::detail::indirect_functor<F>::indirected_functor_type()
+        >::type type;
+    };
+}
+
 #endif // BOOST_RANGE_DETAIL_INDIRECT_FUNCTOR_INCLUDE
 
