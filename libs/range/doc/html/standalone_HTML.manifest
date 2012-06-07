@@ -22,6 +22,8 @@ range_extension/reference/algorithm_extension/directory_range.html
 range_extension/reference/algorithm_extension/iteration.html
 range_extension/reference/algorithm_extension/recursive_directory_range.html
 range_extension/reference/algorithm_extension/single.html
+range_extension/reference/algorithm_extension/split_at.html
+range_extension/reference/algorithm_extension/regular.html
 range_extension/design_rationale.html
 range_extension/design_rationale/regular_op.html
 range_extension/acknowledgements.html
