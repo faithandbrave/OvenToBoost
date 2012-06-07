@@ -31,6 +31,7 @@
 [def __fusion_forward_sequence__ [@http://www.boost.org/libs/fusion/doc/html/fusion/sequence/concepts/forward_sequence.html Fusion Forward Sequence]]
 [def __fusion_assosiative_sequence__ [@http://www.boost.org/libs/fusion/doc/html/fusion/sequence/concepts/associative_sequence.html Fusion Assosiative Sequence]]
 [def __default_constructible__ [@http://boost.org/doc/html/DefaultConstructible.html Default Constructible]]
+[def __copy_constructible__ [@http://boost.org/doc/html/CopyConstructible.html Copy Constructible]]
 [def __assignable__    [@http://boost.org/doc/html/Assignable.html Assignable]]
 [def __polymorphic_function_object__ [@http://www.boost.org/libs/fusion/doc/html/fusion/functional/concepts/poly.html Polymorphic Function Object]]
 [def __less_than_comparable__ [@http://boost.org/doc/html/LessThanComparable.html Less Than Comparable]]

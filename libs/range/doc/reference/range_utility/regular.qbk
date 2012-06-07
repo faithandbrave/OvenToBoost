@@ -20,6 +20,10 @@ RegularFunctorType regular(F f)
 
 A Boost.Lambda functor and C++11 Lambda Expression are neither __default_constructible__ nor __assignable__. An iterator holding such a functor can't conform to even Input Iterator. `regular` converts `f` into a __regular__ concept for iterators.
 
+[heading Requirements]
+
+F is __copy_constructible__.
+
 [heading Header]
 ``
 <boost/range/regular.hpp>
