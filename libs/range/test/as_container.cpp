@@ -33,7 +33,7 @@ void test()
             boost::assign::list_of(2)(4)
         ));
 
-        std::vector<int> c3;
+        Container c3;
         c3 = c1 | boost::adaptors::filtered(is_odd) | boost::as_container;
 
         BOOST_TEST(boost::equal(
@@ -52,7 +52,7 @@ void test()
             boost::assign::list_of(2)(4)
         ));
 
-        std::vector<int> c3;
+        Container c3;
         c3 = boost::as_container(boost::adaptors::filter(c1, is_odd));
 
         BOOST_TEST(boost::equal(
