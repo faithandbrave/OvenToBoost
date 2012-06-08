@@ -101,11 +101,25 @@ namespace boost {
             typename boost::range::detail::indirect_functor<F>::indirected_functor_type()
         >::type type;
     };
+
+    template <class F>
+    struct result_of<const boost::range::detail::indirect_functor<F>()> {
+        typedef typename boost::result_of<
+            typename boost::range::detail::indirect_functor<F>::indirected_functor_type()
+        >::type type;
+    };
 #endif
     template <class F>
     struct tr1_result_of<boost::range::detail::indirect_functor<F>()> {
         typedef typename boost::tr1_result_of<
             typename boost::range::detail::indirect_functor<F>::indirected_functor_type()
+        >::type type;
+    };
+    
+    template <class F>
+    struct tr1_result_of<const boost::range::detail::indirect_functor<F>()> {
+        typedef typename boost::tr1_result_of<
+            typename boost::range::detail::indirect_functor<const F>::indirected_functor_type()
         >::type type;
     };
 }

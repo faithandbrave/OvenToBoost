@@ -28,8 +28,14 @@ void nullary_result_test(F)
     typedef typename boost::result_of<F()>::type result_type;
     BOOST_STATIC_ASSERT((boost::is_same<result_type, int>::value));
 
+    typedef typename boost::result_of<const F()>::type cresult_type;
+    BOOST_STATIC_ASSERT((boost::is_same<cresult_type, int>::value));
+
     typedef typename boost::tr1_result_of<F()>::type tr1_result_type;
     BOOST_STATIC_ASSERT((boost::is_same<tr1_result_type, int>::value));
+
+    typedef typename boost::tr1_result_of<const F()>::type tr1_cresult_type;
+    BOOST_STATIC_ASSERT((boost::is_same<tr1_cresult_type, int>::value));
 }
 
 int main()
