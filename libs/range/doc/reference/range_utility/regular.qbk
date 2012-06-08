@@ -30,7 +30,7 @@ F is __copy_constructible__.
 ``
 
 [heading Returned Type]
-__polymorphic_function__object__ is __default_constructible__, __asignable__, __less_than_comparable__ and __equality_comparable__. Relational operator of the return type tests for pointer equality.
+__polymorphic_function_object__ is __default_constructible__, __assignable__, __less_than_comparable__ and __equality_comparable__. Relational operator of the return type tests for pointer equality.
 
 [heading Example]
 
