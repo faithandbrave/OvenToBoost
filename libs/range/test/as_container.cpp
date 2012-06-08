@@ -12,7 +12,7 @@
 #include <vector>
 #include <boost/assign/list_of.hpp>
 #include <boost/range/adaptor/filtered.hpp>
-#include <boost/range/as_container.hpp>
+#include <boost/range/experimental/as_container.hpp>
 
 bool is_odd(int x) { return x % 2 == 0; }
 
