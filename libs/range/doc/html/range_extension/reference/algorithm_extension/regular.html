@@ -1,0 +1,150 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
+<title>regular</title>
+<link rel="stylesheet" href="../../../boostbook.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.76.1">
+<link rel="home" href="../../../index.html" title="Chapter&#160;1.&#160;Range Extension 0.1">
+<link rel="up" href="../algorithm_extension0.html" title="Algorithm Extension">
+<link rel="prev" href="split_at.html" title="split_at">
+<link rel="next" href="../../design_rationale.html" title="Design Rationale">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table cellpadding="2" width="100%"><tr><td valign="top"><img alt="rangeextension" width="" height="" src="../../../../boost-proposed-alpha-variants.png"></td></tr></table>
+<hr>
+<div class="spirit-nav">
+<a accesskey="p" href="split_at.html"><img src="../../../images/prev.png" alt="Prev"></a><a accesskey="u" href="../algorithm_extension0.html"><img src="../../../images/up.png" alt="Up"></a><a accesskey="h" href="../../../index.html"><img src="../../../images/home.png" alt="Home"></a><a accesskey="n" href="../../design_rationale.html"><img src="../../../images/next.png" alt="Next"></a>
+</div>
+<div class="section">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="range_extension.reference.algorithm_extension.regular"></a><a class="link" href="regular.html" title="regular">regular</a>
+</h4></div></div></div>
+<h6>
+<a name="range_extension.reference.algorithm_extension.regular.h0"></a>
+          <span><a name="range_extension.reference.algorithm_extension.regular.prototype"></a></span><a class="link" href="regular.html#range_extension.reference.algorithm_extension.regular.prototype">Prototype</a>
+        </h6>
+<p>
+</p>
+<pre class="programlisting"><span class="keyword">template</span> <span class="special">&lt;</span><span class="keyword">class</span> <span class="identifier">F</span><span class="special">&gt;</span>
+<span class="identifier">RegularFunctorType</span> <span class="identifier">regular</span><span class="special">(</span><span class="identifier">F</span> <span class="identifier">f</span><span class="special">)</span>
+</pre>
+<p>
+        </p>
+<h6>
+<a name="range_extension.reference.algorithm_extension.regular.h1"></a>
+          <span><a name="range_extension.reference.algorithm_extension.regular.namespace"></a></span><a class="link" href="regular.html#range_extension.reference.algorithm_extension.regular.namespace">Namespace</a>
+        </h6>
+<p>
+          <code class="computeroutput"><span class="identifier">boost</span></code> or <code class="computeroutput"><span class="identifier">boost</span><span class="special">::</span><span class="identifier">range</span></code>.
+        </p>
+<h6>
+<a name="range_extension.reference.algorithm_extension.regular.h2"></a>
+          <span><a name="range_extension.reference.algorithm_extension.regular.description"></a></span><a class="link" href="regular.html#range_extension.reference.algorithm_extension.regular.description">Description</a>
+        </h6>
+<p>
+          Boost.Lambda functor and C++11 Lambda Expression are neither <a href="http://boost.org/doc/html/DefaultConstructible.html" target="_top">Default
+          Constructible</a> nor <a href="http://boost.org/doc/html/Assignable.html" target="_top">Assignable</a>.
+          That is the reason why a certain iterator containing such a functor doesn't
+          meet even the requirement of Input Iterator concept. Therefore, to meet
+          that requirement, <code class="computeroutput"><span class="identifier">regular</span></code>
+          converts <code class="computeroutput"><span class="identifier">f</span></code> into a <a href="http://www.informit.com/guides/content.aspx?g=cplusplus&amp;seqNum=314" target="_top">Regular</a>
+          concept.
+        </p>
+<h6>
+<a name="range_extension.reference.algorithm_extension.regular.h3"></a>
+          <span><a name="range_extension.reference.algorithm_extension.regular.requirements"></a></span><a class="link" href="regular.html#range_extension.reference.algorithm_extension.regular.requirements">Requirements</a>
+        </h6>
+<p>
+          F is <a href="http://boost.org/doc/html/CopyConstructible.html" target="_top">Copy
+          Constructible</a>.
+        </p>
+<h6>
+<a name="range_extension.reference.algorithm_extension.regular.h4"></a>
+          <span><a name="range_extension.reference.algorithm_extension.regular.header"></a></span><a class="link" href="regular.html#range_extension.reference.algorithm_extension.regular.header">Header</a>
+        </h6>
+<p>
+</p>
+<pre class="programlisting"><span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">range</span><span class="special">/</span><span class="identifier">regular</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
+</pre>
+<p>
+        </p>
+<h6>
+<a name="range_extension.reference.algorithm_extension.regular.h5"></a>
+          <span><a name="range_extension.reference.algorithm_extension.regular.returned_type"></a></span><a class="link" href="regular.html#range_extension.reference.algorithm_extension.regular.returned_type">Returned
+          Type</a>
+        </h6>
+<p>
+          __polymorphic_function__object__ is <a href="http://boost.org/doc/html/DefaultConstructible.html" target="_top">Default
+          Constructible</a>, __asignable__, <a href="http://boost.org/doc/html/LessThanComparable.html" target="_top">Less
+          Than Comparable</a> and <a href="http://boost.org/doc/html/EqualityComparable.html" target="_top">Equality
+          Comparable</a>. Relational operator of the return type tests for pointer
+          equality.
+        </p>
+<h6>
+<a name="range_extension.reference.algorithm_extension.regular.h6"></a>
+          <span><a name="range_extension.reference.algorithm_extension.regular.example"></a></span><a class="link" href="regular.html#range_extension.reference.algorithm_extension.regular.example">Example</a>
+        </h6>
+<p>
+</p>
+<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">iostream</span><span class="special">&gt;</span>
+<span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">range</span><span class="special">/</span><span class="identifier">regular</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
+<span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">range</span><span class="special">/</span><span class="identifier">iteration</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
+<span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">range</span><span class="special">/</span><span class="identifier">adaptor</span><span class="special">/</span><span class="identifier">taken</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
+<span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">lambda</span><span class="special">/</span><span class="identifier">lambda</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
+
+<span class="keyword">void</span> <span class="identifier">disp</span><span class="special">(</span><span class="keyword">int</span> <span class="identifier">x</span><span class="special">)</span>
+<span class="special">{</span>
+    <span class="identifier">std</span><span class="special">::</span><span class="identifier">cout</span> <span class="special">&lt;&lt;</span> <span class="identifier">x</span> <span class="special">&lt;&lt;</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">endl</span><span class="special">;</span>
+<span class="special">}</span>
+
+<span class="keyword">template</span> <span class="special">&lt;</span><span class="keyword">class</span> <span class="identifier">InputIterator</span><span class="special">,</span> <span class="keyword">class</span> <span class="identifier">F</span><span class="special">&gt;</span>
+<span class="keyword">void</span> <span class="identifier">for_each_</span><span class="special">(</span><span class="identifier">InputIterator</span> <span class="identifier">first</span><span class="special">,</span> <span class="identifier">InputIterator</span> <span class="identifier">last</span><span class="special">,</span> <span class="identifier">F</span> <span class="identifier">f</span><span class="special">)</span>
+<span class="special">{</span>
+    <span class="identifier">InputIterator</span> <span class="identifier">it</span><span class="special">;</span> <span class="comment">// Default Constructible</span>
+    <span class="identifier">it</span> <span class="special">=</span> <span class="identifier">first</span><span class="special">;</span> <span class="comment">// Copy Assignable</span>
+    <span class="keyword">for</span> <span class="special">(;</span> <span class="identifier">it</span> <span class="special">!=</span> <span class="identifier">last</span><span class="special">;</span> <span class="special">++</span><span class="identifier">it</span><span class="special">)</span> <span class="special">{</span>
+        <span class="identifier">f</span><span class="special">(*</span><span class="identifier">it</span><span class="special">);</span>
+    <span class="special">}</span>
+<span class="special">}</span>
+
+<span class="keyword">template</span> <span class="special">&lt;</span><span class="keyword">class</span> <span class="identifier">SinglePassRange</span><span class="special">,</span> <span class="keyword">class</span> <span class="identifier">F</span><span class="special">&gt;</span>
+<span class="keyword">void</span> <span class="identifier">for_each_</span><span class="special">(</span><span class="keyword">const</span> <span class="identifier">SinglePassRange</span><span class="special">&amp;</span> <span class="identifier">rng</span><span class="special">,</span> <span class="identifier">F</span> <span class="identifier">f</span><span class="special">)</span>
+<span class="special">{</span>
+    <span class="keyword">return</span> <span class="identifier">for_each_</span><span class="special">(</span><span class="identifier">boost</span><span class="special">::</span><span class="identifier">begin</span><span class="special">(</span><span class="identifier">rng</span><span class="special">),</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">end</span><span class="special">(</span><span class="identifier">rng</span><span class="special">),</span> <span class="identifier">f</span><span class="special">);</span>
+<span class="special">}</span>
+
+<span class="keyword">int</span> <span class="identifier">main</span><span class="special">()</span>
+<span class="special">{</span>
+    <span class="keyword">using</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">lambda</span><span class="special">::</span><span class="identifier">_1</span><span class="special">;</span>
+
+    <span class="identifier">for_each_</span><span class="special">(</span><span class="identifier">boost</span><span class="special">::</span><span class="identifier">iteration</span><span class="special">(</span><span class="number">1</span><span class="special">,</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">regular</span><span class="special">(</span><span class="identifier">_1</span> <span class="special">*</span> <span class="number">2</span><span class="special">))</span> <span class="special">|</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">adaptors</span><span class="special">::</span><span class="identifier">taken</span><span class="special">(</span><span class="number">5</span><span class="special">),</span> <span class="identifier">disp</span><span class="special">);</span>
+<span class="special">}</span>
+</pre>
+<p>
+        </p>
+<p>
+          This would produce the output:
+</p>
+<pre class="programlisting"><span class="number">1</span>
+<span class="number">2</span>
+<span class="number">4</span>
+<span class="number">8</span>
+<span class="number">16</span>
+</pre>
+<p>
+        </p>
+</div>
+<table xmlns:rev="http://www.cs.rpi.edu/~gregod/boost/tools/doc/revision" width="100%"><tr>
+<td align="left"></td>
+<td align="right"><div class="copyright-footer">Copyright &#169; 2005-2007 Shunsuke Sogame<br>Copyright &#169; 2011 Akira Takahashi<p>
+        Distributed under the Boost Software License, Version 1.0. (See accompanying
+        file LICENSE_1_0.txt or copy at <a href="http://www.boost.org/LICENSE_1_0.txt" target="_top">http://www.boost.org/LICENSE_1_0.txt</a>)
+      </p>
+</div></td>
+</tr></table>
+<hr>
+<div class="spirit-nav">
+<a accesskey="p" href="split_at.html"><img src="../../../images/prev.png" alt="Prev"></a><a accesskey="u" href="../algorithm_extension0.html"><img src="../../../images/up.png" alt="Up"></a><a accesskey="h" href="../../../index.html"><img src="../../../images/home.png" alt="Home"></a><a accesskey="n" href="../../design_rationale.html"><img src="../../../images/next.png" alt="Next"></a>
+</div>
+</body>
+</html>
