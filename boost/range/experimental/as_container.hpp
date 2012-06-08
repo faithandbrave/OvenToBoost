@@ -11,12 +11,32 @@
 
 // via pstade::oven::copied
 
+#include <boost/config.hpp>
+
 #include <boost/range/begin.hpp>
 #include <boost/range/end.hpp>
+
+#if !defined(BOOST_NO_INITIALIZER_LISTS) && !defined(BOOST_NO_FUNCTION_TEMPLATE_DEFAULT_ARGS)
+#define BOOST_RANGE_ENABLE_AS_CONTAINER_SFINAE
+#endif
+
+#if defined(BOOST_RANGE_ENABLE_AS_CONTAINER_SFINAE)
+#include <initializer_list>
+#include <boost/utility/enable_if.hpp>
+#include <boost/mpl/bool.hpp>
+#endif
 
 namespace boost {
 
 namespace range_detail {
+
+#if defined(BOOST_RANGE_ENABLE_AS_CONTAINER_SFINAE)
+template <class>
+struct is_initializer_list : mpl::false_ {};
+
+template <class T>
+struct is_initializer_list<std::initializer_list<T> > : mpl::true_ {};
+#endif
 
 template <class Range>
 class as_container_wrapper {
@@ -25,11 +45,20 @@ public:
     explicit as_container_wrapper(Range& range)
         : range_(range) {}
 
+#if defined(BOOST_RANGE_ENABLE_AS_CONTAINER_SFINAE)
+    template <class Container,
+              class Enable = typename boost::disable_if<is_initializer_list<Container>>::type>
+    operator Container() const
+    {
+        return Container(::boost::begin(range_), ::boost::end(range_));
+    }
+#else
     template <class Container>
     operator Container() const
     {
         return Container(::boost::begin(range_), ::boost::end(range_));
     }
+#endif
 };
 
 struct as_container_functor {
@@ -62,6 +91,10 @@ inline range_detail::as_container_wrapper<const Range>
 }
 
 } // namespace boost
+
+#if defined(BOOST_RANGE_ENABLE_AS_CONTAINER_SFINAE)
+#undef BOOST_RANGE_ENABLE_AS_CONTAINER_SFINAE
+#endif
 
 #endif // BOOST_RANGE_AS_CONTAINER_INCLUDE
 

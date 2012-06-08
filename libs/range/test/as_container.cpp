@@ -10,35 +10,63 @@
 #include <boost/range/algorithm/equal.hpp>
 
 #include <vector>
+#include <deque>
+#include <list>
+
 #include <boost/assign/list_of.hpp>
 #include <boost/range/adaptor/filtered.hpp>
 #include <boost/range/experimental/as_container.hpp>
 
 bool is_odd(int x) { return x % 2 == 0; }
 
-int main()
+template <class Container>
+void test()
 {
     // pipe operator style
     {
-        const std::vector<int> v1 = boost::assign::list_of(1)(2)(3)(4)(5);
-        const std::vector<int> v2 = v1 | boost::adaptors::filtered(is_odd) | boost::as_container;
+        const Container c1 = boost::assign::list_of(1)(2)(3)(4)(5);
+
+        const Container c2 = c1 | boost::adaptors::filtered(is_odd) | boost::as_container;
 
         BOOST_TEST(boost::equal(
-            v2,
+            c2,
+            boost::assign::list_of(2)(4)
+        ));
+
+        std::vector<int> c3;
+        c3 = c1 | boost::adaptors::filtered(is_odd) | boost::as_container;
+
+        BOOST_TEST(boost::equal(
+            c3,
             boost::assign::list_of(2)(4)
         ));
     }
 
     // function style
     {
-        const std::vector<int> v1 = boost::assign::list_of(1)(2)(3)(4)(5);
-        const std::vector<int> v2 = boost::as_container(boost::adaptors::filter(v1, is_odd));
+        const Container c1 = boost::assign::list_of(1)(2)(3)(4)(5);
+        const Container c2 = boost::as_container(boost::adaptors::filter(c1, is_odd));
 
         BOOST_TEST(boost::equal(
-            v2,
+            c2,
+            boost::assign::list_of(2)(4)
+        ));
+
+        std::vector<int> c3;
+        c3 = boost::as_container(boost::adaptors::filter(c1, is_odd));
+
+        BOOST_TEST(boost::equal(
+            c3,
             boost::assign::list_of(2)(4)
         ));
     }
+}
+
+int main()
+{
+    test<std::vector<int> >();
+    test<std::deque<int> >();
+    test<std::list<int> >();
 
     return boost::report_errors();
 }
