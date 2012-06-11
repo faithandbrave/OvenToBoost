@@ -10,6 +10,9 @@
 #include <boost/range/adaptor/dropped_while.hpp>
 
 #include <vector>
+#include <deque>
+#include <list>
+
 #include <boost/assign/list_of.hpp>
 #include <boost/range/access/front.hpp>
 #include <boost/lambda/lambda.hpp>
@@ -18,53 +21,61 @@
 
 bool is_less4(int x) { return x < 4; }
 
-int main()
+template <class Container>
+void test()
 {
     // operator style
     {
-        const std::vector<int> v = boost::assign::list_of(3)(1)(4)(2)(5);
-        const std::vector<int> expected = boost::assign::list_of(4)(2)(5);
-        BOOST_TEST(boost::equal(v | boost::adaptors::dropped_while(is_less4), expected));
+        const Container c = boost::assign::list_of(3)(1)(4)(2)(5);
+        const Container expected = boost::assign::list_of(4)(2)(5);
+        BOOST_TEST(boost::equal(c | boost::adaptors::dropped_while(is_less4), expected));
     }
     {
-        std::vector<int> v = boost::assign::list_of(3)(1)(4)(2)(5);
-        const std::vector<int> expected = boost::assign::list_of(4)(2)(5);
-        BOOST_TEST(boost::equal(v | boost::adaptors::dropped_while(is_less4), expected));
+        Container c = boost::assign::list_of(3)(1)(4)(2)(5);
+        const Container expected = boost::assign::list_of(4)(2)(5);
+        BOOST_TEST(boost::equal(c | boost::adaptors::dropped_while(is_less4), expected));
     }
     {
         using boost::lambda::_1;
 
-        std::vector<int> v = boost::assign::list_of(3)(1)(4)(2)(5);
-        v |+ boost::adaptors::dropped_while(_1 % 2 != 0)
+        Container c = boost::assign::list_of(3)(1)(4)(2)(5);
+        c |+ boost::adaptors::dropped_while(_1 % 2 != 0)
           |  boost::range::access::front = 0;
 
-        const std::vector<int> expected = boost::assign::list_of(3)(1)(0)(2)(5);
-        BOOST_TEST(boost::equal(v, expected));
+        const Container expected = boost::assign::list_of(3)(1)(0)(2)(5);
+        BOOST_TEST(boost::equal(c, expected));
     }
 
     // function style
     {
-        const std::vector<int> v = boost::assign::list_of(3)(1)(4)(2)(5);
-        const std::vector<int> expected = boost::assign::list_of(4)(2)(5);
-        BOOST_TEST(boost::equal(boost::adaptors::drop_while(v, is_less4), expected));
+        const Container c = boost::assign::list_of(3)(1)(4)(2)(5);
+        const Container expected = boost::assign::list_of(4)(2)(5);
+        BOOST_TEST(boost::equal(boost::adaptors::drop_while(c, is_less4), expected));
     }
     {
-        std::vector<int> v = boost::assign::list_of(3)(1)(4)(2)(5);
-        const std::vector<int> expected = boost::assign::list_of(4)(2)(5);
-        BOOST_TEST(boost::equal(boost::adaptors::drop_while(v, is_less4), expected));
+        Container c = boost::assign::list_of(3)(1)(4)(2)(5);
+        const Container expected = boost::assign::list_of(4)(2)(5);
+        BOOST_TEST(boost::equal(boost::adaptors::drop_while(c, is_less4), expected));
     }
     {
         using boost::lambda::_1;
 
-        std::vector<int> v = boost::assign::list_of(3)(1)(4)(2)(5);
+        Container c = boost::assign::list_of(3)(1)(4)(2)(5);
 
         boost::range::access::front(
-            boost::adaptors::drop_while(v, boost::regular(_1 % 2 != 0))
+            boost::adaptors::drop_while(c, boost::regular(_1 % 2 != 0))
         ) = 0;
 
-        const std::vector<int> expected = boost::assign::list_of(3)(1)(0)(2)(5);
-        BOOST_TEST(boost::equal(v, expected));
+        const Container expected = boost::assign::list_of(3)(1)(0)(2)(5);
+        BOOST_TEST(boost::equal(c, expected));
     }
+}
+
+int main()
+{
+    test<std::vector<int> >();
+    test<std::deque<int> >();
+    test<std::list<int> >();
 
     return boost::report_errors();
 }

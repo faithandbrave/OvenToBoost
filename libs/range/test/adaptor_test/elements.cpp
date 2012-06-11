@@ -9,8 +9,10 @@
 
 #include <boost/range/adaptor/elements.hpp>
 
-#include <iostream>
 #include <vector>
+#include <deque>
+#include <list>
+
 #include <string>
 #include <boost/range/access/front.hpp>
 #include <boost/range/algorithm/equal.hpp>
@@ -35,7 +37,8 @@ BOOST_FUSION_ADAPT_STRUCT(
     (int, id)(std::string, name)(int, age)
 )
 
-int main()
+template <template <class T, class=std::allocator<T> > class Container>
+void test()
 {
     using boost::adaptors::elements;
     using boost::adaptors::extract_elements;
@@ -43,79 +46,87 @@ int main()
 
     // operator style
     {
-        const std::vector<fusion::vector<int, char, double> > v = boost::assign::list_of
+        const Container<fusion::vector<int, char, double> > c = boost::assign::list_of
             (fusion::make_vector(1, 'a', 0.1))
             (fusion::make_vector(2, 'b', 0.2))
             (fusion::make_vector(3, 'c', 0.3))
             ;
 
-        const std::vector<char> expected = boost::assign::list_of('a')('b')('c');
-        BOOST_TEST(boost::equal(v | elements<1>(), expected));
+        const Container<char> expected = boost::assign::list_of('a')('b')('c');
+        BOOST_TEST(boost::equal(c | elements<1>(), expected));
     }
     {
-        std::vector<fusion::vector<int, char, double> > v = boost::assign::list_of
+        Container<fusion::vector<int, char, double> > c = boost::assign::list_of
             (fusion::make_vector(1, 'a', 0.1))
             (fusion::make_vector(2, 'b', 0.2))
             (fusion::make_vector(3, 'c', 0.3))
             ;
 
-        const std::vector<char> expected = boost::assign::list_of('a')('b')('c');
-        BOOST_TEST(boost::equal(v | elements<1>(), expected));
+        const Container<char> expected = boost::assign::list_of('a')('b')('c');
+        BOOST_TEST(boost::equal(c | elements<1>(), expected));
 
-        v | elements<1>() | front = 'z';
-        const std::vector<int> expected2 = boost::assign::list_of('z')('b')('c');
-        BOOST_TEST(boost::equal(v | elements<1>(), expected2));
+        c | elements<1>() | front = 'z';
+        const Container<int> expected2 = boost::assign::list_of('z')('b')('c');
+        BOOST_TEST(boost::equal(c | elements<1>(), expected2));
     }
     {
-        std::vector<Person> v = boost::assign::list_of
+        Container<Person> c = boost::assign::list_of
             (Person(1, "Alice", 20))
             (Person(2, "Bob", 28))
             (Person(3, "Millia", 16))
             ;
 
-        const std::vector<std::string> expected =
+        const Container<std::string> expected =
             boost::assign::list_of("Alice")("Bob")("Millia");
 
-        BOOST_TEST(boost::equal(v | elements<1>(), expected));
+        BOOST_TEST(boost::equal(c | elements<1>(), expected));
     }
 
     // function style
     {
-        const std::vector<fusion::vector<int, char, double> > v = boost::assign::list_of
+        const Container<fusion::vector<int, char, double> > c = boost::assign::list_of
             (fusion::make_vector(1, 'a', 0.1))
             (fusion::make_vector(2, 'b', 0.2))
             (fusion::make_vector(3, 'c', 0.3))
             ;
 
-        const std::vector<char> expected = boost::assign::list_of('a')('b')('c');
-        BOOST_TEST(boost::equal(extract_elements<1>(v), expected));
+        const Container<char> expected = boost::assign::list_of('a')('b')('c');
+        BOOST_TEST(boost::equal(extract_elements<1>(c), expected));
     }
     {
-        std::vector<fusion::vector<int, char, double> > v = boost::assign::list_of
+        Container<fusion::vector<int, char, double> > c = boost::assign::list_of
             (fusion::make_vector(1, 'a', 0.1))
             (fusion::make_vector(2, 'b', 0.2))
             (fusion::make_vector(3, 'c', 0.3))
             ;
 
-        const std::vector<char> expected = boost::assign::list_of('a')('b')('c');
-        BOOST_TEST(boost::equal(extract_elements<1>(v), expected));
+        const Container<char> expected = boost::assign::list_of('a')('b')('c');
+        BOOST_TEST(boost::equal(extract_elements<1>(c), expected));
 
-        front(extract_elements<1>(v)) = 'z';
-        const std::vector<int> expected2 = boost::assign::list_of('z')('b')('c');
-        BOOST_TEST(boost::equal(extract_elements<1>(v), expected2));
+        front(extract_elements<1>(c)) = 'z';
+        const Container<int> expected2 = boost::assign::list_of('z')('b')('c');
+        BOOST_TEST(boost::equal(extract_elements<1>(c), expected2));
     }
     {
-        std::vector<Person> v = boost::assign::list_of
+        Container<Person> c = boost::assign::list_of
             (Person(1, "Alice", 20))
             (Person(2, "Bob", 28))
             (Person(3, "Millia", 16))
             ;
 
-        const std::vector<std::string> expected =
+        const Container<std::string> expected =
             boost::assign::list_of("Alice")("Bob")("Millia");
 
-        BOOST_TEST(boost::equal(extract_elements<1>(v), expected));
+        BOOST_TEST(boost::equal(extract_elements<1>(c), expected));
     }
+
+}
+
+int main()
+{
+    test<std::vector>();
+    test<std::deque>();
+    test<std::list>();
 
     return boost::report_errors();
 }
