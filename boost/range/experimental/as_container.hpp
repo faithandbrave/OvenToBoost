@@ -77,17 +77,17 @@ struct as_container_functor {
     }
 };
 
+template <class Range>
+inline as_container_wrapper<const Range>
+    operator|(const Range& r, as_container_functor f)
+{
+    return f(r);
+}
+
 } // namespace range_detail
 
 namespace {
     const range_detail::as_container_functor as_container = {};
-}
-
-template <class Range>
-inline range_detail::as_container_wrapper<const Range>
-    operator|(const Range& r, range_detail::as_container_functor f)
-{
-    return f(r);
 }
 
 } // namespace boost
