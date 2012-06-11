@@ -16,7 +16,7 @@
 #include <boost/range/begin.hpp>
 #include <boost/range/end.hpp>
 
-#if !defined(BOOST_NO_INITIALIZER_LISTS) && !defined(BOOST_NO_FUNCTION_TEMPLATE_DEFAULT_ARGS)
+#if !defined(BOOST_NO_CXX11_HDR_INITIALIZER_LIST) && !defined(BOOST_NO_FUNCTION_TEMPLATE_DEFAULT_ARGS)
 #define BOOST_RANGE_ENABLE_AS_CONTAINER_SFINAE
 #endif
 
