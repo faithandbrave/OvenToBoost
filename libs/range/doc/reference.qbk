@@ -8,6 +8,7 @@
 [include reference/adaptors.qbk]
 [include reference/regular_extension.qbk]
 [include reference/algorithm_ext.qbk]
+[include reference/access.qbk]
 [include reference/range_utility.qbk]
 
 [endsect]
