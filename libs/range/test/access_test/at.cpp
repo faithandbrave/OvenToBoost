@@ -7,72 +7,82 @@
 // Version 1.0. (See accompanying file LICENSE_1_0.txt or copy at
 // http://www.boost.org/LICENSE_1_0.txt)
 
-#include <iostream>
-#include <vector>
 #include <boost/range/access/at.hpp>
+
+#include <vector>
+#include <deque>
+
 #include <boost/range/adaptor/transformed.hpp>
 #include <boost/range/algorithm/equal.hpp>
 #include <boost/detail/lightweight_test.hpp>
 #include <boost/assign/list_of.hpp>
 
-int main()
+template <class RandomAccessContainer>
+void test()
 {
     using boost::range::access::at;
     using boost::range::access::value_at;
 
     // operator style
     {
-        const std::vector<int> v = boost::assign::list_of(3)(1)(4)(2)(5);
-        BOOST_TEST((v | at(2)) == 4);
-        BOOST_TEST((v | value_at(2)) == 4);
+        const RandomAccessContainer c = boost::assign::list_of(3)(1)(4)(2)(5);
+        BOOST_TEST((c | at(2)) == 4);
+        BOOST_TEST((c | value_at(2)) == 4);
     }
     {
-        std::vector<int> v = boost::assign::list_of(3)(1)(4)(2)(5);
-        BOOST_TEST((v | at(2)) == 4);
-        BOOST_TEST((v | value_at(2)) == 4);
+        RandomAccessContainer c = boost::assign::list_of(3)(1)(4)(2)(5);
+        BOOST_TEST((c | at(2)) == 4);
+        BOOST_TEST((c | value_at(2)) == 4);
 
-        v | at(2) = 0;
-        const std::vector<int> expected = boost::assign::list_of(3)(1)(0)(2)(5);
-        BOOST_TEST(boost::equal(v, expected));
+        c | at(2) = 0;
+        const RandomAccessContainer expected = boost::assign::list_of(3)(1)(0)(2)(5);
+        BOOST_TEST(boost::equal(c, expected));
     }
 
     // function style
     {
-        const std::vector<int> v = boost::assign::list_of(3)(1)(4)(2)(5);
-        BOOST_TEST(at(v, 2) == 4);
-        BOOST_TEST(value_at(v, 2) == 4);
+        const RandomAccessContainer c = boost::assign::list_of(3)(1)(4)(2)(5);
+        BOOST_TEST(at(c, 2) == 4);
+        BOOST_TEST(value_at(c, 2) == 4);
     }
     {
-        std::vector<int> v = boost::assign::list_of(3)(1)(4)(2)(5);
-        BOOST_TEST(at(v, 2) == 4);
-        BOOST_TEST(value_at(v, 2) == 4);
+        RandomAccessContainer c = boost::assign::list_of(3)(1)(4)(2)(5);
+        BOOST_TEST(at(c, 2) == 4);
+        BOOST_TEST(value_at(c, 2) == 4);
 
-        at(v, 2) = 0;
-        const std::vector<int> expected = boost::assign::list_of(3)(1)(0)(2)(5);
-        BOOST_TEST(boost::equal(v, expected));
+        at(c, 2) = 0;
+        const RandomAccessContainer expected = boost::assign::list_of(3)(1)(0)(2)(5);
+        BOOST_TEST(boost::equal(c, expected));
     }
 
     // result_of
     {
-        const std::vector<int> v1 = boost::assign::list_of(1)(2)(3);
-        const std::vector<int> v2 = boost::assign::list_of(4)(5)(6);
-        const std::vector<std::vector<int> > v = boost::assign::list_of(v1)(v2);
+        const RandomAccessContainer c1 = boost::assign::list_of(1)(2)(3);
+        const RandomAccessContainer c2 = boost::assign::list_of(4)(5)(6);
+        const std::vector<RandomAccessContainer > c = boost::assign::list_of(c1)(c2);
 
-        const std::vector<int> expected = boost::assign::list_of
+        const RandomAccessContainer expected = boost::assign::list_of
             (2)
             (5)
             ;
 
         BOOST_TEST(boost::equal(
-            v | boost::adaptors::transformed(at(1)),
+            c | boost::adaptors::transformed(at(1)),
             expected
         ));
 
         BOOST_TEST(boost::equal(
-            v | boost::adaptors::transformed(value_at(1)),
+            c | boost::adaptors::transformed(value_at(1)),
             expected
         ));
     }
+
+}
+
+int main()
+{
+    test<std::vector<int> >();
+    test<std::deque<int> >();
 
     return boost::report_errors();
 }

@@ -7,16 +7,20 @@
 // Version 1.0. (See accompanying file LICENSE_1_0.txt or copy at
 // http://www.boost.org/LICENSE_1_0.txt)
 
-#include <iostream>
-#include <vector>
 #include <boost/range/access/front.hpp>
+
+#include <vector>
+#include <deque>
+#include <list>
+
 #include <boost/range/adaptor/dropped.hpp>
 #include <boost/range/adaptor/transformed.hpp>
 #include <boost/range/algorithm/equal.hpp>
 #include <boost/detail/lightweight_test.hpp>
 #include <boost/assign/list_of.hpp>
 
-int main()
+template <class SinglePassContainer>
+void test()
 {
     using boost::adaptors::dropped;
     using boost::range::access::front;
@@ -24,57 +28,65 @@ int main()
 
     // operator style
     {
-        const std::vector<int> v = boost::assign::list_of(1)(2)(3)(4)(5)(6);
-        BOOST_TEST((v | dropped(2) | front) == 3);
-        BOOST_TEST((v | dropped(2) | value_front) == 3);
+        const SinglePassContainer c = boost::assign::list_of(1)(2)(3)(4)(5)(6);
+        BOOST_TEST((c | dropped(2) | front) == 3);
+        BOOST_TEST((c | dropped(2) | value_front) == 3);
     }
     {
-        std::vector<int> v = boost::assign::list_of(1)(2)(3)(4)(5)(6);
-        BOOST_TEST((v | dropped(2) | front) == 3);
-        BOOST_TEST((v | dropped(2) | value_front) == 3);
+        SinglePassContainer c = boost::assign::list_of(1)(2)(3)(4)(5)(6);
+        BOOST_TEST((c | dropped(2) | front) == 3);
+        BOOST_TEST((c | dropped(2) | value_front) == 3);
 
-        v | dropped(2) | front = 0;
-        const std::vector<int> expected = boost::assign::list_of(1)(2)(0)(4)(5)(6);
-        BOOST_TEST(boost::equal(v, expected));
+        c | dropped(2) | front = 0;
+        const SinglePassContainer expected = boost::assign::list_of(1)(2)(0)(4)(5)(6);
+        BOOST_TEST(boost::equal(c, expected));
     }
 
     // function style
     {
-        const std::vector<int> v = boost::assign::list_of(1)(2)(3)(4)(5)(6);
-        BOOST_TEST(front(v | dropped(2)) == 3);
-        BOOST_TEST(value_front(v | dropped(2)) == 3);
+        const SinglePassContainer c = boost::assign::list_of(1)(2)(3)(4)(5)(6);
+        BOOST_TEST(front(c | dropped(2)) == 3);
+        BOOST_TEST(value_front(c | dropped(2)) == 3);
     }
     {
-        std::vector<int> v = boost::assign::list_of(1)(2)(3)(4)(5)(6);
-        BOOST_TEST(front(v | dropped(2)) == 3);
-        BOOST_TEST(value_front(v | dropped(2)) == 3);
+        SinglePassContainer c = boost::assign::list_of(1)(2)(3)(4)(5)(6);
+        BOOST_TEST(front(c | dropped(2)) == 3);
+        BOOST_TEST(value_front(c | dropped(2)) == 3);
 
-        front(v | dropped(2)) = 0;
-        const std::vector<int> expected = boost::assign::list_of(1)(2)(0)(4)(5)(6);
-        BOOST_TEST(boost::equal(v, expected));
+        front(c | dropped(2)) = 0;
+        const SinglePassContainer expected = boost::assign::list_of(1)(2)(0)(4)(5)(6);
+        BOOST_TEST(boost::equal(c, expected));
     }
 
     // result_of
     {
-        const std::vector<int> v1 = boost::assign::list_of(1)(2)(3);
-        const std::vector<int> v2 = boost::assign::list_of(4)(5)(6);
-        const std::vector<std::vector<int> > v = boost::assign::list_of(v1)(v2);
+        const SinglePassContainer c1 = boost::assign::list_of(1)(2)(3);
+        const SinglePassContainer c2 = boost::assign::list_of(4)(5)(6);
+        const std::vector<SinglePassContainer> c = boost::assign::list_of(c1)(c2);
 
-        const std::vector<int> expected = boost::assign::list_of
+        const SinglePassContainer expected = boost::assign::list_of
             (1)
             (4)
             ;
 
         BOOST_TEST(boost::equal(
-            v | boost::adaptors::transformed(front),
+            c | boost::adaptors::transformed(front),
             expected
         ));
 
         BOOST_TEST(boost::equal(
-            v | boost::adaptors::transformed(value_front),
+            c | boost::adaptors::transformed(value_front),
             expected
         ));
     }
+
+}
+
+int main()
+{
+    test<std::vector<int> >();
+    test<std::deque<int> >();
+    test<std::list<int> >();
 
     return boost::report_errors();
 }
