@@ -5,12 +5,12 @@
 /]
 [section:range_access Range Access]
 
-[include adaptors/at.qbk]
-[include adaptors/value_at.qbk]
-[include adaptors/back.qbk]
-[include adaptors/value_back.qbk]
-[include adaptors/front.qbk]
-[include adaptors/value_front.qbk]
+[include access/at.qbk]
+[include access/value_at.qbk]
+[include access/back.qbk]
+[include access/value_back.qbk]
+[include access/front.qbk]
+[include access/value_front.qbk]
 
 [endsect]
 
