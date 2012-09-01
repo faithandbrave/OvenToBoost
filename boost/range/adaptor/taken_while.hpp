@@ -85,7 +85,7 @@ namespace range_detail {
             : base(iter_t(::boost::begin(rng), ::boost::end(rng), read_then_pred_t(pred)),
                    iter_t(::boost::end(rng), ::boost::end(rng), read_then_pred_t(pred)))
         {
-            BOOST_CONCEPT_ASSERT((SinglePassRangeConcept<Range>));
+            BOOST_RANGE_CONCEPT_ASSERT((SinglePassRangeConcept<Range>));
         }
     };
 
