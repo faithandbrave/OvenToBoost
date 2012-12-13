@@ -21,17 +21,38 @@ namespace {
     std::vector<int> seconds;
 }
 
-void print(int first, int second)
+void mutable_fun(int& first, int& second)
+{
+    ++first;
+    ++second;
+}
+
+void constant_fun(int first, int second)
 {
     firsts.push_back(first);
     seconds.push_back(second);
 }
 
-int main()
+std::vector<int> init_values()
 {
-    const std::vector<int> v = boost::assign::list_of(1)(2)(3)(4)(5);
+    return boost::assign::list_of(1)(2)(3)(4)(5);
+}
 
-    boost::fused_for_each(v | boost::adaptors::adjacent_zipped, print);
+template <class Container, class Expression>
+void mutable_test(Container& c, const Expression& expr)
+{
+    boost::fused_for_each(expr, mutable_fun);
+
+    BOOST_TEST(boost::equal(
+        c,
+        boost::assign::list_of(2)(4)(5)(6)(6)
+    ));
+}
+
+template <class Container, class Expression>
+void constant_test(const Container& c, const Expression& expr)
+{
+    boost::fused_for_each(expr, constant_fun);
 
     BOOST_TEST(boost::equal(
         firsts,
@@ -41,6 +62,36 @@ int main()
         seconds,
         boost::assign::list_of(2)(3)(4)(5)
     ));
+
+    firsts.clear();
+    seconds.clear();
+}
+
+int main()
+{
+    // pipe style (mutable)
+    {
+        std::vector<int> v = init_values();
+        mutable_test(v, v | boost::adaptors::adjacent_zipped);
+    }
+
+    // pipe style (constant)
+    {
+        const std::vector<int> v = init_values();
+        constant_test(v, v | boost::adaptors::adjacent_zipped);
+    }
+
+    // function style (mutable)
+    {
+        std::vector<int> v = init_values();
+        mutable_test(v, boost::adaptors::adjacent_zip(v));
+    }
+
+    // function style (constant)
+    {
+        std::vector<int> v = init_values();
+        constant_test(v, boost::adaptors::adjacent_zip(v));
+    }
 
     return boost::report_errors();
 }
