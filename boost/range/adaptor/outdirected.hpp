@@ -38,7 +38,7 @@ namespace range_detail {
         outdirected_range(SinglePassRng& rng)
             : base(iter_t(::boost::begin(rng)), iter_t(::boost::end(rng)))
         {
-            BOOST_CONCEPT_ASSERT((SinglePassRangeConcept<SinglePassRng>));
+            BOOST_RANGE_CONCEPT_ASSERT((SinglePassRangeConcept<SinglePassRng>));
         }
     };
 

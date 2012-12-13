@@ -44,7 +44,7 @@ namespace range_detail {
                                 boost::adaptors::detail::not_(pred)),
                    ::boost::end(rng))
         {
-            BOOST_CONCEPT_ASSERT((SinglePassRangeConcept<Range>));
+            BOOST_RANGE_CONCEPT_ASSERT((SinglePassRangeConcept<Range>));
         }
     };
 
