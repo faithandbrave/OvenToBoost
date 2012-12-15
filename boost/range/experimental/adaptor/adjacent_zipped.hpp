@@ -23,49 +23,64 @@ namespace range_detail {
     struct adjacent_zipped_forwarder {};
 
     template <class BidirectionalRng>
-    struct adjacent_zipped_result {
-        typedef zip_range<
-            const boost::iterator_range<typename boost::range_iterator<BidirectionalRng>::type>,
-            const dropped_range<BidirectionalRng>
-        > type;
+    struct adjacent_zipped_range
+                : zip_range<
+                    const boost::iterator_range<
+                        typename boost::range_iterator<BidirectionalRng>::type
+                     >,
+                    const dropped_range<BidirectionalRng>
+                > {
+
+        typedef
+            zip_range<
+                const boost::iterator_range<
+                     typename boost::range_iterator<BidirectionalRng>::type
+                >,
+                const dropped_range<BidirectionalRng>
+            >
+        base;
+
+        explicit adjacent_zipped_range(BidirectionalRng& r)
+            : base(boost::combine(
+                        boost::make_iterator_range(boost::begin(r), boost::prior(boost::end(r))),
+                        r | boost::adaptors::dropped(1)
+                    )) {}
     };
 
     template <class BidirectionalRng>
-    inline typename adjacent_zipped_result<BidirectionalRng>::type
+    inline adjacent_zipped_range<BidirectionalRng>
     operator|(BidirectionalRng& r, adjacent_zipped_forwarder)
     {
-        return boost::combine(
-                    boost::make_iterator_range(boost::begin(r), boost::prior(boost::end(r))),
-                    r | boost::adaptors::dropped(1));
+        return adjacent_zipped_range<BidirectionalRng>(r);
     }
 
     template <class BidirectionalRng>
-    inline typename adjacent_zipped_result<const BidirectionalRng>::type
+    inline adjacent_zipped_range<const BidirectionalRng>
     operator|(const BidirectionalRng& r, adjacent_zipped_forwarder)
     {
-        return boost::combine(
-                    boost::make_iterator_range(boost::begin(r), boost::prior(boost::end(r))),
-                    r | boost::adaptors::dropped(1));
+        return adjacent_zipped_range<const BidirectionalRng>(r);
     }
 
 } // namespace range_detail
 
     namespace adaptors
     {
+        using range_detail::adjacent_zipped_range;
+
         namespace
         {
             const range_detail::adjacent_zipped_forwarder adjacent_zipped = {};
         }
 
         template <class BidirectionalRng>
-        inline typename range_detail::adjacent_zipped_result<BidirectionalRng>::type
+        inline adjacent_zipped_range<BidirectionalRng>
         adjacent_zip(BidirectionalRng& rng)
         {
             return rng | adjacent_zipped;
         }
 
-		template <class BidirectionalRng>
-        inline typename range_detail::adjacent_zipped_result<const BidirectionalRng>::type
+        template <class BidirectionalRng>
+        inline adjacent_zipped_range<const BidirectionalRng>
         adjacent_zip(const BidirectionalRng& rng)
         {
             return rng | adjacent_zipped;
