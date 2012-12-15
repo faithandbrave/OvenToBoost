@@ -63,10 +63,10 @@ namespace range_detail {
 
 } // namespace range_detail
 
+    using range_detail::adjacent_zipped_range;
+
     namespace adaptors
     {
-        using range_detail::adjacent_zipped_range;
-
         namespace
         {
             const range_detail::adjacent_zipped_forwarder adjacent_zipped = {};
