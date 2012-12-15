@@ -66,6 +66,7 @@ int main()
 This library provides regular operator : operator|+().[br]
 It makes easier to use lambda expression with Range Adaptors.
 
+[include adaptors/adjacent_zipped.qbk]
 [include adaptors/dropped.qbk]
 [include adaptors/dropped_while.qbk]
 [include adaptors/elements.qbk]
