@@ -67,6 +67,17 @@ void constant_test(const Container& c, const Expression& expr)
     seconds.clear();
 }
 
+void never_call_fun(int first, int second)
+{
+    BOOST_TEST(false);
+}
+
+void empty_test()
+{
+    const std::vector<int> v;
+    boost::fused_for_each(v | boost::adaptors::adjacent_zipped, never_call_fun);
+}
+
 int main()
 {
     // pipe style (mutable)
@@ -92,6 +103,8 @@ int main()
         std::vector<int> v = init_values();
         constant_test(v, boost::adaptors::adjacent_zip(v));
     }
+
+    empty_test();
 
     return boost::report_errors();
 }

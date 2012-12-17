@@ -42,9 +42,27 @@ namespace range_detail {
 
         explicit adjacent_zipped_range(BidirectionalRng& r)
             : base(boost::combine(
-                        boost::make_iterator_range(boost::begin(r), boost::prior(boost::end(r))),
-                        r | boost::adaptors::dropped(1)
+                        boost::make_iterator_range(boost::begin(r), get_end(r)),
+                        r | boost::adaptors::dropped(get_drop_count(r))
                     )) {}
+
+    private:
+        static typename boost::range_iterator<BidirectionalRng>::type get_end(BidirectionalRng& r)
+        {
+            typedef typename boost::range_iterator<BidirectionalRng>::type iter;
+            iter first = boost::begin(r);
+            iter last = boost::end(r);
+            return first == last ? last : boost::prior(last);
+        }
+
+        static typename boost::range_difference<BidirectionalRng>::type
+            get_drop_count(BidirectionalRng& r)
+        {
+            typedef typename boost::range_iterator<BidirectionalRng>::type iter;
+            iter first = boost::begin(r);
+            iter last = boost::end(r);
+            return first == last ? 0 : 1;
+        }
     };
 
     template <class BidirectionalRng>
