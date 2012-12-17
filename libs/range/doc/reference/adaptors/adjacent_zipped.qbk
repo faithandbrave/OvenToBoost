@@ -13,7 +13,6 @@
     [[Function] [`boost::adaptors::adjacent_zip(rng)`]]
 ]
 
-* [*Precondition:]  `rng` is not empty.
 * [*Range Category:] __bidirectional_range__
 * [*Range Return Type:] boost::adjacent_zip_range<Range>
 * [*Returned Range Category:] The minimum of the range category of `rng` and __bidirectional_range__
