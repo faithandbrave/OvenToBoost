@@ -27,6 +27,7 @@ rule range-test ( name : includes * )
 }
 
 test-suite range_extension :
+    [ range-test adaptor_test/adjacent_zipped ]
     [ range-test adaptor_test/dropped ]
     [ range-test adaptor_test/dropped_while ]
     [ range-test adaptor_test/elements ]

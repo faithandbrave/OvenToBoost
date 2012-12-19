@@ -11,6 +11,8 @@
 // http://www.boost.org/LICENSE_1_0.txt)
 
 #include <boost/config.hpp>
+#include <boost/concept_check.hpp>
+#include <boost/range/concepts.hpp>
 #include <boost/range/adaptor/argument_fwd.hpp>
 #include <boost/range/adaptor/dropped.hpp>
 #include <boost/range/combine.hpp>
@@ -30,6 +32,8 @@ namespace range_detail {
                      >,
                     const dropped_range<BidirectionalRng>
                 > {
+
+		BOOST_RANGE_CONCEPT_ASSERT((BidirectionalRangeConcept<BidirectionalRng>));
 
         typedef
             zip_range<
