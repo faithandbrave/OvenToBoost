@@ -5,7 +5,7 @@
 /]
 [section adjacent_zipped]
 
-`adjacent_zipped`, applies to the base range, returns a range of tuple consists of adjacent elements.
+`adjacent_zipped`, applies to the base range, returns a range of tuples consists of adjacent elements.
 
 [table
     [[Syntax] [Code]]
