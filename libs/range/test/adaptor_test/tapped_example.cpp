@@ -9,36 +9,57 @@
 
 #include <iostream>
 #include <vector>
-#include <boost/assign/list_of.hpp>
-#include <boost/range/adaptor/filtered.hpp>
 #include <boost/range/algorithm/for_each.hpp>
+#include <boost/range/adaptor/filtered.hpp>
+#include <boost/range/adaptor/transformed.hpp>
+#include <boost/range/adaptor/memoized.hpp>
 #include <boost/range/experimental/adaptor/tapped.hpp>
-#include <boost/lambda/lambda.hpp>
 
-void nop(int x)
+int ident(int x)
 {
-    static_cast<void>(x);
+    std::cout << "ident:" << x << std::endl;
+    return x;
 }
 
-int increment(int x)
+int is_even(int x)
 {
-    return x + 1;
+    return x % 2 == 0;
+}
+
+void tap_print(int x)
+{
+    std::cout << ":" << x << std::endl;
+}
+
+void print(int x)
+{
+    std::cout << x << std::endl;
 }
 
 int main()
 {
-    using boost::lambda::_1;
+    std::vector<int> v = {1, 2, 3, 4, 5};
 
-    const std::vector<int> v = boost::assign::list_of(1)(2)(3);
-
-    boost::for_each(v |+ boost::adaptors::tapped(std::cout << _1 << '\n')
-                      |  boost::adaptors::transformed(increment),
-                    nop);
+    boost::for_each(v | boost::adaptors::transformed(ident)
+                      | boost::adaptors::memoized
+                      | boost::adaptors::tapped(tap_print)
+                      | boost::adaptors::filtered(is_even),
+                    print);
 }
+
 /*
 output:
-1
+ident:1
+:1
+ident:2
+:2
+ident:3
+:3
+ident:4
+:4
+ident:5
+:5
 2
-3
+4
 */
 

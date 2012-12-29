@@ -9,39 +9,66 @@
 // Version 1.0. (See accompanying file LICENSE_1_0.txt or copy at
 // http://www.boost.org/LICENSE_1_0.txt)
 
+#include <algorithm>
 #include <boost/range/adaptor/regular_extension/transformed.hpp>
 
 namespace boost {
 namespace range_detail {
 
-template <class F, class ValueType>
-class tapped_functor {
-    F f;
-public:
-    typedef ValueType result_type;
+template <class UnaryFunction, class Iterator>
+class tap_iterator;
 
-    explicit tapped_functor(F f)
-        : f(f) {}
-
-    result_type operator()(const result_type& x) const
-    {
-        f(x);
-        return x;
-    }
+template <class UnaryFunction, class Iterator>
+struct tap_iterator_base {
+    typedef iterator_adaptor<
+        tap_iterator<UnaryFunction, Iterator>
+      , Iterator
+      , use_default
+      , typename mpl::if_<
+            is_convertible<
+                typename iterator_traversal<Iterator>::type
+              , random_access_traversal_tag
+            >
+          , bidirectional_traversal_tag
+          , use_default
+        >::type
+    > type;
 };
 
-template <class ForwardRng, class F>
-struct tap_result {
-    typedef
-        tapped_functor<F, typename boost::range_value<ForwardRng>::type>
-    functor;
+template <class UnaryFunction, class Iterator>
+class tap_iterator : public tap_iterator_base<UnaryFunction, Iterator>::type {
+    typedef typename tap_iterator_base<
+          UnaryFunction, Iterator
+    >::type super_t;
 
-    typedef
-        boost::transformed_range<
-            functor,
-            ForwardRng
-        >
-    type;
+    friend class iterator_core_access;
+
+    UnaryFunction m_func;
+    Iterator m_first;
+    Iterator m_end;
+    mutable bool m_applied;
+
+public:
+    tap_iterator(Iterator x)
+        : super_t(x), m_applied(true) {}
+
+    tap_iterator(UnaryFunction f, Iterator x, Iterator end_)
+        : super_t(x), m_func(f), m_first(x), m_end(end_), m_applied(false) {}
+
+    typename super_t::reference dereference() const
+    {
+        apply_func();
+        return *this->base();
+    }
+
+private:
+    void apply_func() const
+    {
+        if (!m_applied) {
+            std::for_each(m_first, m_end, m_func);
+            m_applied = true;
+        }
+    }
 };
 
 template <class T>
@@ -50,19 +77,21 @@ struct tap_holder : holder<T> {
 };
 
 template <class ForwardRng, class UnaryFunction>
-inline typename tap_result<ForwardRng, UnaryFunction>::type
+inline iterator_range<
+            tap_iterator<UnaryFunction, typename range_iterator<ForwardRng>::type> >
     operator|(ForwardRng& rng, const tap_holder<UnaryFunction>& f)
 {
-    typedef typename tap_result<ForwardRng, UnaryFunction>::functor functor;
-    return rng | boost::adaptors::transformed(functor(f.val));
+    typedef tap_iterator<UnaryFunction, typename range_iterator<ForwardRng>::type> iterator;
+    return make_iterator_range(iterator(f.val, boost::begin(rng), boost::end(rng)), iterator(boost::end(rng)));
 }
 
 template <class ForwardRng, class UnaryFunction>
-inline typename tap_result<const ForwardRng, UnaryFunction>::type
+inline iterator_range<
+            tap_iterator<UnaryFunction, typename range_iterator<const ForwardRng>::type> >
     operator|(const ForwardRng& rng, const tap_holder<UnaryFunction>& f)
 {
-    typedef typename tap_result<const ForwardRng, UnaryFunction>::functor functor;
-    return rng | boost::adaptors::transformed(functor(f.val));
+    typedef tap_iterator<UnaryFunction, typename range_iterator<const ForwardRng>::type> iterator;
+    return make_iterator_range(iterator(f.val, boost::begin(rng), boost::end(rng)), iterator(boost::end(rng)));
 }
 
 
@@ -72,6 +101,8 @@ BOOST_RANGE_ADAPTOR_MAKE_REGULAR_OPERATOR(tap_holder);
 
 namespace adaptors {
 
+using range_detail::tap_iterator;
+
 namespace
 {
     const range_detail::forwarder<range_detail::tap_holder>
@@ -80,20 +111,21 @@ namespace
 }
 
 
-template <class ForwardRng, class F>
-inline typename range_detail::tap_result<ForwardRng, F>::type
-    tap(ForwardRng& rng, F f)
+template <class ForwardRng, class UnaryFunction>
+inline iterator_range<
+            tap_iterator<UnaryFunction, typename range_iterator<ForwardRng>::type> >
+    tap(ForwardRng& rng, UnaryFunction f)
 {
     return rng | tapped(f);
 }
 
-template <class ForwardRng, class F>
-inline typename range_detail::tap_result<const ForwardRng, F>::type
-    tap(const ForwardRng& rng, F f)
+template <class ForwardRng, class UnaryFunction>
+inline iterator_range<
+            tap_iterator<UnaryFunction, typename range_iterator<ForwardRng>::type> >
+    tap(const ForwardRng& rng, UnaryFunction f)
 {
     return rng | tapped(f);
 }
-
 
 }} // namespace boost::adaptors
 
