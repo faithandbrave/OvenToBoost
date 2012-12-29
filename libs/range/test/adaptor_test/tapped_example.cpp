@@ -9,27 +9,12 @@
 
 #include <iostream>
 #include <vector>
+#include <boost/lambda/lambda.hpp>
 #include <boost/range/algorithm/for_each.hpp>
-#include <boost/range/adaptor/filtered.hpp>
-#include <boost/range/adaptor/transformed.hpp>
+#include <boost/range/adaptor/regular_extension/filtered.hpp>
+#include <boost/range/adaptor/regular_extension/transformed.hpp>
 #include <boost/range/adaptor/memoized.hpp>
 #include <boost/range/experimental/adaptor/tapped.hpp>
-
-int ident(int x)
-{
-    std::cout << "ident:" << x << std::endl;
-    return x;
-}
-
-int is_even(int x)
-{
-    return x % 2 == 0;
-}
-
-void tap_print(int x)
-{
-    std::cout << ":" << x << std::endl;
-}
 
 void print(int x)
 {
@@ -40,26 +25,21 @@ int main()
 {
     std::vector<int> v = {1, 2, 3, 4, 5};
 
-    boost::for_each(v | boost::adaptors::transformed(ident)
-                      | boost::adaptors::memoized
-                      | boost::adaptors::tapped(tap_print)
-                      | boost::adaptors::filtered(is_even),
+    using boost::lambda::_1;
+    boost::for_each(v |+ boost::adaptors::transformed(_1 + 1)
+                      |+ boost::adaptors::tapped(std::cout << _1 << " is tapped\n")
+                      |+ boost::adaptors::filtered(_1 % 2 == 0),
                     print);
 }
-
 /*
 output:
-ident:1
-:1
-ident:2
-:2
-ident:3
-:3
-ident:4
-:4
-ident:5
-:5
+2 is tapped
+3 is tapped
+4 is tapped
+5 is tapped
+6 is tapped
 2
 4
+6
 */
 
