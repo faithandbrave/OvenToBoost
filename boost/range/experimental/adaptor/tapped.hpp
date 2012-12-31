@@ -10,6 +10,8 @@
 // http://www.boost.org/LICENSE_1_0.txt)
 
 #include "./detail/tap_iterator.hpp"
+#include <boost/mpl/if.hpp>
+#include <boost/type_traits/is_const.hpp>
 #include <boost/range/adaptor/argument_fwd.hpp>
 #include <boost/range/iterator_range.hpp>
 #include <boost/range/regular.hpp>
@@ -22,10 +24,18 @@ namespace range_detail {
 template <class UnaryFunction, class ForwardRng>
 struct tapped_range_base {
     typedef
+        typename boost::mpl::if_<
+            boost::is_const<ForwardRng>,
+            const memoized_range<const ForwardRng>,
+            memoized_range<ForwardRng>
+        >::type
+    base_range;
+
+    typedef
         iterator_range<
             boost::adaptors::detail::tap_iterator<
                 UnaryFunction,
-                typename range_iterator<ForwardRng>::type
+                typename range_iterator<base_range>::type
             >
         >
     type;
@@ -34,14 +44,14 @@ struct tapped_range_base {
 template <class UnaryFunction, class ForwardRng>
 struct tapped_range : tapped_range_base<UnaryFunction, ForwardRng>::type {
     typedef
-        typename tapped_range_base<UnaryFunction, ForwardRng>::type
-    base;
+        tapped_range_base<UnaryFunction, ForwardRng>
+    base_traits;
 
-    typedef
-        typename base::iterator
-    iterator;
+    typedef typename base_traits::type base;
+    typedef typename base_traits::base_range base_range;
+    typedef typename base::iterator iterator;
 
-    tapped_range(UnaryFunction f, ForwardRng& rng)
+    tapped_range(UnaryFunction f, base_range rng)
         : base(iterator(f, boost::begin(rng), boost::end(rng)), iterator(boost::end(rng)))
     {}
 };
@@ -52,20 +62,19 @@ struct tap_holder : holder<T> {
 };
 
 template <class ForwardRng, class UnaryFunction>
-inline tapped_range<UnaryFunction, memoized_range<ForwardRng> >
+inline tapped_range<UnaryFunction, ForwardRng>
     operator|(ForwardRng& rng, const tap_holder<UnaryFunction>& f)
 {
-    return tapped_range<UnaryFunction, memoized_range<ForwardRng> >(f.val, rng | boost::adaptors::memoized);
+    return tapped_range<UnaryFunction, ForwardRng>
+                       (f.val, rng | boost::adaptors::memoized);
 }
 
 template <class ForwardRng, class UnaryFunction>
-inline tapped_range<UnaryFunction, const memoized_range<const ForwardRng>>
+inline tapped_range<UnaryFunction, const ForwardRng>
     operator|(const ForwardRng& rng, const tap_holder<UnaryFunction>& f)
 {
-    return tapped_range<
-                          UnaryFunction,
-                          const memoized_range<const ForwardRng>
-                       >(f.val, rng | boost::adaptors::memoized);
+    return tapped_range<UnaryFunction, const ForwardRng>
+                       (f.val, rng | boost::adaptors::memoized);
 }
 
 
@@ -86,14 +95,14 @@ namespace
 
 
 template <class ForwardRng, class UnaryFunction>
-inline tapped_range<UnaryFunction, memoized_range<ForwardRng> >
+inline tapped_range<UnaryFunction, ForwardRng>
     tap(ForwardRng& rng, UnaryFunction f)
 {
     return rng | tapped(f);
 }
 
 template <class ForwardRng, class UnaryFunction>
-inline tapped_range<UnaryFunction, const memoized_range<const ForwardRng> >
+inline tapped_range<UnaryFunction, const ForwardRng>
     tap(const ForwardRng& rng, UnaryFunction f)
 {
     return rng | tapped(f);
