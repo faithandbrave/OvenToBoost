@@ -1,0 +1,115 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
+<title>single</title>
+<link rel="stylesheet" href="../../../boostbook.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.76.1">
+<link rel="home" href="../../../index.html" title="Chapter&#160;1.&#160;Range Extension 0.1">
+<link rel="up" href="../range_utilities.html" title="Range Utilities">
+<link rel="prev" href="regular.html" title="regular">
+<link rel="next" href="split_at.html" title="split_at">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table cellpadding="2" width="100%"><tr><td valign="top"><img alt="rangeextension" width="" height="" src="../../../../boost-proposed-alpha-variants.png"></td></tr></table>
+<hr>
+<div class="spirit-nav">
+<a accesskey="p" href="regular.html"><img src="../../../images/prev.png" alt="Prev"></a><a accesskey="u" href="../range_utilities.html"><img src="../../../images/up.png" alt="Up"></a><a accesskey="h" href="../../../index.html"><img src="../../../images/home.png" alt="Home"></a><a accesskey="n" href="split_at.html"><img src="../../../images/next.png" alt="Next"></a>
+</div>
+<div class="section">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="range_extension.reference.range_utilities.single"></a><a class="link" href="single.html" title="single">single</a>
+</h4></div></div></div>
+<h6>
+<a name="range_extension.reference.range_utilities.single.h0"></a>
+          <span><a name="range_extension.reference.range_utilities.single.prototype"></a></span><a class="link" href="single.html#range_extension.reference.range_utilities.single.prototype">Prototype</a>
+        </h6>
+<p>
+</p>
+<pre class="programlisting"><span class="keyword">template</span> <span class="special">&lt;</span><span class="keyword">class</span> <span class="identifier">T</span><span class="special">&gt;</span>
+<span class="identifier">iterator_range</span><span class="special">&lt;</span><span class="keyword">const</span> <span class="identifier">T</span><span class="special">*&gt;</span> <span class="identifier">single</span><span class="special">(</span><span class="keyword">const</span> <span class="identifier">T</span><span class="special">&amp;</span> <span class="identifier">x</span><span class="special">);</span>
+
+<span class="keyword">template</span> <span class="special">&lt;</span><span class="keyword">class</span> <span class="identifier">T</span><span class="special">&gt;</span>
+<span class="identifier">iterator_range</span><span class="special">&lt;</span><span class="identifier">T</span><span class="special">*&gt;</span> <span class="identifier">single</span><span class="special">(</span><span class="identifier">T</span><span class="special">&amp;</span> <span class="identifier">x</span><span class="special">);</span>
+</pre>
+<p>
+        </p>
+<h6>
+<a name="range_extension.reference.range_utilities.single.h1"></a>
+          <span><a name="range_extension.reference.range_utilities.single.namespace"></a></span><a class="link" href="single.html#range_extension.reference.range_utilities.single.namespace">Namespace</a>
+        </h6>
+<p>
+          <code class="computeroutput"><span class="identifier">boost</span></code> or <code class="computeroutput"><span class="identifier">boost</span><span class="special">::</span><span class="identifier">range</span></code>.
+        </p>
+<h6>
+<a name="range_extension.reference.range_utilities.single.h2"></a>
+          <span><a name="range_extension.reference.range_utilities.single.description"></a></span><a class="link" href="single.html#range_extension.reference.range_utilities.single.description">Description</a>
+        </h6>
+<p>
+          <code class="computeroutput"><span class="identifier">single</span></code> makes a <a href="http://www.boost.org/libs/range/doc/html/range/concepts/random_access_range.html" target="_top">Random
+          Access Range</a> which delivers a range presentation of one object.
+        </p>
+<h6>
+<a name="range_extension.reference.range_utilities.single.h3"></a>
+          <span><a name="range_extension.reference.range_utilities.single.header"></a></span><a class="link" href="single.html#range_extension.reference.range_utilities.single.header">Header</a>
+        </h6>
+<p>
+</p>
+<pre class="programlisting"><span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">range</span><span class="special">/</span><span class="identifier">single</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
+</pre>
+<p>
+          or
+</p>
+<pre class="programlisting"><span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">range</span><span class="special">/</span><span class="identifier">range</span><span class="special">/</span><span class="identifier">single</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
+</pre>
+<p>
+        </p>
+<h6>
+<a name="range_extension.reference.range_utilities.single.h4"></a>
+          <span><a name="range_extension.reference.range_utilities.single.returned_range_category"></a></span><a class="link" href="single.html#range_extension.reference.range_utilities.single.returned_range_category">Returned
+          Range Category</a>
+        </h6>
+<p>
+          <a href="http://www.boost.org/libs/range/doc/html/range/concepts/random_access_range.html" target="_top">Random
+          Access Range</a>
+        </p>
+<h6>
+<a name="range_extension.reference.range_utilities.single.h5"></a>
+          <span><a name="range_extension.reference.range_utilities.single.example"></a></span><a class="link" href="single.html#range_extension.reference.range_utilities.single.example">Example</a>
+        </h6>
+<p>
+</p>
+<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">iostream</span><span class="special">&gt;</span>
+<span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">range</span><span class="special">/</span><span class="identifier">single</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
+<span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">range</span><span class="special">/</span><span class="identifier">algorithm</span><span class="special">/</span><span class="identifier">for_each</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
+
+<span class="keyword">void</span> <span class="identifier">disp</span><span class="special">(</span><span class="keyword">int</span> <span class="identifier">x</span><span class="special">)</span> <span class="special">{</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">cout</span> <span class="special">&lt;&lt;</span> <span class="identifier">x</span> <span class="special">&lt;&lt;</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">endl</span><span class="special">;</span> <span class="special">}</span>
+
+<span class="keyword">int</span> <span class="identifier">main</span><span class="special">()</span>
+<span class="special">{</span>
+    <span class="identifier">boost</span><span class="special">::</span><span class="identifier">for_each</span><span class="special">(</span><span class="identifier">boost</span><span class="special">::</span><span class="identifier">single</span><span class="special">(</span><span class="number">3</span><span class="special">),</span> <span class="identifier">disp</span><span class="special">);</span>
+<span class="special">}</span>
+</pre>
+<p>
+        </p>
+<p>
+          This would produce the output:
+</p>
+<pre class="programlisting"><span class="number">3</span>
+</pre>
+<p>
+        </p>
+</div>
+<table xmlns:rev="http://www.cs.rpi.edu/~gregod/boost/tools/doc/revision" width="100%"><tr>
+<td align="left"></td>
+<td align="right"><div class="copyright-footer">Copyright &#169; 2005-2007 Shunsuke Sogame<br>Copyright &#169; 2011 Akira Takahashi<p>
+        Distributed under the Boost Software License, Version 1.0. (See accompanying
+        file LICENSE_1_0.txt or copy at <a href="http://www.boost.org/LICENSE_1_0.txt" target="_top">http://www.boost.org/LICENSE_1_0.txt</a>)
+      </p>
+</div></td>
+</tr></table>
+<hr>
+<div class="spirit-nav">
+<a accesskey="p" href="regular.html"><img src="../../../images/prev.png" alt="Prev"></a><a accesskey="u" href="../range_utilities.html"><img src="../../../images/up.png" alt="Up"></a><a accesskey="h" href="../../../index.html"><img src="../../../images/home.png" alt="Home"></a><a accesskey="n" href="split_at.html"><img src="../../../images/next.png" alt="Next"></a>
+</div>
+</body>
+</html>
