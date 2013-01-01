@@ -26,12 +26,13 @@ range_extension/reference/range_access/value_back.html
 range_extension/reference/range_access/front.html
 range_extension/reference/range_access/value_front.html
 range_extension/reference/algorithm_extension0.html
+range_extension/reference/algorithm_extension/as_container.html
 range_extension/reference/algorithm_extension/directory_range.html
 range_extension/reference/algorithm_extension/iteration.html
 range_extension/reference/algorithm_extension/recursive_directory_range.html
+range_extension/reference/algorithm_extension/regular.html
 range_extension/reference/algorithm_extension/single.html
 range_extension/reference/algorithm_extension/split_at.html
-range_extension/reference/algorithm_extension/regular.html
 range_extension/design_rationale.html
 range_extension/design_rationale/regular_op.html
 range_extension/acknowledgements.html
