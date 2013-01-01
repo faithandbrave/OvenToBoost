@@ -5,7 +5,7 @@
 /]
 [section:as_container as_container]
 
-`as_container` automagically calls the range-constructor of the target range without specifying the type.
+`as_container` automatically calls the range-constructor of the target range without specifying the type.
 
 [table
     [[Syntax] [Code]]
