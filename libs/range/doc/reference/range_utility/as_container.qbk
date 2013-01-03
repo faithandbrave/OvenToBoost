@@ -13,9 +13,15 @@
     [[Function] [`container c = boost::as_container(rng)`]]
 ]
 
-`container c = rng | boost::as_container;`[br]
-This experession's semantics is follow:[br]
-`container c(boost::begin(rng), boost::end(rng));`
+[heading Semantics]
+
+``
+container c = rng | boost::as_container;
+``
+This experession's semantics is follow:
+``
+container c(boost::begin(rng), boost::end(rng));
+``
 
 [heading Namespace]
 
