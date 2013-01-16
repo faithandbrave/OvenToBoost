@@ -51,7 +51,7 @@ private:
 public:
     typedef X value_type;
 
-// structors
+// constructors
     explicit regularized() {}
 
     explicit regularized(const X& x) :
