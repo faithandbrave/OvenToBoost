@@ -52,6 +52,7 @@ void mutable_test(Container& c, const Expression& expr)
 template <class Container, class Expression>
 void constant_test(const Container& c, const Expression& expr)
 {
+    static_cast<void>(c); // unuse
     boost::fused_for_each(expr, constant_fun);
 
     BOOST_TEST(boost::equal(
@@ -69,6 +70,8 @@ void constant_test(const Container& c, const Expression& expr)
 
 void never_call_fun(int first, int second)
 {
+    static_cast<void>(first);
+    static_cast<void>(second);
     BOOST_TEST(false);
 }
 

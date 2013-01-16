@@ -1,0 +1,69 @@
+[/
+    Copyright 2011-2013 Akira Takahashi
+    Distributed under the Boost Software License, Version 1.0.
+    (See accompanying file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
+/]
+[section:as_container as_container]
+
+`as_container` automatically calls the range-constructor of the target range without specifying the type.
+
+[table
+    [[Syntax] [Code]]
+    [[Pipe] [`container c = rng | boost::as_container`]]
+    [[Function] [`container c = boost::as_container(rng)`]]
+]
+
+[heading Semantics]
+
+``
+container c = rng | boost::as_container;
+``
+This experession's semantics is follow:
+``
+container c(boost::begin(rng), boost::end(rng));
+``
+
+[heading Namespace]
+
+`boost`.
+
+[heading Header]
+``
+<boost/range/as_container.hpp>
+``
+
+[heading Example]
+
+``
+#include <iostream>
+#include <vector>
+#include <boost/assign/list_of.hpp>
+#include <boost/range/algorithm/for_each.hpp>
+#include <boost/range/adaptor/filtered.hpp>
+#include <boost/range/adaptor/transformed.hpp>
+#include <boost/range/as_container.hpp>
+
+bool is_even(int x) { return x % 2 == 0; }
+int add(int x) { return x + 1; }
+void disp(int x) { std::cout << x << std::endl; }
+
+int main()
+{
+    const std::vector<int> v = boost::assign::list_of(1)(2)(3)(4)(5);
+
+    const std::vector<int> v2 = v | boost::adaptors::filtered(is_even)
+                                  | boost::adaptors::transformed(add)
+                                  | boost::as_container;
+
+    boost::for_each(v2, disp);
+}
+``
+
+This would produce the output:
+``
+3
+5
+
+``
+
+[endsect]

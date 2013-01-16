@@ -73,7 +73,7 @@ public:
 
     value_t const& deref(index_type i) // strong
     {
-        BOOST_ASSERT(0 <= i && i <= m_baseIndex);
+        BOOST_ASSERT(i <= m_baseIndex);
 
         if (!is_in_table_aux(i)) {
             BOOST_ASSERT(i == m_baseIndex && m_baseIndex == m_table.size());
@@ -85,7 +85,7 @@ public:
 
     index_type next(index_type i) // strong
     {
-        BOOST_ASSERT(0 <= i && i <= m_baseIndex);
+        BOOST_ASSERT(i <= m_baseIndex);
 
         bool pushed = false;
         if (i == m_baseIndex) {
@@ -121,7 +121,7 @@ private:
 
     bool is_in_table_aux(index_type i) const
     {
-        BOOST_ASSERT(0 <= i && i <= m_baseIndex);
+        BOOST_ASSERT(i <= m_baseIndex);
         return i != m_table.size();
     }
 };

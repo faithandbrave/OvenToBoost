@@ -5,7 +5,7 @@
 <link rel="stylesheet" href="../../../boostbook.css" type="text/css">
 <meta name="generator" content="DocBook XSL Stylesheets V1.76.1">
 <link rel="home" href="../../../index.html" title="Chapter&#160;1.&#160;Range Extension 0.1">
-<link rel="up" href="../algorithm_extension0.html" title="Algorithm Extension">
+<link rel="up" href="../range_utilities.html" title="Range Utilities">
 <link rel="prev" href="single.html" title="single">
 <link rel="next" href="../../design_rationale.html" title="Design Rationale">
 </head>
@@ -13,15 +13,15 @@
 <table cellpadding="2" width="100%"><tr><td valign="top"><img alt="rangeextension" width="" height="" src="../../../../boost-proposed-alpha-variants.png"></td></tr></table>
 <hr>
 <div class="spirit-nav">
-<a accesskey="p" href="single.html"><img src="../../../images/prev.png" alt="Prev"></a><a accesskey="u" href="../algorithm_extension0.html"><img src="../../../images/up.png" alt="Up"></a><a accesskey="h" href="../../../index.html"><img src="../../../images/home.png" alt="Home"></a><a accesskey="n" href="../../design_rationale.html"><img src="../../../images/next.png" alt="Next"></a>
+<a accesskey="p" href="single.html"><img src="../../../images/prev.png" alt="Prev"></a><a accesskey="u" href="../range_utilities.html"><img src="../../../images/up.png" alt="Up"></a><a accesskey="h" href="../../../index.html"><img src="../../../images/home.png" alt="Home"></a><a accesskey="n" href="../../design_rationale.html"><img src="../../../images/next.png" alt="Next"></a>
 </div>
 <div class="section">
 <div class="titlepage"><div><div><h4 class="title">
-<a name="range_extension.reference.algorithm_extension.split_at"></a><a class="link" href="split_at.html" title="split_at">split_at</a>
+<a name="range_extension.reference.range_utilities.split_at"></a><a class="link" href="split_at.html" title="split_at">split_at</a>
 </h4></div></div></div>
 <h6>
-<a name="range_extension.reference.algorithm_extension.split_at.h0"></a>
-          <span><a name="range_extension.reference.algorithm_extension.split_at.prototype"></a></span><a class="link" href="split_at.html#range_extension.reference.algorithm_extension.split_at.prototype">Prototype</a>
+<a name="range_extension.reference.range_utilities.split_at.h0"></a>
+          <span><a name="range_extension.reference.range_utilities.split_at.prototype"></a></span><a class="link" href="split_at.html#range_extension.reference.range_utilities.split_at.prototype">Prototype</a>
         </h6>
 <p>
 </p>
@@ -43,15 +43,15 @@
 <p>
         </p>
 <h6>
-<a name="range_extension.reference.algorithm_extension.split_at.h1"></a>
-          <span><a name="range_extension.reference.algorithm_extension.split_at.namespace"></a></span><a class="link" href="split_at.html#range_extension.reference.algorithm_extension.split_at.namespace">Namespace</a>
+<a name="range_extension.reference.range_utilities.split_at.h1"></a>
+          <span><a name="range_extension.reference.range_utilities.split_at.namespace"></a></span><a class="link" href="split_at.html#range_extension.reference.range_utilities.split_at.namespace">Namespace</a>
         </h6>
 <p>
           <code class="computeroutput"><span class="identifier">boost</span></code> or <code class="computeroutput"><span class="identifier">boost</span><span class="special">::</span><span class="identifier">range</span></code>.
         </p>
 <h6>
-<a name="range_extension.reference.algorithm_extension.split_at.h2"></a>
-          <span><a name="range_extension.reference.algorithm_extension.split_at.description"></a></span><a class="link" href="split_at.html#range_extension.reference.algorithm_extension.split_at.description">Description</a>
+<a name="range_extension.reference.range_utilities.split_at.h2"></a>
+          <span><a name="range_extension.reference.range_utilities.split_at.description"></a></span><a class="link" href="split_at.html#range_extension.reference.range_utilities.split_at.description">Description</a>
         </h6>
 <p>
           <code class="computeroutput"><span class="identifier">split_at</span></code> makes a pair of
@@ -61,8 +61,8 @@
           <span class="identifier">dropped</span><span class="special">(</span><span class="identifier">n</span><span class="special">)</span></code>.
         </p>
 <h6>
-<a name="range_extension.reference.algorithm_extension.split_at.h3"></a>
-          <span><a name="range_extension.reference.algorithm_extension.split_at.header"></a></span><a class="link" href="split_at.html#range_extension.reference.algorithm_extension.split_at.header">Header</a>
+<a name="range_extension.reference.range_utilities.split_at.h3"></a>
+          <span><a name="range_extension.reference.range_utilities.split_at.header"></a></span><a class="link" href="split_at.html#range_extension.reference.range_utilities.split_at.header">Header</a>
         </h6>
 <p>
 </p>
@@ -71,15 +71,15 @@
 <p>
         </p>
 <h6>
-<a name="range_extension.reference.algorithm_extension.split_at.h4"></a>
-          <span><a name="range_extension.reference.algorithm_extension.split_at.return"></a></span><a class="link" href="split_at.html#range_extension.reference.algorithm_extension.split_at.return">Return</a>
+<a name="range_extension.reference.range_utilities.split_at.h4"></a>
+          <span><a name="range_extension.reference.range_utilities.split_at.return"></a></span><a class="link" href="split_at.html#range_extension.reference.range_utilities.split_at.return">Return</a>
         </h6>
 <p>
           <code class="computeroutput"><span class="identifier">make_pair</span><span class="special">(</span><span class="identifier">rng</span> <span class="special">|</span> <span class="identifier">taken</span><span class="special">(</span><span class="identifier">n</span><span class="special">),</span> <span class="identifier">rng</span> <span class="special">|</span> <span class="identifier">dropped</span><span class="special">(</span><span class="identifier">n</span><span class="special">));</span></code>
         </p>
 <h6>
-<a name="range_extension.reference.algorithm_extension.split_at.h5"></a>
-          <span><a name="range_extension.reference.algorithm_extension.split_at.example"></a></span><a class="link" href="split_at.html#range_extension.reference.algorithm_extension.split_at.example">Example</a>
+<a name="range_extension.reference.range_utilities.split_at.h5"></a>
+          <span><a name="range_extension.reference.range_utilities.split_at.example"></a></span><a class="link" href="split_at.html#range_extension.reference.range_utilities.split_at.example">Example</a>
         </h6>
 <p>
 </p>
@@ -134,7 +134,7 @@
 </tr></table>
 <hr>
 <div class="spirit-nav">
-<a accesskey="p" href="single.html"><img src="../../../images/prev.png" alt="Prev"></a><a accesskey="u" href="../algorithm_extension0.html"><img src="../../../images/up.png" alt="Up"></a><a accesskey="h" href="../../../index.html"><img src="../../../images/home.png" alt="Home"></a><a accesskey="n" href="../../design_rationale.html"><img src="../../../images/next.png" alt="Next"></a>
+<a accesskey="p" href="single.html"><img src="../../../images/prev.png" alt="Prev"></a><a accesskey="u" href="../range_utilities.html"><img src="../../../images/up.png" alt="Up"></a><a accesskey="h" href="../../../index.html"><img src="../../../images/home.png" alt="Home"></a><a accesskey="n" href="../../design_rationale.html"><img src="../../../images/next.png" alt="Next"></a>
 </div>
 </body>
 </html>

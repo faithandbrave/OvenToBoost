@@ -3,14 +3,15 @@
     Distributed under the Boost Software License, Version 1.0.
     (See accompanying file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
 /]
-[section Algorithm Extension]
+[section Range Utilities]
 
+[include range_utility/as_container.qbk]
 [include range_utility/directory_range.qbk]
 [include range_utility/iteration.qbk]
 [include range_utility/recursive_directory_range.qbk]
+[include range_utility/regular.qbk]
 [include range_utility/single.qbk]
 [include range_utility/split_at.qbk]
-[include range_utility/regular.qbk]
 
 [endsect]
 
