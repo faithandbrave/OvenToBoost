@@ -18,7 +18,7 @@ F for_each_(InputIterator first, InputIterator last, F f)
 
     while (it != last) {
         f(*it);
-        ++i;
+        ++it;
     }
     return f;
 }

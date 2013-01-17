@@ -60,7 +60,7 @@ int main()
     using namespace boost::adaptors;
 
     const std::vector<int> v = boost::assign::list_of(1)(2)(3)(4)(5)(6);
-    boost::for_each_(v |+ filtered(_1 % 2 == 0) |+ transformed(_1 * 2), disp);
+    boost::for_each(v |+ filtered(_1 % 2 == 0) |+ transformed(_1 * 2), disp);
 }
 ``
 This library provides regular operator : operator|+().[br]
