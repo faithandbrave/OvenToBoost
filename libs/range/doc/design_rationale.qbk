@@ -26,7 +26,7 @@ F for_each_(InputIterator first, InputIterator last, F f)
 template <class Range, class F>
 F for_each_(const Range& r, F f)
 {
-    return for_each(boost::begin(r), boost::end(r), f);
+    return for_each_(boost::begin(r), boost::end(r), f);
 }
 
 ...
