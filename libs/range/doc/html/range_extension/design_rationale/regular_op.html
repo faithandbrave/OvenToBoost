@@ -34,7 +34,7 @@
 
     <span class="keyword">while</span> <span class="special">(</span><span class="identifier">it</span> <span class="special">!=</span> <span class="identifier">last</span><span class="special">)</span> <span class="special">{</span>
         <span class="identifier">f</span><span class="special">(*</span><span class="identifier">it</span><span class="special">);</span>
-        <span class="special">++</span><span class="identifier">i</span><span class="special">;</span>
+        <span class="special">++</span><span class="identifier">it</span><span class="special">;</span>
     <span class="special">}</span>
     <span class="keyword">return</span> <span class="identifier">f</span><span class="special">;</span>
 <span class="special">}</span>
@@ -42,7 +42,7 @@
 <span class="keyword">template</span> <span class="special">&lt;</span><span class="keyword">class</span> <span class="identifier">Range</span><span class="special">,</span> <span class="keyword">class</span> <span class="identifier">F</span><span class="special">&gt;</span>
 <span class="identifier">F</span> <span class="identifier">for_each_</span><span class="special">(</span><span class="keyword">const</span> <span class="identifier">Range</span><span class="special">&amp;</span> <span class="identifier">r</span><span class="special">,</span> <span class="identifier">F</span> <span class="identifier">f</span><span class="special">)</span>
 <span class="special">{</span>
-    <span class="keyword">return</span> <span class="identifier">for_each</span><span class="special">(</span><span class="identifier">boost</span><span class="special">::</span><span class="identifier">begin</span><span class="special">(</span><span class="identifier">r</span><span class="special">),</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">end</span><span class="special">(</span><span class="identifier">r</span><span class="special">),</span> <span class="identifier">f</span><span class="special">);</span>
+    <span class="keyword">return</span> <span class="identifier">for_each_</span><span class="special">(</span><span class="identifier">boost</span><span class="special">::</span><span class="identifier">begin</span><span class="special">(</span><span class="identifier">r</span><span class="special">),</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">end</span><span class="special">(</span><span class="identifier">r</span><span class="special">),</span> <span class="identifier">f</span><span class="special">);</span>
 <span class="special">}</span>
 
 <span class="special">...</span>
