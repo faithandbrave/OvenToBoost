@@ -6,7 +6,7 @@
 [section optional_front]
 
 `optional_front` returns the first referent in the range.
-This accessor returns `boost::optional<T&>`. If first element exists, returns the element wrapped with `boost::optional`. Otherwise, it returns `boost::none`.
+This accessor returns `boost::optional<T&>`. If the given range isn't empty, it returns the first element wrapped with `boost::optional`. Otherwise, it returns `boost::none`.
 
 [table
     [[Syntax] [Code]]

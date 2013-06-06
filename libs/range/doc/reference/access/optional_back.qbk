@@ -6,7 +6,7 @@
 [section back]
 
 `back` returns the last referent in the range.
-This accessor returns `boost::optional<T&>`. If last element exists, returns the element wrapped with `boost::optional`. Otherwise, it returns `boost::none`.
+This accessor returns `boost::optional<T&>`. If the given range isn't empty, it returns the last element wrapped with `boost::optional`. Otherwise, it returns `boost::none`.
 
 [table
     [[Syntax] [Code]]
