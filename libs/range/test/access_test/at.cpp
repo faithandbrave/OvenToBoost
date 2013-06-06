@@ -1,7 +1,7 @@
 // Boost.Range 2.0 Extension library
 // via PStade Oven Library
 //
-// Copyright Akira Takahashi 2011.
+// Copyright Akira Takahashi 2011-2013.
 // Copyright Shunsuke Sogame 2005-2007.
 // Use, modification and distribution is subject to the Boost Software License,
 // Version 1.0. (See accompanying file LICENSE_1_0.txt or copy at
@@ -22,6 +22,7 @@ void test()
 {
     using boost::range::access::at;
     using boost::range::access::value_at;
+    using boost::range::access::optional_at;
 
     // operator style
     {
@@ -38,6 +39,15 @@ void test()
         const RandomAccessContainer expected = boost::assign::list_of(3)(1)(0)(2)(5);
         BOOST_TEST(boost::equal(c, expected));
     }
+    {
+        RandomAccessContainer c = boost::assign::list_of(3)(1)(4);
+        BOOST_TEST((c | optional_at(2)).get() == 4);
+        BOOST_TEST(!(c | optional_at(3)).is_initialized());
+
+        (c | optional_at(2)).get() = 0;
+        const RandomAccessContainer expected = boost::assign::list_of(3)(1)(0);
+        BOOST_TEST(boost::equal(c, expected));
+    }
 
     // function style
     {
@@ -52,6 +62,15 @@ void test()
 
         at(c, 2) = 0;
         const RandomAccessContainer expected = boost::assign::list_of(3)(1)(0)(2)(5);
+        BOOST_TEST(boost::equal(c, expected));
+    }
+    {
+        RandomAccessContainer c = boost::assign::list_of(3)(1)(4);
+        BOOST_TEST(optional_at(c, 2).get() == 4);
+        BOOST_TEST(!optional_at(c, 3).is_initialized());
+
+        optional_at(c, 2).get() = 0;
+        const RandomAccessContainer expected = boost::assign::list_of(3)(1)(0);
         BOOST_TEST(boost::equal(c, expected));
     }
 

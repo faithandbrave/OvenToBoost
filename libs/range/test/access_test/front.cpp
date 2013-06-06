@@ -1,7 +1,7 @@
 // Boost.Range 2.0 Extension library
 // via PStade Oven Library
 //
-// Copyright Akira Takahashi 2011.
+// Copyright Akira Takahashi 2011-2013.
 // Copyright Shunsuke Sogame 2005-2007.
 // Use, modification and distribution is subject to the Boost Software License,
 // Version 1.0. (See accompanying file LICENSE_1_0.txt or copy at
@@ -25,6 +25,7 @@ void test()
     using boost::adaptors::dropped;
     using boost::range::access::front;
     using boost::range::access::value_front;
+    using boost::range::access::optional_front;
 
     // operator style
     {
@@ -39,6 +40,17 @@ void test()
 
         c | dropped(2) | front = 0;
         const SinglePassContainer expected = boost::assign::list_of(1)(2)(0)(4)(5)(6);
+        BOOST_TEST(boost::equal(c, expected));
+    }
+    {
+        SinglePassContainer c = boost::assign::list_of(1)(2)(3);
+        BOOST_TEST((c | dropped(1) | optional_front).get() == 2);
+        BOOST_TEST(!(c | dropped(3) | optional_front).is_initialized());
+        
+        boost::optional<int&> opt = c | dropped(1) | optional_front;
+        opt.get() = 0;
+
+        const SinglePassContainer expected = boost::assign::list_of(1)(0)(3);
         BOOST_TEST(boost::equal(c, expected));
     }
 
@@ -57,6 +69,18 @@ void test()
         const SinglePassContainer expected = boost::assign::list_of(1)(2)(0)(4)(5)(6);
         BOOST_TEST(boost::equal(c, expected));
     }
+    {
+        SinglePassContainer c = boost::assign::list_of(1)(2)(3);
+        BOOST_TEST(optional_front(c | dropped(1)).get() == 2);
+        BOOST_TEST(!optional_front(c | dropped(3)).is_initialized());
+        
+        boost::optional<int&> opt = optional_front(c | dropped(1));
+        opt.get() = 0;
+
+        const SinglePassContainer expected = boost::assign::list_of(1)(0)(3);
+        BOOST_TEST(boost::equal(c, expected));
+    }
+
 
     // result_of
     {
@@ -79,7 +103,6 @@ void test()
             expected
         ));
     }
-
 }
 
 int main()

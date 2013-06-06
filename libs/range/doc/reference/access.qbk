@@ -1,5 +1,5 @@
 [/
-    Copyright 2011 Akira Takahashi
+    Copyright 2011-2013 Akira Takahashi
     Distributed under the Boost Software License, Version 1.0.
     (See accompanying file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
 /]
@@ -7,10 +7,13 @@
 
 [include access/at.qbk]
 [include access/value_at.qbk]
+[include access/optional_at.qbk]
 [include access/back.qbk]
 [include access/value_back.qbk]
+[include access/optional_back.qbk]
 [include access/front.qbk]
 [include access/value_front.qbk]
+[include access/optional_front.qbk]
 
 [endsect]
 

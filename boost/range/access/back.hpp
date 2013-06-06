@@ -18,6 +18,7 @@
 #include <boost/type_traits/remove_reference.hpp>
 #include <boost/next_prior.hpp>
 #include <boost/assert.hpp>
+#include <boost/optional.hpp>
 
 namespace boost {
 
@@ -34,7 +35,7 @@ namespace boost {
                 > {};
 
             template <class BidirectionalRange>
-            BOOST_DEDUCED_TYPENAME range_reference<BidirectionalRange>::type
+            typename range_reference<BidirectionalRange>::type
                 operator()(BidirectionalRange& rng) const
             {
                 BOOST_ASSERT(!boost::empty(rng));
@@ -42,7 +43,7 @@ namespace boost {
             }
 
             template <class BidirectionalRange>
-            BOOST_DEDUCED_TYPENAME range_reference<const BidirectionalRange>::type
+            typename range_reference<const BidirectionalRange>::type
                 operator()(const BidirectionalRange& rng) const
             {
                 BOOST_ASSERT(!boost::empty(rng));
@@ -61,7 +62,7 @@ namespace boost {
                 > {};
 
             template <class BidirectionalRange>
-            BOOST_DEDUCED_TYPENAME range_value<BidirectionalRange>::type
+            typename range_value<BidirectionalRange>::type
                 operator()(const BidirectionalRange& rng) const
             {
                 BOOST_ASSERT(!boost::empty(rng));
@@ -69,26 +70,80 @@ namespace boost {
             }
         };
 
+        struct optional_back_t {
+            template <class Singnature>
+            struct result;
+
+            template <class F, class BidirectionalRange>
+            struct result<F(BidirectionalRange)> {
+                typedef boost::optional<
+                    typename range_reference<
+                        typename remove_reference<BidirectionalRange>::type
+                    >::type
+                > type;
+            };
+
+            template <class BidirectionalRange>
+            boost::optional<typename range_reference<BidirectionalRange>::type>
+                operator()(BidirectionalRange& rng) const
+            {
+                if (boost::begin(rng) != boost::end(rng)) {
+                    return *boost::prior(boost::end(rng));
+                }
+                else {
+                    return boost::none;
+                }
+            }
+
+            template <class BidirectionalRange>
+            boost::optional<typename range_reference<const BidirectionalRange>::type>
+                operator()(const BidirectionalRange& rng) const
+            {
+                if (boost::begin(rng) != boost::end(rng)) {
+                    return *boost::prior(boost::end(rng));
+                }
+                else {
+                    return boost::none;
+                }
+            }
+        };
+
+
         const back_t back = {};
         const value_back_t value_back = {};
+        const optional_back_t optional_back = {};
 
         template <class BidirectionalRange>
-        BOOST_DEDUCED_TYPENAME range_reference<BidirectionalRange>::type
+        typename range_reference<BidirectionalRange>::type
             operator|(BidirectionalRange& rng, const back_t& f)
         {
             return f(rng);
         }
 
         template <class BidirectionalRange>
-        BOOST_DEDUCED_TYPENAME range_reference<const BidirectionalRange>::type
+        typename range_reference<const BidirectionalRange>::type
             operator|(const BidirectionalRange& rng, const back_t& f)
         {
             return f(rng);
         }
 
         template <class BidirectionalRange>
-        BOOST_DEDUCED_TYPENAME range_value<BidirectionalRange>::type
+        typename range_value<BidirectionalRange>::type
             operator|(const BidirectionalRange& rng, const value_back_t& f)
+        {
+            return f(rng);
+        }
+
+        template <class BidirectionalRange>
+        boost::optional<typename range_reference<BidirectionalRange>::type>
+            operator|(BidirectionalRange& rng, const optional_back_t& f)
+        {
+            return f(rng);
+        }
+
+        template <class BidirectionalRange>
+        boost::optional<typename range_reference<const BidirectionalRange>::type>
+            operator|(const BidirectionalRange& rng, const optional_back_t& f)
         {
             return f(rng);
         }
@@ -98,6 +153,7 @@ namespace boost {
     namespace range { namespace access {
         using ::boost::range_detail::back;
         using ::boost::range_detail::value_back;
+        using ::boost::range_detail::optional_back;
     }} // namespace range::access
 }
 

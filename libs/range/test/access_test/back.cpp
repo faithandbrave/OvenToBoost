@@ -1,7 +1,7 @@
 // Boost.Range 2.0 Extension library
 // via PStade Oven Library
 //
-// Copyright Akira Takahashi 2011.
+// Copyright Akira Takahashi 2011-2013.
 // Copyright Shunsuke Sogame 2005-2007.
 // Use, modification and distribution is subject to the Boost Software License,
 // Version 1.0. (See accompanying file LICENSE_1_0.txt or copy at
@@ -22,6 +22,7 @@ void test()
 {
     using boost::range::access::back;
     using boost::range::access::value_back;
+    using boost::range::access::optional_back;
 
     // operator style
     {
@@ -38,6 +39,19 @@ void test()
         const BidirectionalContainer expected = boost::assign::list_of(3)(1)(4)(2)(0);
         BOOST_TEST(boost::equal(c, expected));
     }
+    {
+        BidirectionalContainer c = boost::assign::list_of(1)(2)(3);
+        BOOST_TEST((c | optional_back).get() == 3);
+       
+        boost::optional<int&> opt = c | optional_back;
+        opt.get() = 0;
+
+        const BidirectionalContainer expected = boost::assign::list_of(1)(2)(0);
+        BOOST_TEST(boost::equal(c, expected));
+
+        BidirectionalContainer c2;
+        BOOST_TEST(!(c2 | optional_back).is_initialized());
+    }
 
     // function style
     {
@@ -53,6 +67,19 @@ void test()
         back(c) = 0;
         const BidirectionalContainer expected = boost::assign::list_of(3)(1)(4)(2)(0);
         BOOST_TEST(boost::equal(c, expected));
+    }
+    {
+        BidirectionalContainer c = boost::assign::list_of(1)(2)(3);
+        BOOST_TEST(optional_back(c).get() == 3);
+       
+        boost::optional<int&> opt = optional_back(c);
+        opt.get() = 0;
+
+        const BidirectionalContainer expected = boost::assign::list_of(1)(2)(0);
+        BOOST_TEST(boost::equal(c, expected));
+
+        BidirectionalContainer c2;
+        BOOST_TEST(!optional_back(c2).is_initialized());
     }
 
     // result_of

@@ -1,0 +1,67 @@
+[/
+    Copyright 2013 Akira Takahashi
+    Distributed under the Boost Software License, Version 1.0.
+    (See accompanying file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
+/]
+[section optional_front]
+
+`optional_front` returns the first referent in the range.
+This accessor returns `boost::optional<T&>`. If exist first element, returns the element of `boost::optional`. If range is empty, returns `boost::none`.
+
+[table
+    [[Syntax] [Code]]
+    [[Pipe] [`rng | boost::range::access::optional_front`]]
+    [[Function] [`boost::range::access::optional_front(rng)`]]
+]
+
+* [*Range Category:] __single_pass_range__
+* [*Range Return Type:] `boost::optional<boost::range_reference<Range>::type>`
+
+[heading Header]
+``
+#include <boost/range/access/front.hpp>
+``
+or
+``
+#include <boost/range/access.hpp>
+``
+
+[heading Namespace]
+``
+boost::range::access
+``
+
+[heading Example]
+
+``
+#include <iostream>
+#include <vector>
+#include <boost/assign/list_of.hpp>
+#include <boost/range/adaptor/filtered.hpp>
+#include <boost/range/access/front.hpp>
+
+bool is_even(int x) { return x % 2 == 0; }
+
+int main()
+{
+    using namespace boost::adaptors;
+    using namespace boost::range::access;
+
+    std::vector<int> v = boost::assign::list_of(1)(2)(3);
+
+    if (boost::optional<int&> x = v | filtered(is_even) | optional_front) {
+        std::cout << x.get() << std::endl;
+    }
+    else {
+        std::cout << "not found" << std::endl;
+    }
+}
+``
+
+This would produce the output:
+``
+2
+``
+
+[endsect]
+
