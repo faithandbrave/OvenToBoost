@@ -6,7 +6,7 @@
 [section at]
 
 `at` returns the N-th referent from the beginning of the range.
-This accessor returns `boost::optional<T&>`. If exist N-th element, returns the element of `boost::optional`. If range is empty, returns `boost::none`.
+This accessor returns `boost::optional<T&>`. If N-th element exists, returns the element wrapped with `boost::optional`. Otherwise, it returns `boost::none`.
 
 [table
     [[Syntax] [Code]]
