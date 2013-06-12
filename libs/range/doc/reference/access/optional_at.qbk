@@ -5,7 +5,7 @@
 /]
 [section optional_at]
 
-`at` returns the N-th referent from the beginning of the range.
+`optional_at` returns the N-th referent from the beginning of the range.[br]
 This accessor returns `boost::optional<T&>`. If N-th element exists, returns the element wrapped with `boost::optional`. Otherwise, it returns `boost::none`.
 
 [table
