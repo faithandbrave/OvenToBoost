@@ -14,7 +14,7 @@
 ]
 
 * [*Range Category:] __single_pass_range__
-* [*Range Return Type:] boost::range_reference<Range>::type
+* [*Range Return Type:] `boost::range_value<Range>::type`
 
 [heading Header]
 ``
@@ -23,6 +23,11 @@
 or
 ``
 #include <boost/range/access.hpp>
+``
+
+[heading Namespace]
+``
+boost::range::access
 ``
 
 [heading Example]
@@ -35,7 +40,7 @@ or
 
 #include <boost/range/access/front.hpp>
 
-using boost::range::access::front;
+using boost::range::access::value_front;
 
 void disp(int x)
 {
@@ -46,7 +51,7 @@ int main()
 {
     std::vector<int> v = boost::assign::list_of(3)(1)(4);
 
-    int x = v | front;
+    int x = v | value_front;
     std::cout << x << std::endl;
 }
 ``

@@ -14,7 +14,7 @@
 ]
 
 * [*Range Category:] __bidirectional_range__
-* [*Range Return Type:] boost::range_reference<Range>::type
+* [*Range Return Type:] `boost::range_value<Range>::type`
 
 [heading Header]
 ``
@@ -40,7 +40,7 @@ boost::range::access
 
 #include <boost/range/access/back.hpp>
 
-using boost::range::access::back;
+using boost::range::access::value_back;
 
 void disp(int x)
 {
@@ -51,7 +51,7 @@ int main()
 {
     std::vector<int> v = boost::assign::list_of(3)(1)(4);
 
-    int x = v | back;
+    int x = v | value_back;
     std::cout << x << std::endl;
 }
 ``
