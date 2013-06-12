@@ -14,7 +14,7 @@
 ]
 
 * [*Range Category:] __bidirectional_range__
-* [*Range Return Type:] `boost::range_reference<Range>::type`
+* [*Range Return Type:] `boost::range_value<Range>::type`
 
 [heading Header]
 ``
