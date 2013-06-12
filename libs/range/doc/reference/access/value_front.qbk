@@ -25,6 +25,11 @@ or
 #include <boost/range/access.hpp>
 ``
 
+[heading Namespace]
+``
+boost::range::access
+``
+
 [heading Example]
 
 ``
