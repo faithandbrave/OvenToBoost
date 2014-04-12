@@ -18,11 +18,31 @@
 #include <boost/range/combine.hpp>
 #include <boost/range/iterator.hpp>
 #include <boost/next_prior.hpp>
+#include <boost/tuple/tuple.hpp>
 
 namespace boost {
 
 namespace range_detail {
     struct adjacent_zipped_forwarder {};
+
+    template <class BidirectionalRng1, class BidirectionalRng2>
+    struct zip_range
+        : boost::range::combined_range<boost::tuple<
+              typename boost::range_iterator<BidirectionalRng1>::type,
+              typename boost::range_iterator<BidirectionalRng2>::type
+          > >
+    {
+        typedef
+            boost::range::combined_range<boost::tuple<
+                typename boost::range_iterator<BidirectionalRng1>::type,
+                typename boost::range_iterator<BidirectionalRng2>::type
+            > >
+        base;
+
+        explicit
+        zip_range(const base& b)
+          : base(b) {}
+    };
 
     template <class BidirectionalRng>
     struct adjacent_zipped_range
