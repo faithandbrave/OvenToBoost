@@ -33,7 +33,7 @@ namespace range_detail {
                     const dropped_range<BidirectionalRng>
                 > {
 
-		BOOST_RANGE_CONCEPT_ASSERT((BidirectionalRangeConcept<BidirectionalRng>));
+        BOOST_RANGE_CONCEPT_ASSERT((BidirectionalRangeConcept<BidirectionalRng>));
 
         typedef
             zip_range<
