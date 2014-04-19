@@ -10,6 +10,7 @@ In addition to regular operator of the Range Adaptor involved in, this library a
 If this library are integrated into the Boost Range Library, this extension will be as the standard feature.
 
 [include regular_extension/filtered.qbk]
+[include regular_extension/replaced_if.qbk]
 [include regular_extension/transformed.qbk]
 
 [endsect]
