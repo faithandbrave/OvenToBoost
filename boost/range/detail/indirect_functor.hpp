@@ -14,7 +14,7 @@
 #include <boost/utility/result_of.hpp>
 #include <boost/operators.hpp> // totally_ordered
 
-#if defined(BOOST_NO_VARIADIC_TEMPLATES) || defined(BOOST_NO_RVALUE_REFERENCES)
+#if defined(BOOST_NO_CXX11_VARIADIC_TEMPLATES) || defined(BOOST_NO_CXX11_RVALUE_REFERENCES)
     #include <boost/preprocessor/repetition/repeat.hpp>
     #include <boost/preprocessor/repetition/enum_params.hpp>
     #include <boost/preprocessor/repetition/enum_trailing_params.hpp>
@@ -51,7 +51,7 @@ struct indirect_functor : boost::totally_ordered1< indirect_functor<F> >{
     template <class Signature>
     struct result;
 
-#if !defined(BOOST_NO_VARIADIC_TEMPLATES)
+#if !defined(BOOST_NO_CXX11_VARIADIC_TEMPLATES)
     template <class F2, class... Args>
     struct result<F2(Args...)> : boost::result_of<indirected_functor_type(Args...)> {};
 #else
@@ -63,7 +63,7 @@ struct indirect_functor : boost::totally_ordered1< indirect_functor<F> >{
     indirect_functor() {}
     indirect_functor(F f) : f(f) {}
 
-#if !defined(BOOST_NO_VARIADIC_TEMPLATES) && !defined(BOOST_NO_RVALUE_REFERENCES)
+#if !defined(BOOST_NO_CXX11_VARIADIC_TEMPLATES) && !defined(BOOST_NO_CXX11_RVALUE_REFERENCES)
     template <class... Args>
     typename boost::result_of<indirected_functor_type(Args...)>::type
         operator()(Args&&... args) const
@@ -94,7 +94,7 @@ struct indirect_functor : boost::totally_ordered1< indirect_functor<F> >{
 }}} // namespace boost::range::detail
 
 namespace boost {
-#if !defined(BOOST_RESULT_OF_USE_DECLTYPE) || defined(BOOST_NO_DECLTYPE)
+#if !defined(BOOST_RESULT_OF_USE_DECLTYPE) || defined(BOOST_NO_CXX11_DECLTYPE_N3276)
     template <class F>
     struct result_of<boost::range::detail::indirect_functor<F>()> {
         typedef typename boost::result_of<
