@@ -25,43 +25,24 @@ namespace boost {
 namespace range_detail {
     struct adjacent_zipped_forwarder {};
 
-    template <class BidirectionalRng1, class BidirectionalRng2>
-    struct zip_range
-        : boost::range::combined_range<boost::tuple<
-              typename boost::range_iterator<BidirectionalRng1>::type,
-              typename boost::range_iterator<BidirectionalRng2>::type
-          > >
-    {
-        typedef
-            boost::range::combined_range<boost::tuple<
-                typename boost::range_iterator<BidirectionalRng1>::type,
-                typename boost::range_iterator<BidirectionalRng2>::type
-            > >
-        base;
-
-        explicit
-        zip_range(const base& b)
-          : base(b) {}
-    };
-
     template <class BidirectionalRng>
     struct adjacent_zipped_range
-                : zip_range<
-                    const boost::iterator_range<
-                        typename boost::range_iterator<BidirectionalRng>::type
-                     >,
-                    const dropped_range<BidirectionalRng>
-                > {
+        : boost::range::combined_range<boost::tuple<
+              typename boost::range_iterator<BidirectionalRng>::type,
+              typename boost::range_iterator<
+                  const boost::dropped_range<BidirectionalRng>
+              >::type
+          > > {
 
         BOOST_RANGE_CONCEPT_ASSERT((BidirectionalRangeConcept<BidirectionalRng>));
 
         typedef
-            zip_range<
-                const boost::iterator_range<
-                     typename boost::range_iterator<BidirectionalRng>::type
-                >,
-                const dropped_range<BidirectionalRng>
-            >
+            boost::range::combined_range<boost::tuple<
+                typename boost::range_iterator<BidirectionalRng>::type,
+                typename boost::range_iterator<
+                    const boost::dropped_range<BidirectionalRng>
+                >::type
+            > >
         base;
 
         explicit adjacent_zipped_range(BidirectionalRng& r)
